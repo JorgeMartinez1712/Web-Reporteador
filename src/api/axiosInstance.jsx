@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-export const IMAGE_BASE_URL = import.meta.env.VITE_API_URL;
+export const IMAGE_BASE_URL = 'https://api.dev.financiados.app';
 
 const axiosInstance = axios.create({
-  baseURL: `${IMAGE_BASE_URL}api/admin`,
+  baseURL: 'https://api.dev.financiados.app/api/admin',
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
