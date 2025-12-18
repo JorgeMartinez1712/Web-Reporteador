@@ -1,0 +1,48 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100%;
+  text-transform: uppercase !important;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+header, footer {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.main-content {
+  flex: 1;
+  padding: 0;
+  margin: 0;
+  transition: margin-left 0.2s ease-in-out;
+}
+
+.main-content.ml-64 {
+  margin-left: 16rem;
+}
+
+.main-content.ml-16 {
+  margin-left: 4rem;
+}
+
+.main-content.ml-0 {
+  margin-left: 0;
+}
