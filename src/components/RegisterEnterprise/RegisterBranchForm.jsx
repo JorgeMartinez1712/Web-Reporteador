@@ -134,7 +134,7 @@ const RegisterBranchForm = ({
         </button>
         <button
           type="submit"
-          className="bg-emerald-600 text-white py-2 px-4 rounded-lg hover:bg-emerald-700 cursor-pointer text-sm"
+          className="bg-fuchsia-900 text-white py-2 px-4 rounded-lg hover:bg-fuchsia-950 cursor-pointer text-sm"
           disabled={loading}
         >
           {loading ? <FaSpinner className="animate-spin mx-auto" /> : 'Guardar'}

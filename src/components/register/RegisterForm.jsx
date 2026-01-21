@@ -192,9 +192,9 @@ const RegisterForm = () => {
               passwordValidations.hasNumber &&
               passwordValidations.minLength &&
               passwordValidations.passwordsMatch
-              ? 'bg-emerald-600 hover:bg-emerald-700'
+              ? 'bg-fuchsia-900 hover:bg-fuchsia-950'
               : 'bg-gray-600 cursor-not-allowed'
-              } rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500`}
+              } rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-fuchsia-500`}
             disabled={
               !(
                 passwordValidations.hasUpperCase &&
@@ -210,7 +210,7 @@ const RegisterForm = () => {
         {error && <p className="text-sm text-red-500 text-center mt-2">{error}</p>} 
         <p className="text-sm font-light text-gray-500 mt-4 text-center">
           ¿Ya tienes una cuenta?{' '}
-          <Link to="/login" className="font-medium text-emerald-600 hover:underline">
+          <Link to="/login" className="font-medium text-fuchsia-900 hover:underline">
             Inicia sesión
           </Link>
         </p>

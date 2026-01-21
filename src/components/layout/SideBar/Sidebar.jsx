@@ -70,11 +70,11 @@ const Sidebar = ({ isOpen, isCollapsed, toggleCollapse }) => {
 
     return (
         <div
-            className={`fixed top-0 left-0 h-full flex flex-col ${isCollapsed ? 'w-16' : 'w-64'} bg-gray-100 text-gray-700 transform ${isOpen ? 'translate-x-0' : '-translate-x-full'
+            className={`fixed top-0 left-0 h-full flex flex-col ${isCollapsed ? 'w-16' : 'w-64'} bg-fuchsia-50 text-gray-700 transform ${isOpen ? 'translate-x-0' : '-translate-x-full'
                 } transition-transform duration-300 ease-in-out z-50 border-r border-gray-300`}
         >
             <SidebarHeader isCollapsed={isCollapsed} />
-            <div className="p-4 pt-0 flex-1 overflow-y-auto">
+            <div className="p-4 pt-0 flex-1 overflow-y-auto custom-scrollbar">
                 {sections.map((section, index) => (
                     <SidebarSection
                         key={index}
@@ -88,7 +88,7 @@ const Sidebar = ({ isOpen, isCollapsed, toggleCollapse }) => {
             </div>
             <button
                 onClick={toggleCollapse}
-                className="absolute top-1/2 -right-5 transform -translate-y-1/2 bg-gray-200 text-gray-700 rounded-full p-2 shadow-md cursor-pointer"
+                className="absolute top-1/2 -right-5 transform -translate-y-1/2 bg-fuchsia-300 text-fuchsia-900 rounded-full p-2 shadow-md cursor-pointer"
             >
                 <i className={`bi ${isCollapsed ? 'bi-arrow-right' : 'bi-arrow-left'}`}></i>
             </button>

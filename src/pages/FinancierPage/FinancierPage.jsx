@@ -37,7 +37,7 @@ const FinancierPage = () => {
     if (loading) {
         return (
             <div className="min-h-screen flex justify-center items-center">
-                <FaSpinner className="animate-spin text-emerald-600 text-4xl" />
+                <FaSpinner className="animate-spin text-fuchsia-900 text-4xl" />
             </div>
         );
     }
@@ -63,13 +63,13 @@ const FinancierPage = () => {
                 </div>
             )}
             <div className="w-full flex justify-between items-center mb-8">
-                <h2 className="text-xl font-extrabold text-emerald-700 tracking-tight">
+                <h2 className="text-xl font-extrabold text-fuchsia-950 tracking-tight">
                     Información del Financista
                 </h2>
                 {!isEditing && (
                     <button
                         onClick={() => setIsEditing(true)}
-                        className="px-6 py-2 rounded-lg font-semibold text-white bg-emerald-600 hover:bg-emerald-700 transition-colors duration-200 shadow-md"
+                        className="px-6 py-2 rounded-lg font-semibold text-white bg-fuchsia-900 hover:bg-fuchsia-950 transition-colors duration-200 shadow-md"
                     >
                         Editar
                     </button>

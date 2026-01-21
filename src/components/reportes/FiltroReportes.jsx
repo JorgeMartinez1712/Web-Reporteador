@@ -77,7 +77,7 @@ const FiltroReportes = ({ onFilter, initialFilters = {} }) => {
     return (
         <form onSubmit={handleSubmit} className="flex flex-col md:flex-row md:items-center md:space-x-4 space-y-4 md:space-y-0">
             <div className="flex flex-col text-left w-full md:w-auto">
-                <label htmlFor="startDate" className="text-sm font-semibold text-emerald-700">
+                <label htmlFor="startDate" className="text-sm font-semibold text-fuchsia-950">
                     Fecha de inicio
                 </label>
                 <input
@@ -85,11 +85,11 @@ const FiltroReportes = ({ onFilter, initialFilters = {} }) => {
                     type="date"
                     value={startDate}
                     onChange={e => setStartDate(e.target.value)}
-                    className="border border-emerald-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-colors duration-200"
+                    className="border border-fuchsia-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 transition-colors duration-200"
                 />
             </div>
             <div className="flex flex-col text-left w-full md:w-auto">
-                <label htmlFor="endDate" className="text-sm font-semibold text-emerald-700">
+                <label htmlFor="endDate" className="text-sm font-semibold text-fuchsia-950">
                     Fecha de fin
                 </label>
                 <input
@@ -97,11 +97,11 @@ const FiltroReportes = ({ onFilter, initialFilters = {} }) => {
                     type="date"
                     value={endDate}
                     onChange={e => setEndDate(e.target.value)}
-                    className="border border-emerald-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-colors duration-200"
+                    className="border border-fuchsia-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 transition-colors duration-200"
                 />
             </div>
             <div className="flex flex-col text-left w-full md:w-auto md:min-w-[200px]">
-                <label htmlFor="retail" className="text-sm font-semibold text-emerald-700">
+                <label htmlFor="retail" className="text-sm font-semibold text-fuchsia-950">
                     Empresa
                 </label>
                 <Select
@@ -115,7 +115,7 @@ const FiltroReportes = ({ onFilter, initialFilters = {} }) => {
             </div>
             {selectedRetail && (
                 <div className="flex flex-col text-left w-full md:w-auto md:min-w-[200px]">
-                    <label htmlFor="retailUnit" className="text-sm font-semibold text-emerald-700">
+                    <label htmlFor="retailUnit" className="text-sm font-semibold text-fuchsia-950">
                         Sucursal
                     </label>
                     <Select
@@ -131,7 +131,7 @@ const FiltroReportes = ({ onFilter, initialFilters = {} }) => {
             <div className="flex flex-col md:flex-row md:items-center md:space-x-2 space-y-2 md:space-y-0 w-full md:w-auto">
                 <button
                     type="submit"
-                    className="w-full md:w-auto bg-emerald-600 hover:bg-emerald-700 text-white p-3 rounded-full shadow-lg transition-transform transform hover:scale-110"
+                    className="w-full md:w-auto bg-fuchsia-900 hover:bg-fuchsia-950 text-white p-3 rounded-full shadow-lg transition-transform transform hover:scale-110"
                     aria-label="Buscar"
                 >
                     <FaSearch />

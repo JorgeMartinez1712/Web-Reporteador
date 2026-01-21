@@ -43,7 +43,7 @@ const ParametersPage = () => {
   return (
     <div className="p-8">
       <div className="w-full flex justify-between items-center mb-8">
-        <h2 className="text-xl font-extrabold text-emerald-700 tracking-tight">
+        <h2 className="text-xl font-extrabold text-fuchsia-950 tracking-tight">
           Parametrización
         </h2>
       </div>

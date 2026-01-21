@@ -4,8 +4,8 @@ import { useLocation } from 'react-router-dom';
 
 const SidebarSection = ({ title, items, isCollapsed, icon, titleIcon }) => {
     const [isSectionCollapsed, setIsSectionCollapsed] = useState(false);
-    const titleIconColor = 'text-emerald-500';
-    const activeSectionColor = 'text-emerald-500';
+    const titleIconColor = 'text-fuchsia-900';
+    const activeSectionColor = 'text-fuchsia-900';
     const location = useLocation();
     const isAnyItemActive = items.some(item => location.pathname.startsWith(item.to));
 
@@ -20,15 +20,15 @@ const SidebarSection = ({ title, items, isCollapsed, icon, titleIcon }) => {
     return (
         <div className="mt-4">
             <div
-                className={`group flex items-center cursor-pointer p-2 rounded-md hover:bg-gray-200 transition-colors duration-200 ${
+                className={`group flex items-center cursor-pointer p-2 rounded-md hover:bg-fuchsia-200 transition-colors duration-200 ${
                     isCollapsed ? 'justify-center' : 'justify-between'
                 }`}
                 onClick={() => setIsSectionCollapsed(!isSectionCollapsed)}
             >
                 <i className={sectionIconClass}></i>
-                {!isCollapsed && <h3 className="text-base font-medium text-gray-700 flex-grow">{title}</h3>}
+                {!isCollapsed && <h3 className="text-base font-medium text-fuchsia-900 flex-grow">{title}</h3>}
                 {!isCollapsed && <i
-                    className={`bi text-gray-600 text-sm transition-transform duration-200 ${
+                    className={`bi text-fuchsia-900 text-sm transition-transform duration-200 ${
                         isSectionCollapsed ? 'bi-chevron-down' : 'bi-chevron-up'
                     }`}
                 >

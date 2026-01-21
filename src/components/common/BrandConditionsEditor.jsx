@@ -138,7 +138,7 @@ const BrandConditionsEditor = ({ value, onChange, brands = [], disabled = false 
         <button
           type="button"
           onClick={handleAddCondition}
-          className="mb-4 p-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 self-start"
+          className="mb-4 p-2 bg-fuchsia-900 text-white rounded-lg hover:bg-fuchsia-950 self-start"
           disabled={disabled}
         >
           Agregar condiciones para una marca
@@ -196,7 +196,7 @@ const BrandConditionsEditor = ({ value, onChange, brands = [], disabled = false 
                       name="installments"
                       value={condition.installments}
                       onChange={(e) => handleFieldChange(conditionIndex, 'installments', e.target.value)}
-                      className="border border-gray-300 rounded-lg p-2 w-full focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
+                      className="border border-gray-300 rounded-lg p-2 w-full focus:border-fuchsia-500 focus:ring-1 focus:ring-fuchsia-500"
                       placeholder="Ej: 12"
                       min="1"
                       step="1"
@@ -213,7 +213,7 @@ const BrandConditionsEditor = ({ value, onChange, brands = [], disabled = false 
                       name="down_payment_rate"
                       value={condition.down_payment_rate}
                       onChange={(e) => handleFieldChange(conditionIndex, 'down_payment_rate', e.target.value)}
-                      className="border border-gray-300 rounded-lg p-2 w-full focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
+                      className="border border-gray-300 rounded-lg p-2 w-full focus:border-fuchsia-500 focus:ring-1 focus:ring-fuchsia-500"
                       placeholder="Ej: 10.00"
                       step="0.01"
                       min="0"
@@ -231,7 +231,7 @@ const BrandConditionsEditor = ({ value, onChange, brands = [], disabled = false 
                       name="credit_limit"
                       value={condition.credit_limit}
                       onChange={(e) => handleFieldChange(conditionIndex, 'credit_limit', e.target.value)}
-                      className="border border-gray-300 rounded-lg p-2 w-full focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
+                      className="border border-gray-300 rounded-lg p-2 w-full focus:border-fuchsia-500 focus:ring-1 focus:ring-fuchsia-500"
                       placeholder="Ej: 50000.00"
                       step="0.01"
                       min="0"

@@ -102,7 +102,7 @@ const EditInventory = ({
         </button>
         <button
           type="submit"
-          className="bg-emerald-600 text-white py-2 px-4 rounded-lg hover:bg-emerald-700 cursor-pointer text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+          className="bg-fuchsia-900 text-white py-2 px-4 rounded-lg hover:bg-fuchsia-950 cursor-pointer text-sm disabled:opacity-50 disabled:cursor-not-allowed"
           disabled={loading || isRetailUnitsEmpty}
         >
           {loading ? <FaSpinner className="animate-spin mx-auto" /> : 'Guardar'}

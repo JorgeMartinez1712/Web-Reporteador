@@ -111,7 +111,7 @@ const LevelsPage = () => {
 
     if (loading && levels.length === 0) return (
         <div className="flex justify-center items-center p-8 min-h-screen text-left">
-            <FaSpinner className="animate-spin text-emerald-600 text-4xl" />
+            <FaSpinner className="animate-spin text-fuchsia-900 text-4xl" />
         </div>
     );
 
@@ -127,7 +127,7 @@ const LevelsPage = () => {
             <ErrorNotification isOpen={showError} message={errorMessage} onClose={closeNotifications} />
             <SuccessNotification isOpen={showSuccess} message={successMessage} />
 
-            <h1 className="text-xl font-extrabold text-emerald-700 tracking-tight text-left mb-5">Gestión de Niveles</h1>
+            <h1 className="text-xl font-extrabold text-fuchsia-950 tracking-tight text-left mb-5">Gestión de Niveles</h1>
 
             <form onSubmit={handleCreateOrUpdate} className="mb-8 text-left">
 
@@ -137,7 +137,7 @@ const LevelsPage = () => {
                         <input
                             type="text"
                             id="nivel"
-                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
                             value={nivel}
                             onChange={(e) => setNivel(e.target.value)}
                             placeholder="Ej: Nivel Bronce"
@@ -150,7 +150,7 @@ const LevelsPage = () => {
                         <input
                             type="number"
                             id="pointFrom"
-                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
                             value={pointFrom}
                             onChange={(e) => setPointFrom(e.target.value)}
                             placeholder="Ej: 500"
@@ -163,7 +163,7 @@ const LevelsPage = () => {
                         <input
                             type="number"
                             id="pointTo"
-                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
                             value={pointTo}
                             onChange={(e) => setPointTo(e.target.value)}
                             placeholder="Ej: 1500"
@@ -176,7 +176,7 @@ const LevelsPage = () => {
                         <input
                             type="number"
                             id="scoreFrom"
-                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
                             value={scoreFrom}
                             onChange={(e) => setScoreFrom(e.target.value)}
                             placeholder="Ej: 500"
@@ -189,7 +189,7 @@ const LevelsPage = () => {
                         <input
                             type="number"
                             id="scoreTo"
-                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
                             value={scoreTo}
                             onChange={(e) => setScoreTo(e.target.value)}
                             placeholder="Ej: 650"
@@ -203,7 +203,7 @@ const LevelsPage = () => {
                             type="number"
                             step="0.01"
                             id="creditFrom"
-                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
                             value={creditFrom}
                             onChange={(e) => setCreditFrom(e.target.value)}
                             placeholder="Ej: 1000.00"
@@ -217,7 +217,7 @@ const LevelsPage = () => {
                             type="number"
                             step="0.01"
                             id="creditTo"
-                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
                             value={creditTo}
                             onChange={(e) => setCreditTo(e.target.value)}
                             placeholder="Ej: 5000.00"
@@ -229,7 +229,7 @@ const LevelsPage = () => {
                         <label htmlFor="descripcion" className="block text-gray-700 text-sm font-medium mb-1">Descripción:</label>
                         <textarea
                             id="descripcion"
-                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 resize-none h-[42px]"
+                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 resize-none h-[42px]"
                             value={descripcion}
                             onChange={(e) => setDescripcion(e.target.value)}
                             placeholder="Una breve descripción del nivel"
@@ -249,7 +249,7 @@ const LevelsPage = () => {
                     )}
                     <button
                         type="submit"
-                        className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200 flex items-center"
+                        className="bg-fuchsia-900 hover:bg-fuchsia-950 text-white font-semibold py-2 px-4 rounded-lg transition duration-200 flex items-center"
                         disabled={loading}
                     >
                         {loading ? <FaSpinner className="animate-spin mr-2" /> : null}

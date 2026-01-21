@@ -423,7 +423,7 @@ const EditPlanForm = ({ onPlanUpdated, formData, setGlobalSuccessMessage, setGlo
       {!isDetailPage && (
         <button
           type="submit"
-          className="w-full bg-emerald-600 text-white py-2 rounded-lg hover:bg-emerald-700 mt-4"
+          className="w-full bg-fuchsia-900 text-white py-2 rounded-lg hover:bg-fuchsia-950 mt-4"
           disabled={currentLoading}
         >
           {currentLoading ? <FaSpinner className="animate-spin mx-auto" /> : 'Actualizar Plan'}

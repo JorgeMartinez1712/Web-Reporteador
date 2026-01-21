@@ -23,8 +23,8 @@ const CustomerDetailForm = ({
     <form className="max-w-full mx-auto space-y-6">
       <div className="w-full rounded-xl shadow-sm bg-white">
         <div className="px-6 pt-5 pb-3">
-          <h3 className="flex items-center gap-2 text-emerald-600 text-lg font-medium">
-            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+          <h3 className="flex items-center gap-2 text-fuchsia-900 text-lg font-medium">
+            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-fuchsia-50 text-fuchsia-900">
               <i className="bi bi-person-lines-fill" />
             </span>
             <span>Datos del Cliente</span>

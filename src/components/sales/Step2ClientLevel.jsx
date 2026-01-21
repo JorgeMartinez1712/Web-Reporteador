@@ -95,33 +95,33 @@ const Step2ClientLevel = ({ onNext, onPrev, clientData, saleId, saleData, onErro
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div className="flex items-center space-x-3 text-gray-700">
-                    <FaUser className="text-emerald-600 text-xl" />
+                    <FaUser className="text-fuchsia-900 text-xl" />
                     <p className="text-sm font-medium">{clientData.full_name || 'N/A'}</p>
                 </div>
                 <div className="flex items-center space-x-3 text-gray-700">
-                    <FaIdCard className="text-emerald-600 text-xl" />
+                    <FaIdCard className="text-fuchsia-900 text-xl" />
                     <p className="text-sm">{`${clientData.document_type?.code || ''} ${clientData.document_number || 'N/A'}`}</p>
                 </div>
                 <div className="flex items-center space-x-3 text-gray-700">
-                    <FaMobileAlt className="text-emerald-600 text-xl" />
+                    <FaMobileAlt className="text-fuchsia-900 text-xl" />
                     <p className="text-sm">{clientData.phone_number || 'N/A'}</p>
                 </div>
                 <div className="flex items-center space-x-3 text-gray-700">
-                    <FaEnvelope className="text-emerald-600 text-xl" />
+                    <FaEnvelope className="text-fuchsia-900 text-xl" />
                     <p className="text-sm">{clientData?.email || 'N/A'}</p>
                 </div>
                 <div className="flex items-center space-x-3 text-gray-700">
-                    <FaMapMarkerAlt className="text-emerald-600 text-xl" />
+                    <FaMapMarkerAlt className="text-fuchsia-900 text-xl" />
                     <p className="text-sm">{clientData.address || 'N/A'}</p>
                 </div>
                 <div className="flex items-center space-x-3 text-gray-700">
-                    <FaCalendarAlt className="text-emerald-600 text-xl" />
+                    <FaCalendarAlt className="text-fuchsia-900 text-xl" />
                     <p className="text-sm">{sale_date ? format(new Date(sale_date), 'dd MMMM yyyy', { locale: es }) : 'N/A'}</p>
                 </div>
             </div>
             <div className="mt-6 pt-6 border-gray-200">
                 {isVerifying ? (
-                    <div className="bg-blue-50 p-4 rounded-lg border border-blue-200 text-emerald-700 text-center flex items-center justify-center">
+                    <div className="bg-blue-50 p-4 rounded-lg border border-blue-200 text-fuchsia-950 text-center flex items-center justify-center">
                         <FaSpinner className="animate-spin inline-block mr-2" />
                         Verificando elegibilidad del cliente...
                     </div>
@@ -151,7 +151,7 @@ const Step2ClientLevel = ({ onNext, onPrev, clientData, saleId, saleData, onErro
                         <button
                             type="button"
                             onClick={handleNextStep}
-                            className="bg-emerald-600 text-white py-2 px-4 rounded-lg shadow hover:bg-emerald-700 transition duration-200"
+                            className="bg-fuchsia-900 text-white py-2 px-4 rounded-lg shadow hover:bg-fuchsia-950 transition duration-200"
                         >
                             Siguiente
                         </button>
@@ -159,7 +159,7 @@ const Step2ClientLevel = ({ onNext, onPrev, clientData, saleId, saleData, onErro
                         <button
                             type="button"
                             onClick={handleVerify}
-                            className="border border-emerald-600 text-emerald-600 bg-white py-2 px-4 rounded-lg shadow hover:bg-emerald-100 transition duration-200 disabled:opacity-50"
+                            className="border border-fuchsia-900 text-fuchsia-900 bg-white py-2 px-4 rounded-lg shadow hover:bg-fuchsia-100 transition duration-200 disabled:opacity-50"
                             disabled={isVerifying}
                         >
                             {isVerifying ? <FaSpinner className="animate-spin mr-2" /> : 'Verificar'}

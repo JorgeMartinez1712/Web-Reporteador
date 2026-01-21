@@ -73,7 +73,7 @@ const SaleStatusManagement = () => {
     };
 
     if (loading) return <div className="flex justify-center items-center">
-        <FaSpinner className="animate-spin text-emerald-600 text-4xl min-h-screen" />
+        <FaSpinner className="animate-spin text-fuchsia-900 text-4xl min-h-screen" />
     </div>;
     if (error) return <div className="text-center py-4 text-red-600">Error: {error}</div>;
 
@@ -88,7 +88,7 @@ const SaleStatusManagement = () => {
                         <input
                             type="text"
                             id="statusCode"
-                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
                             value={statusCode}
                             onChange={(e) => setStatusCode(e.target.value)}
                             disabled={isEditing}
@@ -103,7 +103,7 @@ const SaleStatusManagement = () => {
                         <input
                             type="text"
                             id="statusName"
-                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
                             value={statusName}
                             onChange={(e) => setStatusName(e.target.value)}
                             placeholder="Ej: Pendiente, Finalizada"
@@ -116,7 +116,7 @@ const SaleStatusManagement = () => {
                         </label>
                         <textarea
                             id="statusDescription"
-                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-emerald-500 resize-none h-[42px]"
+                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500 resize-none h-[42px]"
                             value={statusDescription}
                             onChange={(e) => setStatusDescription(e.target.value)}
                             placeholder="Una breve descripción del estado de la venta"
@@ -135,7 +135,7 @@ const SaleStatusManagement = () => {
                     )}
                     <button
                         type="submit"
-                        className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        className="bg-fuchsia-900 hover:bg-fuchsia-950 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     >
                         Guardar
                     </button>

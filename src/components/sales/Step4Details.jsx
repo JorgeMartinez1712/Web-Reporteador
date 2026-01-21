@@ -214,7 +214,7 @@ const Step4Details = ({ onNext, onPrev, saleData, currentUser, financingContract
                 </label>
                 <textarea
                     id="saleNotes"
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-emerald-500 focus:border-emerald-500 text-gray-800 resize-y"
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-fuchsia-500 focus:border-fuchsia-500 text-gray-800 resize-y"
                     rows="4"
                     placeholder="Añade cualquier nota relevante sobre esta venta aquí..."
                     value={saleNotes}
@@ -233,7 +233,7 @@ const Step4Details = ({ onNext, onPrev, saleData, currentUser, financingContract
                 <button
                     type="button"
                     onClick={handleNext}
-                    className="bg-emerald-600 text-white px-6 py-2 rounded-lg hover:bg-emerald-700 transition duration-300 font-medium"
+                    className="bg-fuchsia-900 text-white px-6 py-2 rounded-lg hover:bg-fuchsia-950 transition duration-300 font-medium"
                 >
                     {isCompleted ? 'Continuar' : 'Siguiente'}
                 </button>

@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import { FaSpinner } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
-import useLoginUser from '../../hooks/useLoginUser';
+import useLogin from '../../hooks/useLogin';
 import ErrorNotification from '../common/ErrorNotification';
 import SuccessNotification from '../common/SuccessNotification';
 import PasswordRequirements from '../register/PasswordRequeriments';
@@ -20,7 +20,7 @@ const ForgotPasswordForm = ({ initialEmail = '', initialToken = '' }) => {
   const [notificationType, setNotificationType] = useState('error');
   const [emailSent, setEmailSent] = useState(false);
 
-  const { requestPasswordReset, resetPassword, loading } = useLoginUser();
+  const { requestPasswordReset, resetPassword, loading } = useLogin();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -123,7 +123,7 @@ const ForgotPasswordForm = ({ initialEmail = '', initialToken = '' }) => {
             </div>
             <button
               type="submit"
-              className="w-full text-white bg-emerald-600 hover:bg-emerald-700 focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+              className="w-full text-white bg-fuchsia-900 hover:bg-fuchsia-950 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center"
               disabled={loading}
             >
               {loading ? <FaSpinner className="animate-spin mx-auto" /> : 'Enviar Enlace'}
@@ -216,7 +216,7 @@ const ForgotPasswordForm = ({ initialEmail = '', initialToken = '' }) => {
             <PasswordRequirements validations={validations} />
             <button
               type="submit"
-              className="w-full text-white bg-emerald-600 hover:bg-emerald-700 focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mt-4"
+              className="w-full text-white bg-fuchsia-900 hover:bg-fuchsia-950 focus:ring-4 focus:outline-none focus:ring-fuchsia-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mt-4"
               disabled={loading || !isPasswordValid}
             >
               {loading ? <FaSpinner className="animate-spin mx-auto" /> : 'Restablecer Contraseña'}
@@ -226,7 +226,7 @@ const ForgotPasswordForm = ({ initialEmail = '', initialToken = '' }) => {
 
         <p className="text-sm font-light text-gray-500 text-center mt-4">
           ¿Recordaste tu contraseña?{' '}
-          <Link to="/login" className="text-sm font-medium text-emerald-600 hover:underline">
+          <Link to="/login" className="text-sm font-medium text-fuchsia-900 hover:underline">
             Iniciar sesión
           </Link>
         </p>

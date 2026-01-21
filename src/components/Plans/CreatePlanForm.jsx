@@ -153,7 +153,7 @@ const CreatePlanForm = ({ onPlanCreated, setGlobalSuccessMessage, setGlobalError
       {hookError && <ErrorNotification message={hookError} />}
       {loading && (
         <div className="absolute inset-0 flex justify-center items-center bg-white bg-opacity-75 z-50">
-          <FaSpinner className="animate-spin text-emerald-600 text-4xl" />
+          <FaSpinner className="animate-spin text-fuchsia-900 text-4xl" />
         </div>
       )}
 
@@ -485,7 +485,7 @@ const CreatePlanForm = ({ onPlanCreated, setGlobalSuccessMessage, setGlobalError
         </button>
         <button
           type="submit"
-          className="bg-emerald-600 text-white py-2 px-4 rounded-lg hover:bg-emerald-700 cursor-pointer text-sm"
+          className="bg-fuchsia-900 text-white py-2 px-4 rounded-lg hover:bg-fuchsia-950 cursor-pointer text-sm"
           disabled={loading}
         >
           {loading ? <FaSpinner className="animate-spin mx-auto" /> : 'Guardar'}

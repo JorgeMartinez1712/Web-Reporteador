@@ -30,7 +30,7 @@ const ProfilePage = () => {
   if (authLoading) {
     return (
       <div className="flex justify-center items-center min-h-screen w-full">
-        <FaSpinner className="animate-spin text-emerald-600 text-4xl" />
+        <FaSpinner className="animate-spin text-fuchsia-900 text-4xl" />
       </div>
     );
   }
@@ -50,7 +50,7 @@ const ProfilePage = () => {
         message="¡Correo de restablecimiento enviado exitosamente!"
       />
 
-      <h1 className="text-2xl font-extrabold text-emerald-700 tracking-tight text-left p-3">Mi Perfil</h1>
+      <h1 className="text-2xl font-extrabold text-fuchsia-950 tracking-tight text-left p-3">Mi Perfil</h1>
 
       <div className="w-full">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

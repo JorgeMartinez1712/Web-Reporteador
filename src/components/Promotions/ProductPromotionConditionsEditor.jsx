@@ -114,7 +114,7 @@ const ProductPromotionConditionsEditor = ({ value, onChange, products = [], disa
         <button
           type="button"
           onClick={handleAddCondition}
-          className="mb-4 p-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 self-start"
+          className="mb-4 p-2 bg-fuchsia-900 text-white rounded-lg hover:bg-fuchsia-950 self-start"
           disabled={disabled}
         >
           Agregar condiciones por producto
@@ -169,7 +169,7 @@ const ProductPromotionConditionsEditor = ({ value, onChange, products = [], disa
                         value={condition[fieldDef.key]}
                         onChange={(e) => handleFieldChange(conditionIndex, fieldDef.key, e.target.value)}
                         onBlur={() => handleFieldBlur(conditionIndex, fieldDef.key)}
-                        className="border border-gray-300 rounded-lg p-2 w-full focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
+                        className="border border-gray-300 rounded-lg p-2 w-full focus:border-fuchsia-500 focus:ring-1 focus:ring-fuchsia-500"
                         placeholder={`Ingresa ${lowerCaseLabel}`}
                         step={fieldDef.step}
                         min={fieldDef.min}

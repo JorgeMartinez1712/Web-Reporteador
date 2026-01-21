@@ -8,9 +8,9 @@ import ErrorNotification from '../../components/common/ErrorNotification';
 
 moment.locale('es');
 
-const Badge = ({ children, color = 'emerald' }) => {
+const Badge = ({ children, color = 'fuchsia' }) => {
   const map = {
-    emerald: 'bg-emerald-100 text-emerald-800',
+    fuchsia: 'bg-fuchsia-100 text-fuchsia-800',
     yellow: 'bg-yellow-100 text-yellow-800',
     red: 'bg-red-100 text-red-800',
     gray: 'bg-gray-100 text-gray-800',
@@ -88,7 +88,7 @@ const DetallePagoPage = () => {
 
     const getStatusColor = (status) => {
       const s = String(status || '').toUpperCase();
-      if (s.includes('COMPLET') || s.includes('COMPLETADO') || s.includes('COMPLETED')) return 'bg-emerald-600 text-white';
+      if (s.includes('COMPLET') || s.includes('COMPLETADO') || s.includes('COMPLETED')) return 'bg-fuchsia-900 text-white';
       if (s.includes('PEND')) return 'bg-yellow-500 text-white';
       if (s.includes('RECH') || s.includes('FALL')) return 'bg-red-500 text-white';
       return 'bg-gray-500 text-white';
@@ -126,7 +126,7 @@ const DetallePagoPage = () => {
           <div className="lg:col-span-2 space-y-6">
             <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
               <div className="flex items-center gap-3 mb-3">
-                <i className="bi bi-person-fill text-emerald-600 text-2xl" />
+                <i className="bi bi-person-fill text-fuchsia-900 text-2xl" />
                 <h3 className="text-sm font-semibold text-gray-700">Información del Cliente</h3>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -137,7 +137,7 @@ const DetallePagoPage = () => {
 
             <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
               <div className="flex items-center gap-3 mb-3">
-                <i className="bi bi-credit-card text-emerald-600 text-2xl" />
+                <i className="bi bi-credit-card text-fuchsia-900 text-2xl" />
                 <h3 className="text-sm font-semibold text-gray-700">Información del Pago</h3>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -151,7 +151,7 @@ const DetallePagoPage = () => {
 
             <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
               <div className="flex items-center gap-3 mb-3">
-                <i className="bi bi-arrow-right text-emerald-600 text-2xl" />
+                <i className="bi bi-arrow-right text-fuchsia-900 text-2xl" />
                 <h3 className="text-sm font-semibold text-gray-700">Cuotas Aplicadas</h3>
               </div>
               <div className="overflow-x-auto">
@@ -180,7 +180,7 @@ const DetallePagoPage = () => {
 
             <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
               <div className="flex items-center gap-3 mb-3">
-                <i className="bi bi-info-circle text-emerald-600 text-2xl" />
+                <i className="bi bi-info-circle text-fuchsia-900 text-2xl" />
                 <h3 className="text-sm font-semibold text-gray-700">Información Técnica</h3>
               </div>
               <div className="space-y-4">
@@ -211,7 +211,7 @@ const DetallePagoPage = () => {
             {payment.notes && (
               <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
                 <div className="flex items-center gap-3 mb-3">
-                  <i className="bi bi-file-text text-emerald-600 text-2xl" />
+                  <i className="bi bi-file-text text-fuchsia-900 text-2xl" />
                   <h3 className="text-sm font-semibold text-gray-700">Notas</h3>
                 </div>
                 <div>
@@ -225,7 +225,7 @@ const DetallePagoPage = () => {
             {(payment.retail_unit?.retail?.comercial_name || payment.retail_unit_name || payment.processed_by?.user?.name || payment.processed_by_name) && (
               <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
                 <div className="flex items-center gap-3 mb-3">
-                  <i className="bi bi-building text-emerald-600 text-2xl" />
+                  <i className="bi bi-building text-fuchsia-900 text-2xl" />
                   <h3 className="text-sm font-semibold text-gray-700">Información Administrativa</h3>
                 </div>
                 <div className="space-y-4">
@@ -239,7 +239,7 @@ const DetallePagoPage = () => {
                     <div className='text-left'>
                       <p className="text-gray-500 text-sm">Procesado Por</p>
                       <div className="flex items-center gap-2 mt-1">
-                        <i className="bi bi-person-check text-emerald-600 text-lg" />
+                        <i className="bi bi-person-check text-fuchsia-900 text-lg" />
                         <p className="text-gray-700">{payment.processed_by?.user?.name || payment.processed_by_name}</p>
                       </div>
                     </div>
@@ -248,8 +248,8 @@ const DetallePagoPage = () => {
               </div>
             )}
 
-            <div className="bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-200 rounded-xl p-6">
-              <h4 className="text-emerald-800 font-semibold text-left">Resumen</h4>
+            <div className="bg-gradient-to-br from-fuchsia-50 to-teal-50 border border-fuchsia-200 rounded-xl p-6">
+              <h4 className="text-fuchsia-800 font-semibold text-left">Resumen</h4>
               <div className="space-y-3 mt-3">
                 <div className="flex justify-between">
                   <span className="text-gray-600">Estado:</span>
@@ -257,11 +257,11 @@ const DetallePagoPage = () => {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Total Pagado:</span>
-                  <span className="text-emerald-700 font-semibold">{payment.amount_converted ? `${currencyFormat(payment.amount_converted)} VES` : currencyFormat(payment.amount, currencySymbol)}</span>
+                  <span className="text-fuchsia-950 font-semibold">{payment.amount_converted ? `${currencyFormat(payment.amount_converted)} VES` : currencyFormat(payment.amount, currencySymbol)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Cuotas Aplicadas:</span>
-                  <span className="text-emerald-700 font-semibold">{(payment.installments || []).length}</span>
+                  <span className="text-fuchsia-950 font-semibold">{(payment.installments || []).length}</span>
                 </div>
               </div>
             </div>
@@ -274,10 +274,10 @@ const DetallePagoPage = () => {
   return (
     <div className="max-w-full mx-auto  p-8">
       <div className="w-full flex justify-between items-center mb-6">
-        <h2 className="text-xl font-extrabold text-emerald-700 tracking-tight">Detalle de pago</h2>
+        <h2 className="text-xl font-extrabold text-fuchsia-950 tracking-tight">Detalle de pago</h2>
         <div className="flex items-center gap-3">
           {payment?.sale?.id && (
-            <Link to={`/ventas/${payment.sale.id}`} className="bg-emerald-600 text-white py-2 px-4 rounded-lg hover:bg-emerald-700 cursor-pointer">
+            <Link to={`/ventas/${payment.sale.id}`} className="bg-fuchsia-900 text-white py-2 px-4 rounded-lg hover:bg-fuchsia-950 cursor-pointer">
               Ver venta
             </Link>
           )}
@@ -286,7 +286,7 @@ const DetallePagoPage = () => {
 
       {loading && (
         <div className="flex justify-center items-center min-h-[200px]">
-          <FaSpinner className="animate-spin text-emerald-600 text-4xl" />
+          <FaSpinner className="animate-spin text-fuchsia-900 text-4xl" />
         </div>
       )}
 

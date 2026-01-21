@@ -13,6 +13,9 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
   const fetchUserDetail = async (userId) => {
+    if (!userId) {
+      return null;
+    }
     try {
       const response = await axiosInstance.get(`/users/${userId}`);
       const raw = response.data;
@@ -66,15 +69,20 @@ export const AuthProvider = ({ children }) => {
       if (storedToken && storedUser) {
         try {
           const parsed = JSON.parse(storedUser);
-          const baseUser = parsed?.id || parsed?.user?.id ? (parsed.id ? parsed : parsed.user) : (parsed?.data?.id ? parsed.data : parsed?.data?.data ? parsed.data.data : null);
-          if (baseUser && baseUser.id) {
-            const detailedUser = await fetchUserDetail(baseUser.id);
-            if (detailedUser && detailedUser.id) {
-              setIsAuthenticated(true);
-              setToken(storedToken);
-              setUser(detailedUser);
-              authenticated = true;
+          const baseUser = parsed?.id || parsed?.user?.id ? (parsed.id ? parsed : parsed.user) : (parsed?.data?.id ? parsed.data : parsed?.data?.data ? parsed.data.data : parsed || null);
+          if (baseUser) {
+            let finalUser = baseUser;
+            const shouldFetchDetail = baseUser.id && !baseUser.isBypassUser;
+            if (shouldFetchDetail) {
+              const detailedUser = await fetchUserDetail(baseUser.id);
+              if (detailedUser && detailedUser.id) {
+                finalUser = detailedUser;
+              }
             }
+            setIsAuthenticated(true);
+            setToken(storedToken);
+            setUser(finalUser);
+            authenticated = true;
           }
         } catch (e) {}
       }
@@ -89,11 +97,17 @@ export const AuthProvider = ({ children }) => {
     checkAuth();
   }, [clearAuthData]);
 
-  const login = async (authToken, userData) => {
+  const login = async (authToken, userData, options = {}) => {
+    const { skipUserDetail = false } = options;
     localStorage.setItem('token', authToken);
     localStorage.setItem('user', JSON.stringify(userData));
-    const detailedUser = await fetchUserDetail(userData.id);
-    const finalUser = detailedUser && detailedUser.id ? detailedUser : userData;
+    let finalUser = userData;
+    if (!skipUserDetail && userData?.id && !userData?.isBypassUser) {
+      const detailedUser = await fetchUserDetail(userData.id);
+      if (detailedUser && detailedUser.id) {
+        finalUser = detailedUser;
+      }
+    }
     setIsAuthenticated(true);
     setToken(authToken);
     setUser(finalUser);

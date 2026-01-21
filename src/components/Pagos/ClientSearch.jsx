@@ -88,7 +88,7 @@ const ClientSearch = ({ onClientFound, findClientAndSales, hookError, fetchCusto
                     <input
                         type="text"
                         id="clientSearch"
-                        className="flex-1 border border-gray-300 p-2 rounded-lg focus:ring-emerald-500 focus:border-emerald-500"
+                        className="flex-1 border border-gray-300 p-2 rounded-lg focus:ring-fuchsia-500 focus:border-fuchsia-500"
                         value={searchQuery}
                         onChange={(e) => !selectedClient && setSearchQuery(e.target.value)}
                         placeholder="Escribe nombre, documento o teléfono del cliente"
@@ -113,7 +113,7 @@ const ClientSearch = ({ onClientFound, findClientAndSales, hookError, fetchCusto
                                 {searchResults.map((client) => (
                                     <li
                                         key={client.id}
-                                        className="p-3 hover:bg-emerald-50 cursor-pointer border-b border-gray-200 last:border-b-0 text-gray-800 text-left"
+                                        className="p-3 hover:bg-fuchsia-50 cursor-pointer border-b border-gray-200 last:border-b-0 text-gray-800 text-left"
                                         onClick={() => handleSelectClient(client)}
                                     >
                                         <span className="font-semibold">{client.full_name}</span>
@@ -135,25 +135,25 @@ const ClientSearch = ({ onClientFound, findClientAndSales, hookError, fetchCusto
             </div>
 
             {selectedClient && (
-                <div className="bg-emerald-50 p-4 rounded-lg border border-emerald-200 flex items-start justify-between text-left mt-4">
+                <div className="bg-fuchsia-50 p-4 rounded-lg border border-fuchsia-200 flex items-start justify-between text-left mt-4">
                     <div className="space-y-2">
                         <div className="flex items-center space-x-2">
-                            <FaUser className="text-emerald-600" />
-                            <p className="font-semibold text-emerald-800">{selectedClient.full_name}</p>
+                            <FaUser className="text-fuchsia-900" />
+                            <p className="font-semibold text-fuchsia-800">{selectedClient.full_name}</p>
                         </div>
                         <div className="flex items-center space-x-2">
-                            <FaIdCard className="text-emerald-600" />
-                            <p className="text-emerald-700 text-sm">
+                            <FaIdCard className="text-fuchsia-900" />
+                            <p className="text-fuchsia-950 text-sm">
                                 {selectedClient.document_type?.code || ''} {selectedClient.document_number}
                             </p>
                         </div>
                         <div className="flex items-center space-x-2">
-                            <FaMobileAlt className="text-emerald-600" />
-                            <p className="text-emerald-700 text-sm">{selectedClient.phone_number || 'N/A'}</p>
+                            <FaMobileAlt className="text-fuchsia-900" />
+                            <p className="text-fuchsia-950 text-sm">{selectedClient.phone_number || 'N/A'}</p>
                         </div>
                         <div className="flex items-center space-x-2">
-                            <FaEnvelope className="text-emerald-600" />
-                            <p className="text-emerald-700 text-sm">{selectedClient.email || 'N/A'}</p>
+                            <FaEnvelope className="text-fuchsia-900" />
+                            <p className="text-fuchsia-950 text-sm">{selectedClient.email || 'N/A'}</p>
                         </div>
                     </div>
                     <button
@@ -178,7 +178,7 @@ const ClientSearch = ({ onClientFound, findClientAndSales, hookError, fetchCusto
                     type="submit"
                     className={`flex items-center text-white font-medium rounded-lg text-sm w-auto px-5 py-2.5 text-center transition duration-150 ${!selectedClient || isLoading
                         ? 'bg-gray-400 cursor-not-allowed'
-                        : 'bg-emerald-600 hover:bg-emerald-700 focus:ring-4 focus:outline-none focus:ring-emerald-300'
+                        : 'bg-fuchsia-900 hover:bg-fuchsia-950 focus:ring-4 focus:outline-none focus:ring-fuchsia-300'
                         }`}
                     disabled={!selectedClient || isLoading}
                 >

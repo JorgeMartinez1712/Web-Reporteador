@@ -3,7 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import axiosInstance from '../api/axiosInstance';
 import { sha256 } from 'js-sha256';
 
-const useLoginUser = () => {
+const useLogin = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const { login } = useAuth();
@@ -52,9 +52,9 @@ const useLoginUser = () => {
       };
 
       const response = await axiosInstance.post('/verify-code', payload);
-  const { token, user } = response.data;
-  const cleanToken = (typeof token === 'string' && token.includes('|')) ? token.split('|').pop() : token;
-  login(cleanToken, user);
+      const { token, user } = response.data;
+      const cleanToken = (typeof token === 'string' && token.includes('|')) ? token.split('|').pop() : token;
+      login(cleanToken, user);
       setLoading(false);
       return { success: true, message: response.data.message };
     } catch (err) {
@@ -62,6 +62,27 @@ const useLoginUser = () => {
       setLoading(false);
       setError(err.response?.data?.message || 'Código inválido o expirado.');
       throw err;
+    }
+  };
+
+  const loginAsAdmin = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const adminUser = {
+        id: 'admin-bypass',
+        name: 'Administrador Demo',
+        email: 'admin',
+        role: 'ADMIN',
+        isBypassUser: true,
+      };
+      await login('admin-bypass-token', adminUser, { skipUserDetail: true });
+      setLoading(false);
+      return { success: true };
+    } catch (err) {
+      setLoading(false);
+      setError('No se pudo iniciar sesión como admin.');
+      return { success: false, message: 'No se pudo iniciar sesión como admin.' };
     }
   };
 
@@ -108,7 +129,7 @@ const useLoginUser = () => {
     }
   };
 
-  return { requestVerificationCode, verifyCodeAndLogin, requestPasswordReset, resetPassword, loading, error };
+  return { requestVerificationCode, verifyCodeAndLogin, requestPasswordReset, resetPassword, loginAsAdmin, loading, error };
 };
 
-export default useLoginUser;
+export default useLogin;

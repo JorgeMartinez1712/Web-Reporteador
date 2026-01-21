@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { FaSpinner } from 'react-icons/fa';
-import useLoginUser from '../../hooks/useLoginUser';
+import useLogin from '../../hooks/useLogin';
 
 const VerificactionCodeForm = () => {
   const [code, setCode] = useState('');
-  const { requestVerificationCode, verifyCodeAndLogin, loading, error } = useLoginUser();
+  const { requestVerificationCode, verifyCodeAndLogin, loading, error } = useLogin();
   const [resendLoading, setResendLoading] = useState(false);
   const [resendMessage, setResendMessage] = useState(null);
   const [secondsLeft, setSecondsLeft] = useState(30);
@@ -124,7 +124,7 @@ const VerificactionCodeForm = () => {
 
           <button
             type="submit"
-            className="w-full text-white bg-emerald-600 hover:bg-emerald-700 focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center cursor-pointer"
+            className="w-full text-white bg-fuchsia-900 hover:bg-fuchsia-950 focus:ring-4 focus:outline-none focus:ring-fuchsia-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center cursor-pointer"
             disabled={loading}
           >
             {loading ? <FaSpinner className="animate-spin mx-auto" /> : 'Verificar y Entrar'}
@@ -135,7 +135,7 @@ const VerificactionCodeForm = () => {
             <button
               type="button"
               onClick={handleResend}
-              className="w-full bg-white text-emerald-600 border border-emerald-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+              className="w-full bg-white text-fuchsia-900 border border-fuchsia-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
               disabled={resendLoading || secondsLeft > 0}
             >
               {resendLoading ? (
@@ -150,13 +150,13 @@ const VerificactionCodeForm = () => {
             <button
               type="button"
               onClick={handleBackToLogin}
-              className="w-full text-white bg-emerald-600 hover:bg-emerald-700 focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+              className="w-full text-white bg-fuchsia-900 hover:bg-fuchsia-950 focus:ring-4 focus:outline-none focus:ring-fuchsia-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
             >
               Volver
             </button>
           </div>
 
-          {resendMessage && <p className="text-sm text-emerald-700 text-center mt-2">{resendMessage}</p>}
+          {resendMessage && <p className="text-sm text-fuchsia-950 text-center mt-2">{resendMessage}</p>}
         </form>
       </div>
     </section>

@@ -104,7 +104,7 @@ const ProductsImportModal = ({
     if (hasErrors || status === 'invalid') {
       return 'bg-red-50';
     }
-    return 'bg-emerald-50';
+    return 'bg-fuchsia-50';
   };
 
   const formatStatus = (status) => {
@@ -134,7 +134,7 @@ const ProductsImportModal = ({
     <>
       <button
         onClick={toggleModal}
-        className="bg-emerald-600 text-white py-2 px-4 rounded-lg hover:bg-emerald-700 cursor-pointer mr-2"
+        className="bg-fuchsia-900 text-white py-2 px-4 rounded-lg hover:bg-fuchsia-950 cursor-pointer mr-2"
       >
         Importar
       </button>
@@ -148,13 +148,13 @@ const ProductsImportModal = ({
           <div className="flex justify-start space-x-4">
             <button
               onClick={handleDownloadFormat}
-              className="flex items-center space-x-2 bg-emerald-600 text-white py-2 px-4 rounded-lg hover:bg-emerald-700"
+              className="flex items-center space-x-2 bg-fuchsia-900 text-white py-2 px-4 rounded-lg hover:bg-fuchsia-950"
             >
               <FaDownload />
               <span>Formato</span>
             </button>
 
-            <label className="flex items-center space-x-2 bg-emerald-600 text-white py-2 px-4 rounded-lg hover:bg-emerald-700 cursor-pointer">
+            <label className="flex items-center space-x-2 bg-fuchsia-900 text-white py-2 px-4 rounded-lg hover:bg-fuchsia-950 cursor-pointer">
               {isUploading ? (
                 <>
                   <FaSpinner className="animate-spin" />
@@ -189,7 +189,7 @@ const ProductsImportModal = ({
           )}
 
           {importResults && typeof importResults === 'object' && !importResults.error && (
-            <div className="p-4 rounded-l text-emerald-700">
+            <div className="p-4 rounded-l text-fuchsia-950">
               <h3 className="font-bold mb-2">Resultado de la Importación:</h3>
               <div className="overflow-x-auto">
                 <table className="min-w-full divide-y divide-gray-400">

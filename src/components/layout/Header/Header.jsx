@@ -12,7 +12,7 @@ const Header = ({ isSidebarOpen, isCollapsed }) => {
 
   return (
     <header
-      className={`bg-gray-100 p-4 flex justify-between items-center transition-all duration-300 ${
+      className={`bg-fuchsia-50 p-4 flex justify-between items-center transition-all duration-300 ${
         isSidebarOpen && !isCollapsed ? 'ml-64' : isCollapsed ? 'ml-16' : 'ml-0'
       }`}
     >
@@ -24,7 +24,7 @@ const Header = ({ isSidebarOpen, isCollapsed }) => {
         <Tippy content="Ir a Perfil" placement="bottom">
           <Link
             to="/perfil"
-            className="flex items-center text-gray-700 hover:text-gray-900 focus:outline-none"
+            className="flex items-center text-fuchsia-900 hover:text-fuchsia-950 focus:outline-none"
           >
             <i className="bi bi-person-circle text-2xl"></i>
           </Link>
@@ -33,7 +33,7 @@ const Header = ({ isSidebarOpen, isCollapsed }) => {
         <Tippy content="Cerrar Sesión" placement="bottom">
           <button
             onClick={() => setIsModalOpen(true)}
-            className="flex items-center text-gray-700 hover:text-gray-900 focus:outline-none"
+            className="flex items-center text-fuchsia-900 hover:text-fuchsia-950 focus:outline-none"
           >
             <i className="bi bi-box-arrow-right text-2xl"></i>
           </button>

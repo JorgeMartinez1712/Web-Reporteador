@@ -18,7 +18,7 @@ const SaleEditWizardPage = () => {
   if (loading || (!saleToEdit && !error)) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <FaSpinner className="animate-spin text-emerald-600 text-4xl" />
+        <FaSpinner className="animate-spin text-fuchsia-900 text-4xl" />
       </div>
     );
   }
@@ -37,7 +37,7 @@ const SaleEditWizardPage = () => {
   return (
     <div className="min-h-screen p-8 relative">
       <div className="w-full flex justify-between items-center mb-8">
-        <h2 className="text-xl font-extrabold text-emerald-700 tracking-tight">
+        <h2 className="text-xl font-extrabold text-fuchsia-950 tracking-tight">
           Completar Venta
         </h2>
       </div>

@@ -71,7 +71,7 @@ const PromotionStatusManagement = () => {
   };
 
   if (loading) return <div className="flex justify-center items-center">
-    <FaSpinner className="animate-spin text-emerald-600 text-4xl min-h-screen" />
+    <FaSpinner className="animate-spin text-fuchsia-900 text-4xl min-h-screen" />
   </div>;
 
   return (
@@ -85,7 +85,7 @@ const PromotionStatusManagement = () => {
             <input
               type="text"
               id="statusCode"
-              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
               value={STATUS_CODE}
               onChange={(e) => SET_STATUS_CODE(e.target.value.toUpperCase())}
               disabled={IS_EDITING}
@@ -100,7 +100,7 @@ const PromotionStatusManagement = () => {
             <input
               type="text"
               id="statusName"
-              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
               value={STATUS_NAME}
               onChange={(e) => SET_STATUS_NAME(e.target.value)}
               placeholder="Ej: Activa, Finalizada"
@@ -113,7 +113,7 @@ const PromotionStatusManagement = () => {
             </label>
             <textarea
               id="statusDescription"
-              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-emerald-500 resize-none h-[42px]"
+              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500 resize-none h-[42px]"
               value={STATUS_DESCRIPTION}
               onChange={(e) => SET_STATUS_DESCRIPTION(e.target.value)}
               placeholder="Una breve descripción del estado de la promoción"
@@ -132,7 +132,7 @@ const PromotionStatusManagement = () => {
           )}
           <button
             type="submit"
-            className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-fuchsia-900 hover:bg-fuchsia-950 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
             Guardar
           </button>

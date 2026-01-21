@@ -46,7 +46,7 @@ Estilos, tablas y modales (convenciones específicas del proyecto)
   - C:\Users\JorgeDanielMartínezR\Desktop\Core_administrativo\src\components\Pagos\PagosTable.jsx
 - Todos los estilos visuales principales se definen con Tailwind. Los iconos se utilizan desde Bootstrap (Bootstrap Icons) y se incluyen dentro de la clase Tailwind correspondiente.
 - Colores predominantes:
-  - Color de detalle: bg-emerald-600
+  - Color de detalle: bg-fuchsia-900
   - Fondo/principal: blanco
 - Para modales, usar siempre el componente común:
   - C:\Users\JorgeDanielMartínezR\Desktop\Core_administrativo\src\components\common\CustomModal.jsx

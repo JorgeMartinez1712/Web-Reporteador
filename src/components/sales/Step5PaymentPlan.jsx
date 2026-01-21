@@ -2,7 +2,6 @@ import { useState, useMemo, useEffect } from 'react';
 import * as FaIcons from 'react-icons/fa';
 import PaymentFormModal from './PaymentFormModal';
 import useSales from '../../hooks/useSales';
-import qrImage from '/assets/qr-datacurl.png';
 import { useNavigate } from 'react-router-dom';
 
 const PaymentDetailsTable = ({ payments, currency }) => {
@@ -192,11 +191,11 @@ const Step5PaymentPlan = ({ onConfirm, onPrev, saleData, currentUser, onError, o
               <div
                 key={method.id}
                 className={`flex items-center p-3 rounded-lg border-2 cursor-pointer transition-all duration-200 text-left
-								${isSelected ? 'border-emerald-500 bg-emerald-50 shadow-lg' : 'border-gray-300 bg-white hover:border-gray-400'}`}
+								${isSelected ? 'border-fuchsia-500 bg-fuchsia-50 shadow-lg' : 'border-gray-300 bg-white hover:border-gray-400'}`}
                 onClick={() => handleOpenModal(method.id)}
               >
-                <IconComponent className={`text-3xl mr-3 ${isSelected ? 'text-emerald-600' : 'text-gray-500'}`} />
-                <span className={`text-md font-medium ${isSelected ? 'text-emerald-800' : 'text-gray-700'}`}>{method.name}</span>
+                <IconComponent className={`text-3xl mr-3 ${isSelected ? 'text-fuchsia-900' : 'text-gray-500'}`} />
+                <span className={`text-md font-medium ${isSelected ? 'text-fuchsia-800' : 'text-gray-700'}`}>{method.name}</span>
               </div>
             );
           })}
@@ -220,14 +219,7 @@ const Step5PaymentPlan = ({ onConfirm, onPrev, saleData, currentUser, onError, o
                 <p className="text-gray-600 mb-2">Plan de Financiamiento: {saleData?.financingPlan?.name}</p>
               </div>
             </div>
-            <div className="text-center flex-1 w-full md:w-auto">
-              <img
-                src={qrImage}
-                alt="QR para enrrolar dispositivo"
-                className="mx-auto w-48 h-48 md:w-96 md:h-96"
-              />
-              <p className="text-sm text-gray-500 mt-2">Escanea para continuar el enrrolamiento.</p>
-            </div>
+            
           </div>
         </div>
       )}
@@ -247,8 +239,8 @@ const Step5PaymentPlan = ({ onConfirm, onPrev, saleData, currentUser, onError, o
               disabled={isLoading}
               className={`flex items-center justify-center px-5 py-2 rounded-lg transition duration-300 font-medium text-white
 							${isLoading
-                  ? 'bg-emerald-400 cursor-not-allowed'
-                  : 'bg-emerald-600 hover:bg-emerald-700'
+                  ? 'bg-fuchsia-400 cursor-not-allowed'
+                  : 'bg-fuchsia-900 hover:bg-fuchsia-950'
                 }`}
             >
               {isLoading ? (

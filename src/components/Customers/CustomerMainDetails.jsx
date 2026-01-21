@@ -56,7 +56,7 @@ const CustomerMainDetails = ({
             name="document_type_id"
             value={customer.document_type_id}
             onChange={handleChange}
-            className="border border-gray-300 rounded-l-md shadow-sm p-2 focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm bg-gray-100"
+            className="border border-gray-300 rounded-l-md shadow-sm p-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 sm:text-sm bg-gray-100"
             disabled
           >
             {documentTypes.map((type) => (
@@ -83,7 +83,7 @@ const CustomerMainDetails = ({
           name="full_name"
           value={formData.full_name}
           onChange={handleFullNameChange}
-          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm uppercase"
+          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 sm:text-sm uppercase"
           maxLength="50"
           required
           disabled={!isEditing}
@@ -113,7 +113,7 @@ const CustomerMainDetails = ({
           name="email"
           value={formData.email}
           onChange={handleChange}
-          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
+          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 sm:text-sm"
           placeholder="ejemplo@correo.com"
           maxLength="50"
           required
@@ -128,7 +128,7 @@ const CustomerMainDetails = ({
           name="birth_date"
           value={formData.birth_date}
           onChange={handleChange}
-          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
+          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 sm:text-sm"
           required
           disabled={!isEditing}
         />
@@ -141,7 +141,7 @@ const CustomerMainDetails = ({
           name="address"
           value={formData.address}
           onChange={handleChange}
-          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
+          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 sm:text-sm"
           placeholder="Ingrese la dirección"
           maxLength="100"
           required
@@ -155,7 +155,7 @@ const CustomerMainDetails = ({
           name="customer_status_id"
           value={formData.customer_status_id}
           onChange={handleChange}
-          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
+          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 sm:text-sm"
           required
           disabled={!isEditing}
         >

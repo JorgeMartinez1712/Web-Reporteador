@@ -84,7 +84,7 @@ const CustomerTypeManagement = () => {
 
   if (loading) return (
     <div className="flex justify-center items-center">
-      <FaSpinner className="animate-spin text-emerald-600 text-4xl min-h-screen" />
+      <FaSpinner className="animate-spin text-fuchsia-900 text-4xl min-h-screen" />
     </div>
   );
 
@@ -100,7 +100,7 @@ const CustomerTypeManagement = () => {
               type="text"
               id="typeCode"
               name="code"
-              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
               value={formData.code}
               onChange={handleChange}
               disabled={isEditing}
@@ -114,7 +114,7 @@ const CustomerTypeManagement = () => {
               type="text"
               id="typeName"
               name="name"
-              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
               value={formData.name}
               onChange={handleChange}
               placeholder="Ej: Natural"
@@ -128,7 +128,7 @@ const CustomerTypeManagement = () => {
             id="typeDescription"
             name="description"
             rows="3"
-            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
             value={formData.description}
             onChange={handleChange}
             placeholder="Breve descripción del tipo de cliente."
@@ -147,7 +147,7 @@ const CustomerTypeManagement = () => {
           )}
           <button
             type="submit"
-            className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-fuchsia-900 hover:bg-fuchsia-950 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
             Guardar
           </button>

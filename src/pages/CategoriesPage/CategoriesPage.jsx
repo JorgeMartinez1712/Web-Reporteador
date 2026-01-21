@@ -117,7 +117,7 @@ const CategoriesPage = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <FaSpinner className="animate-spin text-emerald-600 text-4xl" />
+        <FaSpinner className="animate-spin text-fuchsia-900 text-4xl" />
       </div>
     );
   }
@@ -130,7 +130,7 @@ const CategoriesPage = () => {
       <SuccessNotification isOpen={showSuccess} message={successMessage} />
 
       <div className="w-full flex justify-between items-center mb-6">
-        <h1 className="text-xl font-extrabold text-emerald-700 tracking-tight text-left">Gestión de Categorías</h1>
+        <h1 className="text-xl font-extrabold text-fuchsia-950 tracking-tight text-left">Gestión de Categorías</h1>
       </div>
 
       <form onSubmit={handleCreateOrUpdate}>
@@ -139,7 +139,7 @@ const CategoriesPage = () => {
             <label htmlFor="categoryCode" className="block text-gray-700 text-sm font-medium mb-1 text-left">Código: <span className="text-red-500">*</span></label>
             <input
               id="categoryCode"
-              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
               value={categoryCode}
               onChange={(e) => setCategoryCode(e.target.value)}
               disabled={isEditing}
@@ -150,7 +150,7 @@ const CategoriesPage = () => {
             <label htmlFor="categoryName" className="block text-gray-700 text-sm font-medium mb-1 text-left">Nombre: <span className="text-red-500">*</span></label>
             <input
               id="categoryName"
-              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
               value={categoryName}
               onChange={(e) => setCategoryName(e.target.value)}
               required
@@ -161,7 +161,7 @@ const CategoriesPage = () => {
             <label htmlFor="retailSelect" className="block text-gray-700 text-sm font-medium mb-1 text-left">Empresa: <span className="text-red-500">*</span></label>
             <select
               id="retailSelect"
-              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
               value={selectedRetailId}
               onChange={(e) => setSelectedRetailId(e.target.value)}
               required
@@ -177,7 +177,7 @@ const CategoriesPage = () => {
             <label htmlFor="categoryDescription" className="block text-gray-700 text-sm font-medium mb-1 text-left">Descripción:</label>
             <textarea
               id="categoryDescription"
-              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-emerald-500 resize-none h-[42px]"
+              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500 resize-none h-[42px]"
               value={categoryDescription}
               onChange={(e) => setCategoryDescription(e.target.value)}
             />
@@ -195,7 +195,7 @@ const CategoriesPage = () => {
           )}
           <button
             type="submit"
-            className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200 flex items-center"
+            className="bg-fuchsia-900 hover:bg-fuchsia-950 text-white font-semibold py-2 px-4 rounded-lg transition duration-200 flex items-center"
             disabled={loading}
           >
             {loading ? <FaSpinner className="animate-spin mr-2" /> : null}

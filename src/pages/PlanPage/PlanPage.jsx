@@ -38,12 +38,12 @@ const PlanPage = () => {
   return (
     <div className="min-h-screen p-8">
       <div className="w-full flex justify-between items-center mb-8">
-        <h2 className="text-xl font-extrabold text-emerald-700 tracking-tight">
+        <h2 className="text-xl font-extrabold text-fuchsia-950 tracking-tight">
           Gestión de Planes
         </h2>
         <button
           onClick={handleRegisterPlanClick}
-          className="bg-emerald-600 text-white py-2 px-4 rounded-lg hover:bg-emerald-700 transition duration-200 ease-in-out"
+          className="bg-fuchsia-900 text-white py-2 px-4 rounded-lg hover:bg-fuchsia-950 transition duration-200 ease-in-out"
         >
           Registrar
         </button>
@@ -53,7 +53,7 @@ const PlanPage = () => {
       {error && <ErrorNotification isOpen={true} message={error} />}
       {loading ? (
         <div className="flex justify-center items-center">
-          <FaSpinner className="animate-spin text-emerald-600 text-4xl min-h-screen" />
+          <FaSpinner className="animate-spin text-fuchsia-900 text-4xl min-h-screen" />
         </div>
       ) : (
         <PlansGrid

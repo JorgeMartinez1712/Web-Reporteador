@@ -34,7 +34,7 @@ const DeviceFilter = ({ onFilter, initialFilters = {}, isLoading = false }) => {
     return (
         <form onSubmit={handleSubmit} className="flex items-center space-x-4">
             <div className="flex flex-col text-left">
-                <label htmlFor="startDate" className="text-sm font-semibold text-emerald-700">
+                <label htmlFor="startDate" className="text-sm font-semibold text-fuchsia-950">
                     Fecha de inicio
                 </label>
                 <input
@@ -43,11 +43,11 @@ const DeviceFilter = ({ onFilter, initialFilters = {}, isLoading = false }) => {
                         value={startDate}
                         onChange={(e) => setStartDate(e.target.value)}
                         disabled={isLoading}
-                        className={`border border-emerald-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-colors duration-200 ${isLoading ? 'opacity-60 cursor-not-allowed' : ''}`}
+                        className={`border border-fuchsia-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 transition-colors duration-200 ${isLoading ? 'opacity-60 cursor-not-allowed' : ''}`}
                 />
             </div>
             <div className="flex flex-col text-left">
-                <label htmlFor="endDate" className="text-sm font-semibold text-emerald-700">
+                <label htmlFor="endDate" className="text-sm font-semibold text-fuchsia-950">
                     Fecha de fin
                 </label>
                 <input
@@ -56,12 +56,12 @@ const DeviceFilter = ({ onFilter, initialFilters = {}, isLoading = false }) => {
                         value={endDate}
                         onChange={(e) => setEndDate(e.target.value)}
                         disabled={isLoading}
-                        className={`border border-emerald-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-colors duration-200 ${isLoading ? 'opacity-60 cursor-not-allowed' : ''}`}
+                        className={`border border-fuchsia-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 transition-colors duration-200 ${isLoading ? 'opacity-60 cursor-not-allowed' : ''}`}
                 />
             </div>
             <button
                 type="submit"
-                    className={`bg-emerald-600 hover:bg-emerald-700 text-white p-3 rounded-full shadow-lg transition-transform transform ${isLoading ? '' : 'hover:scale-110'}`}
+                    className={`bg-fuchsia-900 hover:bg-fuchsia-950 text-white p-3 rounded-full shadow-lg transition-transform transform ${isLoading ? '' : 'hover:scale-110'}`}
                     aria-label="Buscar dispositivos"
                     disabled={isLoading}
             >

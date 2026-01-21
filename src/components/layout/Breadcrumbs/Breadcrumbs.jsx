@@ -36,14 +36,14 @@ const Breadcrumbs = ({ isSidebarOpen, isCollapsed }) => {
 
   return (
     <nav
-      className={`text-sm text-gray-500 transition-all duration-300 ${isSidebarOpen && !isCollapsed ? 'ml-64' : isCollapsed ? 'ml-16' : 'ml-0'
+      className={`text-sm text-fuchsia-900 transition-all duration-300 ${isSidebarOpen && !isCollapsed ? 'ml-64' : isCollapsed ? 'ml-16' : 'ml-0'
         }`}
     >
       <ul className="flex space-x-2">
         <li>
-          <Tippy content="Ir al Home" placement="bottom">
-            <Link to="/" className="hover:underline text-gray-500 font-bold text-lg">
-              HOME
+          <Tippy content="Ir al Inicio" placement="bottom">
+            <Link to="/" className="hover:underline text-fuchsia-900 font-bold text-lg">
+              INICIO
             </Link>
           </Tippy>
         </li>
@@ -51,7 +51,7 @@ const Breadcrumbs = ({ isSidebarOpen, isCollapsed }) => {
           <li className="flex items-center">
             <span className="mx-2">/</span>
             <Tippy content={`Ir a ${sectionName.toLowerCase()}`} placement="bottom">
-              <Link to={sectionLink} className="hover:underline text-gray-500 text-lg">
+              <Link to={sectionLink} className="hover:underline text-fuchsia-900 text-lg">
                 {sectionName}
               </Link>
             </Tippy>
@@ -60,7 +60,7 @@ const Breadcrumbs = ({ isSidebarOpen, isCollapsed }) => {
         {currentItem && (
           <li className="flex items-center">
             <span className="mx-2">/</span>
-            <span className="text-gray-500 text-lg">{currentItem}</span>
+            <span className="text-fuchsia-900 text-lg">{currentItem}</span>
           </li>
         )}
       </ul>

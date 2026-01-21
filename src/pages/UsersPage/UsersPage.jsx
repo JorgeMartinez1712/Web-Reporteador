@@ -22,7 +22,7 @@ const UsersPage = () => {
   return (
     <div className="min-h-screen p-8">
       <div className="w-full flex justify-between items-center mb-8">
-        <h2 className="text-xl font-extrabold text-emerald-700 tracking-tight">
+        <h2 className="text-xl font-extrabold text-fuchsia-950 tracking-tight">
           Gestión de Usuarios
         </h2>
         <RegisterUserModal onUserRegistered={fetchUsers} />
@@ -30,7 +30,7 @@ const UsersPage = () => {
 
       {loading ? (
         <div className="flex justify-center items-center">
-          <FaSpinner className="animate-spin text-emerald-600 text-4xl min-h-screen" />
+          <FaSpinner className="animate-spin text-fuchsia-900 text-4xl min-h-screen" />
         </div>
       ) : (
         <UsersTable

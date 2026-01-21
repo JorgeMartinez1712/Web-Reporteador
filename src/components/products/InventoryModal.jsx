@@ -32,7 +32,7 @@ const InventoryModal = ({
     <>
       <button
         onClick={toggleModal}
-        className="bg-emerald-600 text-white py-2 px-4 rounded-lg hover:bg-emerald-700 cursor-pointer"
+        className="bg-fuchsia-900 text-white py-2 px-4 rounded-lg hover:bg-fuchsia-950 cursor-pointer"
         disabled={loading} 
       >
         Registrar

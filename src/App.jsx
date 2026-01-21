@@ -23,7 +23,7 @@ function App() {
 
   if (authLoading) {
     return <div className="flex justify-center items-center h-screen">
-      <FaSpinner className="animate-spin text-4xl text-emerald-600" />
+      <FaSpinner className="animate-spin text-4xl text-fuchsia-900" />
     </div>;
   }
 

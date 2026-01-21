@@ -98,7 +98,7 @@ const BcvRatesManagement = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <FaSpinner className="animate-spin text-emerald-600 text-4xl" />
+        <FaSpinner className="animate-spin text-fuchsia-900 text-4xl" />
       </div>
     );
   }
@@ -115,7 +115,7 @@ const BcvRatesManagement = () => {
             <input
               type="text"
               id="currency"
-              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
               value={currency}
               onChange={(e) => setCurrency(e.target.value)}
               placeholder="Ej: USD, EUR"
@@ -130,7 +130,7 @@ const BcvRatesManagement = () => {
               type="number"
               step="0.0001"
               id="rate"
-              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
               value={rate}
               onChange={(e) => setRate(e.target.value)}
               placeholder="Ej: 36.50"
@@ -144,7 +144,7 @@ const BcvRatesManagement = () => {
             <input
               type="date"
               id="rateDate"
-              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
               value={rateDate}
               onChange={(e) => setRateDate(e.target.value)}
               required
@@ -163,7 +163,7 @@ const BcvRatesManagement = () => {
           )}
           <button
             type="submit"
-            className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-fuchsia-900 hover:bg-fuchsia-950 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
             Guardar
           </button>

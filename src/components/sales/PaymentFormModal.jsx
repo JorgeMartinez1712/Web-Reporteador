@@ -82,7 +82,7 @@ const PaymentFormModal = ({ isOpen, onClose, onPaymentComplete, paymentData, sal
 
   const getIcon = () => {
     const IconComponent = FaIcons[paymentData?.method_payment?.icon];
-    return IconComponent ? <IconComponent className="inline mr-2 text-emerald-600" /> : null;
+    return IconComponent ? <IconComponent className="inline mr-2 text-fuchsia-900" /> : null;
   };
 
   const handleChange = (e) => {
@@ -178,7 +178,7 @@ const PaymentFormModal = ({ isOpen, onClose, onPaymentComplete, paymentData, sal
           name: fieldName,
           value: value,
           onChange: handleChange,
-          className: `mt-1 block h-10 w-full px-2 rounded-md border-gray-300 shadow-sm focus:outline-none ${isReadOnly ? 'bg-gray-100' : 'focus:border-emerald-500 focus:ring-emerald-500'}`,
+          className: `mt-1 block h-10 w-full px-2 rounded-md border-gray-300 shadow-sm focus:outline-none ${isReadOnly ? 'bg-gray-100' : 'focus:border-fuchsia-500 focus:ring-fuchsia-500'}`,
           required: required,
           readOnly: isReadOnly,
           type: type,
@@ -197,7 +197,7 @@ const PaymentFormModal = ({ isOpen, onClose, onPaymentComplete, paymentData, sal
                 <select
                   value={phonePrefix}
                   onChange={handlePhonePrefixChange}
-                  className="h-10 border border-gray-300 rounded-l-md shadow-sm focus:outline-none focus:border-emerald-500 focus:ring-emerald-500"
+                  className="h-10 border border-gray-300 rounded-l-md shadow-sm focus:outline-none focus:border-fuchsia-500 focus:ring-fuchsia-500"
                 >
                   {prefixes.map(prefix => (
                     <option key={prefix} value={prefix}>{prefix}</option>
@@ -209,7 +209,7 @@ const PaymentFormModal = ({ isOpen, onClose, onPaymentComplete, paymentData, sal
                   value={formFields.origin_mobile_number || ''}
                   onChange={handlePhoneChange}
                   maxLength="7"
-                  className="h-10 w-full px-2 rounded-r-md border-gray-300 shadow-sm focus:outline-none focus:border-emerald-500 focus:ring-emerald-500"
+                  className="h-10 w-full px-2 rounded-r-md border-gray-300 shadow-sm focus:outline-none focus:border-fuchsia-500 focus:ring-fuchsia-500"
                   placeholder="Ej: 1234567"
                   required={required}
                 />
@@ -326,7 +326,7 @@ const PaymentFormModal = ({ isOpen, onClose, onPaymentComplete, paymentData, sal
           </button>
           <button
             type="submit"
-            className="px-4 py-2 text-white bg-emerald-600 rounded-md hover:bg-emerald-700 transition-colors"
+            className="px-4 py-2 text-white bg-fuchsia-900 rounded-md hover:bg-fuchsia-950 transition-colors"
           >
             Confirmar
           </button>

@@ -12,7 +12,7 @@ const SaleSelection = ({ customer, sales, onSaleSelected, selectedSale, hookErro
     return (
       <div className="space-y-4 text-left">
         <p className="font-semibold text-gray-700">
-          Cliente: <span className="text-emerald-600">{customer.full_name}</span> (C.I: {customer.document_number})
+          Cliente: <span className="text-fuchsia-900">{customer.full_name}</span> (C.I: {customer.document_number})
         </p>
         <div className="text-red-600 bg-red-50 p-3 rounded-md border border-red-300">
           Este cliente no tiene ventas para registrar pagos.
@@ -24,7 +24,7 @@ const SaleSelection = ({ customer, sales, onSaleSelected, selectedSale, hookErro
   return (
     <div className="space-y-6 text-left">
       <h3 className="text-2xl font-semibold text-gray-800 border-b pb-4 mb-4 border-gray-200">
-        Cliente: <span className="text-emerald-600">{customer.full_name}</span>
+        Cliente: <span className="text-fuchsia-900">{customer.full_name}</span>
       </h3>
 
       <h3 className="text-xl font-bold text-gray-700">
@@ -44,7 +44,7 @@ const SaleSelection = ({ customer, sales, onSaleSelected, selectedSale, hookErro
             <div
               key={sale.id}
               onClick={() => handleSelectSale(sale)}
-              className={`p-4 border-2 rounded-lg shadow-sm hover:shadow-md transition duration-150 flex justify-between items-center cursor-pointer ${isSelected ? 'border-emerald-500 bg-emerald-50 shadow-lg' : 'border-gray-200 bg-white hover:border-emerald-300'}`}
+              className={`p-4 border-2 rounded-lg shadow-sm hover:shadow-md transition duration-150 flex justify-between items-center cursor-pointer ${isSelected ? 'border-fuchsia-500 bg-fuchsia-50 shadow-lg' : 'border-gray-200 bg-white hover:border-fuchsia-300'}`}
             >
               <div className="flex flex-col">
                 <span className="font-bold text-gray-800 flex items-center">
@@ -58,7 +58,7 @@ const SaleSelection = ({ customer, sales, onSaleSelected, selectedSale, hookErro
                 </span>
               </div>
               {isSelected && (
-                <FaCheckCircle className="h-6 w-6 text-emerald-500" />
+                <FaCheckCircle className="h-6 w-6 text-fuchsia-500" />
               )}
             </div>
           );
