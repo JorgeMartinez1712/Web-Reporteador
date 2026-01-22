@@ -50,7 +50,7 @@ const PromotionTargetingFields = ({
           <div key={retailId} className="relative">
             {isLoading ? (
               <div className="flex items-center space-x-2 p-2 border rounded-lg bg-gray-100">
-                <FaSpinner className="animate-spin text-fuchsia-900" />
+                <FaSpinner className="animate-spin text-oscuro" />
                 <span className="text-sm text-gray-500">Cargando sucursales de {retail.name}...</span>
               </div>
             ) : (
@@ -72,7 +72,7 @@ const PromotionTargetingFields = ({
               <div className="w-full flex justify-end mt-2">
                 <button
                   type="button"
-                  className="bg-fuchsia-900 text-white py-2 px-4 rounded-lg hover:bg-fuchsia-950 cursor-pointer text-sm disabled:opacity-50"
+                  className="bg-oscuro text-white py-2 px-4 rounded-lg hover:bg-hover cursor-pointer text-sm disabled:opacity-50"
                   onClick={onUploadImage}
                   disabled={!canUpload || uploading}
                 >

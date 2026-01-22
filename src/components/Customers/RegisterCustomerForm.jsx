@@ -271,7 +271,7 @@ const RegisterCustomerForm = ({ onCustomerCreated, onCancel }) => {
               name="documentTypeId"
               value={formData.documentTypeId}
               onChange={handleDocTypeChange}
-              className="border border-gray-300 rounded-l-lg p-2 focus:ring-fuchsia-500 focus:border-fuchsia-500"
+              className="border border-gray-300 rounded-l-lg p-2 focus:ring-claro focus:border-claro"
               required
             >
               {filteredDocumentTypes.length > 0 ? (
@@ -389,7 +389,7 @@ const RegisterCustomerForm = ({ onCustomerCreated, onCancel }) => {
         </button>
         <button
           type="submit"
-          className="bg-fuchsia-900 text-white py-2 px-4 rounded-lg hover:bg-fuchsia-950 cursor-pointer text-sm"
+          className="bg-oscuro text-white py-2 px-4 rounded-lg hover:bg-hover cursor-pointer text-sm"
           disabled={loading}
         >
           {loading ? <FaSpinner className="animate-spin mx-auto" /> : 'Guardar'}

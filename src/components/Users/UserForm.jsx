@@ -41,7 +41,7 @@ const UserForm = ({
             name="user_type_id"
             value={formData.user_type_id}
             onChange={handleNameChange}
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 sm:text-sm"
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-claro focus:border-claro sm:text-sm"
             required
             disabled={true}
           >
@@ -62,7 +62,7 @@ const UserForm = ({
                 name="document_type_id"
                 value={String(formData.document_type_id || '')}
                 onChange={handleNameChange}
-                className="border border-gray-300 rounded-l-md shadow-sm p-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 sm:text-sm"
+                className="border border-gray-300 rounded-l-md shadow-sm p-2 focus:ring-claro focus:border-claro sm:text-sm"
                 required
                 disabled={!isEditing}
               >
@@ -79,7 +79,7 @@ const UserForm = ({
                 name="document_number"
                 value={formData.document_number || ''}
                 onChange={handleNameChange}
-                className="flex-1 border border-gray-300 rounded-r-md shadow-sm p-2 sm:text-sm focus:ring-fuchsia-500 focus:border-fuchsia-500"
+                className="flex-1 border border-gray-300 rounded-r-md shadow-sm p-2 sm:text-sm focus:ring-claro focus:border-claro"
                 placeholder="12345678"
                 maxLength="25"
                 required
@@ -96,7 +96,7 @@ const UserForm = ({
               name="financier_id"
               value={formData.financier_id || (financier?.id ?? '')}
               onChange={handleNameChange}
-              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 sm:text-sm"
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-claro focus:border-claro sm:text-sm"
               disabled={!isEditing}
             >
               <option value={financier?.id || ''}>{(financier && (financier.comercial_name || financier.legal_name || financier.name)) || '--Seleccionar--'}</option>
@@ -111,7 +111,7 @@ const UserForm = ({
               name="retail_id"
               value={String(formData.retail_id || '')}
               onChange={handleNameChange}
-              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 sm:text-sm"
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-claro focus:border-claro sm:text-sm"
               required={[3,5].includes(parseInt(formData.user_type_id || 0, 10))}
               disabled={true}
             >
@@ -130,7 +130,7 @@ const UserForm = ({
               name="retail_unit_id"
               value={String(formData.retail_unit_id || '')}
               onChange={handleNameChange}
-              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 sm:text-sm"
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-claro focus:border-claro sm:text-sm"
               required
               disabled={!isEditing}
             >
@@ -149,7 +149,7 @@ const UserForm = ({
             name="name"
             value={formData.name}
             onChange={handleNameChange}
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 sm:text-sm uppercase"
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-claro focus:border-claro sm:text-sm uppercase"
             placeholder="INGRESE EL NOMBRE"
             maxLength="100"
             required
@@ -164,7 +164,7 @@ const UserForm = ({
             name="email"
             value={formData.email}
             onChange={handleNameChange}
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 sm:text-sm"
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-claro focus:border-claro sm:text-sm"
             placeholder="correo@ejemplo.com"
             maxLength="100"
             required
@@ -192,7 +192,7 @@ const UserForm = ({
                 name="address"
                 value={formData.address || ''}
                 onChange={handleNameChange}
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 sm:text-sm"
+                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-claro focus:border-claro sm:text-sm"
                 placeholder="Dirección completa"
                 maxLength="200"
                 required
@@ -212,7 +212,7 @@ const UserForm = ({
                 name="password"
                 value={formData.password}
                 onChange={handleNameChange}
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 sm:text-sm"
+                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-claro focus:border-claro sm:text-sm"
                 placeholder="Dejar vacío para no cambiar"
                 maxLength="50"
               />
@@ -228,7 +228,7 @@ const UserForm = ({
                 name="password_confirmation"
                 value={formData.password_confirmation}
                 onChange={handleNameChange}
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 sm:text-sm"
+                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-claro focus:border-claro sm:text-sm"
                 placeholder="Dejar vacío para no cambiar"
                 maxLength="50"
               />
@@ -240,7 +240,7 @@ const UserForm = ({
                 name="status_id"
                 value={formData.status_id}
                 onChange={handleNameChange}
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 sm:text-sm"
+                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-claro focus:border-claro sm:text-sm"
                 disabled={!isEditing}
               >
                 <option value="">Seleccione un estatus</option>

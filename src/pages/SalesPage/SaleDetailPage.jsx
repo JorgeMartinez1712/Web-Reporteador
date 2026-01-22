@@ -51,7 +51,7 @@ const SaleDetailPage = () => {
       case 'RECHAZADA':
         return 'text-red-800 bg-red-100';
       case 'COMPLETADA':
-        return 'text-fuchsia-800 bg-fuchsia-100';
+        return 'text-oscuro bg-bg';
       case 'PAGO INICIAL':
         return 'text-purple-800 bg-purple-100';
       default:
@@ -62,7 +62,7 @@ const SaleDetailPage = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen bg-gray-50">
-        <FaSpinner className="animate-spin text-fuchsia-900 text-5xl" />
+        <FaSpinner className="animate-spin text-oscuro text-5xl" />
       </div>
     );
   }
@@ -116,7 +116,7 @@ const SaleDetailPage = () => {
       <ErrorNotification isOpen={showError} message={errorMessage} />
       <div className="max-w-full mx-auto">
         <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-8">
-          <h1 className="text-2xl font-bold text-fuchsia-950">
+          <h1 className="text-2xl font-bold text-hover">
             Orden N°{sale_code}
           </h1>
           <button
@@ -128,7 +128,7 @@ const SaleDetailPage = () => {
           </button>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-          <div className="lg:col-span-2 p-6 bg-white rounded-lg shadow-sm border border-fuchsia-200 space-y-8">
+          <div className="lg:col-span-2 p-6 bg-white rounded-lg shadow-sm border border-claro space-y-8">
             <div>
               <h3 className="text-md font-bold text-gray-900 mb-4 text-left">Datos de la orden</h3>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 items-start">
@@ -344,7 +344,7 @@ const SaleDetailPage = () => {
             )}
           </div>
           <div className="lg:col-span-1 space-y-6">
-            <div className="p-6 bg-white rounded-lg shadow-sm border border-fuchsia-200">
+            <div className="p-6 bg-white rounded-lg shadow-sm border border-claro">
               <div className="flex justify-between items-center mb-4">
                 <h3 className="text-md font-bold text-gray-900 text-left">Resumen de la orden</h3>
                 <span className={`inline-block px-3 py-1 text-sm font-semibold rounded-full ${getStatusClass(sale_status?.name)}`}>

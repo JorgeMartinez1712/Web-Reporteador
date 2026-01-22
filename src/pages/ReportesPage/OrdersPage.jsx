@@ -30,13 +30,13 @@ const OrdersPage = () => {
     <div className="min-h-screen p-8 relative">
       {errorOperations && <ErrorNotification message={errorOperations} />}
       <div className="w-full flex justify-between items-center mb-8">
-        <h2 className="text-xl font-extrabold text-fuchsia-950 tracking-tight text-left mr-10">Ordenes</h2>
+        <h2 className="text-xl font-extrabold text-hover tracking-tight text-left mr-10">Ordenes</h2>
         <FiltroReportes onFilter={handleFilter} />
       </div>
 
       {isLoading ? (
         <div className="flex justify-center items-center min-h-[240px]">
-          <FaSpinner className="animate-spin text-fuchsia-900 text-4xl" />
+          <FaSpinner className="animate-spin text-oscuro text-4xl" />
         </div>
       ) : (
         <OrdersTable orders={orders} />

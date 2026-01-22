@@ -106,7 +106,7 @@ const CategoryManagement = () => {
   };
 
   if (loading || loadingRetails) return <div className="flex justify-center items-center">
-    <FaSpinner className="animate-spin text-fuchsia-900 text-4xl min-h-screen" />
+    <FaSpinner className="animate-spin text-oscuro text-4xl min-h-screen" />
   </div>;
   if (error) return <div className="text-center py-4 text-red-600">Error en categorías: {error}</div>;
   if (errorRetails) return <div className="text-center py-4 text-red-600">Error en empresas: {errorRetails}</div>;
@@ -122,7 +122,7 @@ const CategoryManagement = () => {
             <input
               type="text"
               id="categoryCode"
-              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-claro"
               value={categoryCode}
               onChange={(e) => setCategoryCode(e.target.value)}
               disabled={isEditing}
@@ -137,7 +137,7 @@ const CategoryManagement = () => {
             <input
               type="text"
               id="categoryName"
-              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-claro"
               value={categoryName}
               onChange={(e) => setCategoryName(e.target.value)}
               placeholder="Ej: Electrónicos, Ropa"
@@ -150,7 +150,7 @@ const CategoryManagement = () => {
             </label>
             <select
               id="retailSelect"
-              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-claro"
               value={selectedRetailId}
               onChange={(e) => setSelectedRetailId(e.target.value)}
               required
@@ -169,7 +169,7 @@ const CategoryManagement = () => {
             </label>
             <textarea
               id="categoryDescription"
-              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500 resize-none h-[42px]"
+              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-claro resize-none h-[42px]"
               value={categoryDescription}
               onChange={(e) => setCategoryDescription(e.target.value)}
               placeholder="Una breve descripción de la categoría"
@@ -188,7 +188,7 @@ const CategoryManagement = () => {
           )}
           <button
             type="submit"
-            className="bg-fuchsia-900 hover:bg-fuchsia-950 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-oscuro hover:bg-hover text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
             Guardar
           </button>

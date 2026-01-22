@@ -184,7 +184,7 @@ const Step3ProductSelection = ({ onNext, onPrev, initialData, retailUnitId, onEr
               <input
                 type="text"
                 id="productSearch"
-                className="flex-1 border border-gray-300 p-2 rounded-lg focus:ring-fuchsia-500 focus:border-fuchsia-500"
+                className="flex-1 border border-gray-300 p-2 rounded-lg focus:ring-claro focus:border-claro"
                 value={searchQuery}
                 onChange={(e) => !isProductSaved && setSearchQuery(e.target.value)}
                 placeholder="Escribe nombre o SKU"
@@ -192,16 +192,16 @@ const Step3ProductSelection = ({ onNext, onPrev, initialData, retailUnitId, onEr
               />
             </div>
             {selectedInventoryUnit ? (
-              <div className="bg-fuchsia-50 p-4 rounded-lg border border-fuchsia-200 flex flex-col space-y-2 text-left mt-4">
+              <div className="bg-bg p-4 rounded-lg border border-claro flex flex-col space-y-2 text-left mt-4">
                 <div className="flex justify-between items-start">
                   <div>
-                    <p className="font-semibold text-fuchsia-800 text-lg">{selectedInventoryUnit.product.name}</p>
-                    <p className="text-fuchsia-950 text-sm">SKU: {selectedInventoryUnit.product.sku || 'N/A'}</p>
-                    <p className="text-fuchsia-950 text-sm">Serial: {selectedInventoryUnit.serial_number || 'N/A'}</p>
-                    <p className="text-fuchsia-950 text-sm">IMEI: {selectedInventoryUnit.imei || 'N/A'}</p>
-                    <p className="text-fuchsia-950 text-sm">Sucursal: {selectedInventoryUnit.retail_unit?.name || 'N/A'}</p>
-                    <p className="text-fuchsia-950 text-sm">Marca: {selectedInventoryUnit.product.brand || 'N/A'}</p>
-                    <p className="text-fuchsia-950 text-sm">Categoría: {selectedInventoryUnit.product.category || 'N/A'}</p>
+                    <p className="font-semibold text-oscuro text-lg">{selectedInventoryUnit.product.name}</p>
+                    <p className="text-hover text-sm">SKU: {selectedInventoryUnit.product.sku || 'N/A'}</p>
+                    <p className="text-hover text-sm">Serial: {selectedInventoryUnit.serial_number || 'N/A'}</p>
+                    <p className="text-hover text-sm">IMEI: {selectedInventoryUnit.imei || 'N/A'}</p>
+                    <p className="text-hover text-sm">Sucursal: {selectedInventoryUnit.retail_unit?.name || 'N/A'}</p>
+                    <p className="text-hover text-sm">Marca: {selectedInventoryUnit.product.brand || 'N/A'}</p>
+                    <p className="text-hover text-sm">Categoría: {selectedInventoryUnit.product.category || 'N/A'}</p>
                   </div>
                   {!isProductSaved && (
                     <button
@@ -214,8 +214,8 @@ const Step3ProductSelection = ({ onNext, onPrev, initialData, retailUnitId, onEr
                     </button>
                   )}
                 </div>
-                <div className="mt-2 pt-2 border-t border-fuchsia-200 text-right">
-                  <p className="text-lg font-bold text-fuchsia-900">Precio Unitario: {selectedInventoryUnit?.product?.currency?.symbol}{parseFloat(selectedInventoryUnit?.product?.price).toFixed(2)}</p>
+                <div className="mt-2 pt-2 border-t border-claro text-right">
+                  <p className="text-lg font-bold text-oscuro">Precio Unitario: {selectedInventoryUnit?.product?.currency?.symbol}{parseFloat(selectedInventoryUnit?.product?.price).toFixed(2)}</p>
                 </div>
               </div>
             ) : (
@@ -225,7 +225,7 @@ const Step3ProductSelection = ({ onNext, onPrev, initialData, retailUnitId, onEr
                     {searchResults.map((unit) => (
                       <li
                         key={unit.id}
-                        className="p-3 hover:bg-fuchsia-50 cursor-pointer border-b border-gray-200 last:border-b-0 text-gray-800 text-left"
+                        className="p-3 hover:bg-bg cursor-pointer border-b border-gray-200 last:border-b-0 text-gray-800 text-left"
                         onClick={() => handleSelectInventoryUnit(unit)}
                       >
                         <span className="font-semibold">{unit.product.name}</span>
@@ -253,7 +253,7 @@ const Step3ProductSelection = ({ onNext, onPrev, initialData, retailUnitId, onEr
                             <div className="text-sm text-gray-600">Categoría: {unit.product.category || 'N/A'}</div>
                           </div>
                           <div className="text-right">
-                            <span className="font-bold text-fuchsia-900">{unit.product.currency?.symbol}{parseFloat(unit.product.price).toFixed(2)}</span>
+                            <span className="font-bold text-oscuro">{unit.product.currency?.symbol}{parseFloat(unit.product.price).toFixed(2)}</span>
                             <div className="text-xs text-gray-500">Sucursal: {unit.retail_unit?.name || 'N/A'}</div>
                           </div>
                         </li>
@@ -275,7 +275,7 @@ const Step3ProductSelection = ({ onNext, onPrev, initialData, retailUnitId, onEr
             <button
               type="button"
               onClick={handleNext}
-              className={`bg-fuchsia-900 text-white py-2 px-4 rounded-lg shadow transition duration-200 font-medium ${!selectedInventoryUnit ? 'opacity-50 cursor-not-allowed' : 'hover:bg-fuchsia-950'}`}
+              className={`bg-oscuro text-white py-2 px-4 rounded-lg shadow transition duration-200 font-medium ${!selectedInventoryUnit ? 'opacity-50 cursor-not-allowed' : 'hover:bg-hover'}`}
               disabled={!selectedInventoryUnit}
             >
               Siguiente

@@ -99,8 +99,8 @@ const JsonFieldEditor = ({ label, value, onChange, disabled = false }) => {
         <div
           key={field.key}
           className={`flex gap-2 mb-2 items-center p-2 rounded-lg cursor-pointer transition-colors duration-200
-            ${field.isEditing ? 'bg-fuchsia-100 border-fuchsia-500' : ''}
-            ${!field.isEditing && field.value !== '' ? 'bg-fuchsia-50' : 'hover:bg-gray-50'}`}
+            ${field.isEditing ? 'bg-bg border-claro' : ''}
+            ${!field.isEditing && field.value !== '' ? 'bg-bg' : 'hover:bg-gray-50'}`}
           onClick={() => !disabled && handleFieldClick(index)}
         >
           <span className="font-semibold text-gray-800 w-1/3">{field.key}:</span>
@@ -111,7 +111,7 @@ const JsonFieldEditor = ({ label, value, onChange, disabled = false }) => {
               value={field.value}
               onChange={(e) => handleChange(index, e)}
               onBlur={(e) => handleBlur(index, e)}
-              className="border border-gray-300 rounded-lg p-2 w-2/3 focus:border-fuchsia-500 focus:ring-1 focus:ring-fuchsia-500"
+              className="border border-gray-300 rounded-lg p-2 w-2/3 focus:border-claro focus:ring-1 focus:ring-claro"
               placeholder={predefinedFields[index].placeholder}
               autoFocus
             />

@@ -135,7 +135,7 @@ const RegisterEnterpriseForm = ({
                             name="doc_type"
                             value={selectedDocType}
                             onChange={handleDocTypeChange}
-                            className="border border-gray-300 rounded-l-lg p-2 focus:ring-fuchsia-500 focus:border-fuchsia-500"
+                            className="border border-gray-300 rounded-l-lg p-2 focus:ring-claro focus:border-claro"
                         >
                             {docTypes.map(type => (
                                 <option key={type.id} value={type.code}>
@@ -207,7 +207,7 @@ const RegisterEnterpriseForm = ({
                         name="currency_id"
                         value={selectedCurrencyId}
                         onChange={handleCurrencyChange}
-                        className="border border-gray-300 rounded-lg p-2 w-full focus:ring-fuchsia-500 focus:border-fuchsia-500"
+                        className="border border-gray-300 rounded-lg p-2 w-full focus:ring-claro focus:border-claro"
                         required
                     >
                         {currencies.map(currency => (
@@ -237,7 +237,7 @@ const RegisterEnterpriseForm = ({
                 </button>
                 <button
                     type="submit"
-                    className="bg-fuchsia-900 text-white py-2 px-4 rounded-lg hover:bg-fuchsia-950 cursor-pointer text-sm"
+                    className="bg-oscuro text-white py-2 px-4 rounded-lg hover:bg-hover cursor-pointer text-sm"
                     disabled={loading}
                 >
                     {loading ? <FaSpinner className="animate-spin mx-auto" /> : 'Guardar'}

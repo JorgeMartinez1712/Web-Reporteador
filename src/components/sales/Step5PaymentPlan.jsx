@@ -191,11 +191,11 @@ const Step5PaymentPlan = ({ onConfirm, onPrev, saleData, currentUser, onError, o
               <div
                 key={method.id}
                 className={`flex items-center p-3 rounded-lg border-2 cursor-pointer transition-all duration-200 text-left
-								${isSelected ? 'border-fuchsia-500 bg-fuchsia-50 shadow-lg' : 'border-gray-300 bg-white hover:border-gray-400'}`}
+								${isSelected ? 'border-claro bg-bg shadow-lg' : 'border-gray-300 bg-white hover:border-gray-400'}`}
                 onClick={() => handleOpenModal(method.id)}
               >
-                <IconComponent className={`text-3xl mr-3 ${isSelected ? 'text-fuchsia-900' : 'text-gray-500'}`} />
-                <span className={`text-md font-medium ${isSelected ? 'text-fuchsia-800' : 'text-gray-700'}`}>{method.name}</span>
+                <IconComponent className={`text-3xl mr-3 ${isSelected ? 'text-oscuro' : 'text-gray-500'}`} />
+                <span className={`text-md font-medium ${isSelected ? 'text-oscuro' : 'text-gray-700'}`}>{method.name}</span>
               </div>
             );
           })}
@@ -239,8 +239,8 @@ const Step5PaymentPlan = ({ onConfirm, onPrev, saleData, currentUser, onError, o
               disabled={isLoading}
               className={`flex items-center justify-center px-5 py-2 rounded-lg transition duration-300 font-medium text-white
 							${isLoading
-                  ? 'bg-fuchsia-400 cursor-not-allowed'
-                  : 'bg-fuchsia-900 hover:bg-fuchsia-950'
+                  ? 'bg-claro cursor-not-allowed'
+                  : 'bg-oscuro hover:bg-hover'
                 }`}
             >
               {isLoading ? (

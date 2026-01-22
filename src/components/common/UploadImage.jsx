@@ -43,7 +43,7 @@ const UploadImage = ({ onImageSelect, imageUrl, className = '', idPrefix = 'imag
   return (
     <div
       className={`flex flex-col items-center justify-center border-2 border-dashed rounded-lg p-4 transition-colors duration-200
-      ${disabled ? 'border-gray-200 cursor-not-allowed opacity-60' : 'border-gray-300 hover:border-fuchsia-500 cursor-pointer'}
+      ${disabled ? 'border-gray-200 cursor-not-allowed opacity-60' : 'border-gray-300 hover:border-claro cursor-pointer'}
       ${className}`}
     >
       <input

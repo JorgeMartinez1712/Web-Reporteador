@@ -145,7 +145,7 @@ const PromotionConditionsEditor = ({ value, onChange, brands = [], products = []
         <button
           type="button"
           onClick={handleAddCondition}
-          className="mb-4 p-2 bg-fuchsia-900 text-white rounded-lg hover:bg-fuchsia-950 self-start"
+          className="mb-4 p-2 bg-oscuro text-white rounded-lg hover:bg-hover self-start"
         >
           Agregar condiciones
         </button>
@@ -185,7 +185,7 @@ const PromotionConditionsEditor = ({ value, onChange, brands = [], products = []
                               className={`
                                         px-3 py-1 rounded-lg text-sm transition-colors duration-200
                                         ${isSelected
-                                  ? 'bg-fuchsia-500 text-white shadow-md'
+                                  ? 'bg-claro text-white shadow-md'
                                   : 'bg-gray-200 text-gray-800'
                                 }
                                         ${disabled ? 'cursor-not-allowed opacity-70' : 'cursor-pointer hover:bg-gray-300'}
@@ -221,7 +221,7 @@ const PromotionConditionsEditor = ({ value, onChange, brands = [], products = []
                           updateParent(conditions.map((c, i) => i === conditionIndex ? { ...c, [fieldDef.key]: e.target.value } : c));
                         }}
                         onBlur={() => handleFieldBlur(conditionIndex, fieldDef.key)}
-                        className="border border-gray-300 rounded-lg p-2 w-full focus:border-fuchsia-500 focus:ring-1 focus:ring-fuchsia-500"
+                        className="border border-gray-300 rounded-lg p-2 w-full focus:border-claro focus:ring-1 focus:ring-claro"
                         required={fieldDef.isRequired}
                         disabled={disabled}
                       >
@@ -247,7 +247,7 @@ const PromotionConditionsEditor = ({ value, onChange, brands = [], products = []
                     value={conditions[conditionIndex]?.installments ?? ''}
                     onChange={(e) => handleFieldChange(conditionIndex, 'installments', e.target.value)}
                     onBlur={() => handleFieldBlur(conditionIndex, 'installments')}
-                    className="border border-gray-300 rounded-lg p-2 w-full focus:border-fuchsia-500 focus:ring-1 focus:ring-fuchsia-500"
+                    className="border border-gray-300 rounded-lg p-2 w-full focus:border-claro focus:ring-1 focus:ring-claro"
                     placeholder="Ej: 3, 6, 9"
                     disabled={disabled}
                   />
@@ -268,7 +268,7 @@ const PromotionConditionsEditor = ({ value, onChange, brands = [], products = []
                     value={conditions[conditionIndex]?.down_payment ?? ''}
                     onChange={(e) => handleFieldChange(conditionIndex, 'down_payment', e.target.value)}
                     onBlur={() => handleFieldBlur(conditionIndex, 'down_payment')}
-                    className="border border-gray-300 rounded-lg p-2 w-full focus:border-fuchsia-500 focus:ring-1 focus:ring-fuchsia-500"
+                    className="border border-gray-300 rounded-lg p-2 w-full focus:border-claro focus:ring-1 focus:ring-claro"
                     placeholder="Ej: 10.00"
                     step="0.01"
                     min="0"
@@ -287,7 +287,7 @@ const PromotionConditionsEditor = ({ value, onChange, brands = [], products = []
                     value={conditions[conditionIndex]?.credit_limit ?? ''}
                     onChange={(e) => handleFieldChange(conditionIndex, 'credit_limit', e.target.value)}
                     onBlur={() => handleFieldBlur(conditionIndex, 'credit_limit')}
-                    className="border border-gray-300 rounded-lg p-2 w-full focus:border-fuchsia-500 focus:ring-1 focus:ring-fuchsia-500"
+                    className="border border-gray-300 rounded-lg p-2 w-full focus:border-claro focus:ring-1 focus:ring-claro"
                     placeholder="Ej: 50000.00"
                     step="0.01"
                     min="0"

@@ -10,17 +10,17 @@ const PagosPage = () => {
   return (
     <div className="min-h-screen p-8 relative">
       <div className="w-full flex justify-between items-center mb-8">
-        <h2 className="text-xl font-extrabold text-fuchsia-950 tracking-tight">
+        <h2 className="text-xl font-extrabold text-hover tracking-tight">
           Historial de Pagos
         </h2>
-         <Link to="/pagos/registrar" className="bg-fuchsia-900 text-white py-2 px-4 rounded-lg hover:bg-fuchsia-950 cursor-pointer">
+         <Link to="/pagos/registrar" className="bg-oscuro text-white py-2 px-4 rounded-lg hover:bg-hover cursor-pointer">
           Registrar
         </Link>
       </div>
 
       {loading ? (
         <div className="flex justify-center items-center min-h-screen">
-          <FaSpinner className="animate-spin text-fuchsia-900 text-4xl" />
+          <FaSpinner className="animate-spin text-oscuro text-4xl" />
         </div>
       ) : (
         <PagosTable

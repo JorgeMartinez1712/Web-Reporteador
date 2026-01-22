@@ -407,7 +407,7 @@ const RegisterUserForm = ({ onUserCreated, onCancel }) => {
                 )}
                 <button
                     type="submit"
-                    className="bg-fuchsia-900 text-white py-2 px-4 rounded-lg hover:bg-fuchsia-950 cursor-pointer text-sm"
+                    className="bg-oscuro text-white py-2 px-4 rounded-lg hover:bg-hover cursor-pointer text-sm"
                     disabled={isSaveDisabled || loading}
                 >
                     {loading ? <FaSpinner className="animate-spin mx-auto" /> : 'Guardar'}

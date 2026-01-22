@@ -24,11 +24,11 @@ const PaymentMethodSelector = ({ paymentMethods, selectedMethodId, onMethodSelec
                         <div
                             key={method.id}
                             className={`flex items-center p-3 rounded-lg border-2 cursor-pointer transition-all duration-200 
-                ${isSelected ? 'border-fuchsia-500 bg-fuchsia-50 shadow-lg' : 'border-gray-300 bg-white hover:border-gray-400'}`}
+                ${isSelected ? 'border-claro bg-bg shadow-lg' : 'border-gray-300 bg-white hover:border-gray-400'}`}
                             onClick={() => onMethodSelect(method.id.toString())}
                         >
-                            <IconComponent className={`text-xl mr-3 ${isSelected ? 'text-fuchsia-900' : 'text-gray-500'}`} />
-                            <span className={`text-sm font-medium ${isSelected ? 'text-fuchsia-800' : 'text-gray-700'}`}>{method.name}</span>
+                            <IconComponent className={`text-xl mr-3 ${isSelected ? 'text-oscuro' : 'text-gray-500'}`} />
+                            <span className={`text-sm font-medium ${isSelected ? 'text-oscuro' : 'text-gray-700'}`}>{method.name}</span>
                         </div>
                     );
                 })}

@@ -100,7 +100,7 @@ const PaymentMethodManagement = () => {
 
     if (methodsLoading || statusesLoading) return (
         <div className="flex justify-center items-center">
-            <FaSpinner className="animate-spin text-fuchsia-900 text-4xl min-h-screen" />
+            <FaSpinner className="animate-spin text-oscuro text-4xl min-h-screen" />
         </div>
     );
     if (methodsError) return <div className="text-center py-4 text-red-600">Error: {methodsError}</div>;
@@ -117,7 +117,7 @@ const PaymentMethodManagement = () => {
                         <input
                             type="text"
                             id="methodCode"
-                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-claro"
                             value={methodCode}
                             onChange={(e) => setMethodCode(e.target.value)}
                             disabled={isEditing}
@@ -132,7 +132,7 @@ const PaymentMethodManagement = () => {
                         <input
                             type="text"
                             id="methodName"
-                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-claro"
                             value={methodName}
                             onChange={(e) => setMethodName(e.target.value)}
                             placeholder="Ej: Tarjeta de Crédito"
@@ -146,7 +146,7 @@ const PaymentMethodManagement = () => {
                         <input
                             type="text"
                             id="methodType"
-                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-claro"
                             value={methodType}
                             onChange={(e) => setMethodType(e.target.value)}
                             placeholder="Ej: TYPE_001"
@@ -160,7 +160,7 @@ const PaymentMethodManagement = () => {
                             </label>
                             <select
                                 id="methodStatus"
-                                className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+                                className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-claro"
                                 value={methodStatusId}
                                 onChange={(e) => setMethodStatusId(e.target.value)}
                             >
@@ -184,7 +184,7 @@ const PaymentMethodManagement = () => {
                     )}
                     <button
                         type="submit"
-                        className="bg-fuchsia-900 hover:bg-fuchsia-950 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        className="bg-oscuro hover:bg-hover text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     >
                         Guardar
                     </button>

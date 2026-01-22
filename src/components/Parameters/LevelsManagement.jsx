@@ -92,7 +92,7 @@ const LevelsManagement = () => {
   };
 
   if (loading) return <div className="flex justify-center items-center">
-    <FaSpinner className="animate-spin text-fuchsia-900 text-4xl min-h-screen" />
+    <FaSpinner className="animate-spin text-oscuro text-4xl min-h-screen" />
   </div>;
   if (error) return <div className="text-center py-4 text-red-600">Error: {error}</div>;
 
@@ -107,7 +107,7 @@ const LevelsManagement = () => {
             <input
               type="text"
               id="nivel"
-              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-claro"
               value={nivel}
               onChange={(e) => setNivel(e.target.value)}
               placeholder="Ej: Nivel 1"
@@ -121,7 +121,7 @@ const LevelsManagement = () => {
             <input
               type="number"
               id="amount"
-              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-claro"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               placeholder="Ej: 1000"
@@ -135,7 +135,7 @@ const LevelsManagement = () => {
             <input
               type="number"
               id="pointFrom"
-              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-claro"
               value={pointFrom}
               onChange={(e) => setPointFrom(e.target.value)}
               placeholder="Ej: 500"
@@ -149,7 +149,7 @@ const LevelsManagement = () => {
             <input
               type="number"
               id="scoreFrom"
-              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-claro"
               value={scoreFrom}
               onChange={(e) => setScoreFrom(e.target.value)}
               placeholder="Ej: 500"
@@ -163,7 +163,7 @@ const LevelsManagement = () => {
             <input
               type="number"
               id="creditTo"
-              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-claro"
               value={creditTo}
               onChange={(e) => setCreditTo(e.target.value)}
               placeholder="Ej: 5000"
@@ -176,7 +176,7 @@ const LevelsManagement = () => {
             </label>
             <textarea
               id="descripcion"
-              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500 resize-none h-[42px]"
+              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-claro resize-none h-[42px]"
               value={descripcion}
               onChange={(e) => setDescripcion(e.target.value)}
               placeholder="Una breve descripción del nivel"
@@ -195,7 +195,7 @@ const LevelsManagement = () => {
           )}
           <button
             type="submit"
-            className="bg-fuchsia-900 hover:bg-fuchsia-950 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-oscuro hover:bg-hover text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
             Guardar
           </button>

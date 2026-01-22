@@ -83,7 +83,7 @@ const VerificationCodePasswordPage = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
-      <div className="bg-white p-8 rounded-lg shadow-xl w-full max-w-md border-t-4 border-fuchsia-900">
+      <div className="bg-white p-8 rounded-lg shadow-xl w-full max-w-md border-t-4 border-oscuro">
         <h2 className="text-3xl font-bold text-center text-gray-900 mb-6">
           {step === 1 ? 'Verificar Código' : 'Restablecer Contraseña'}
         </h2>
@@ -113,14 +113,14 @@ const VerificationCodePasswordPage = () => {
                 value={code}
                 onChange={handleCodeChange}
                 required
-                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-fuchsia-500 focus:border-fuchsia-500"
+                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-claro focus:border-claro"
               />
             </div>
             <button
               type="submit"
               disabled={loading}
               className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-lg font-semibold text-white transition-colors duration-200
-                ${loading ? 'bg-fuchsia-300 cursor-not-allowed' : 'bg-fuchsia-900 hover:bg-fuchsia-950'}`}
+                ${loading ? 'bg-claro cursor-not-allowed' : 'bg-oscuro hover:bg-hover'}`}
             >
               {loading ? <FaSpinner className="animate-spin" /> : 'Verificar Código'}
             </button>
@@ -140,7 +140,7 @@ const VerificationCodePasswordPage = () => {
                 value={newPassword}
                 onChange={handlePasswordChange}
                 required
-                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-fuchsia-500 focus:border-fuchsia-500"
+                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-claro focus:border-claro"
               />
             </div>
             <div>
@@ -154,7 +154,7 @@ const VerificationCodePasswordPage = () => {
                 value={confirmPassword}
                 onChange={handlePasswordChange}
                 required
-                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-fuchsia-500 focus:border-fuchsia-500"
+                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-claro focus:border-claro"
               />
             </div>
             <PasswordRequirements validations={passwordValidations} />
@@ -162,7 +162,7 @@ const VerificationCodePasswordPage = () => {
               type="submit"
               disabled={loading || !Object.values(passwordValidations).every(Boolean)}
               className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-lg font-semibold text-white transition-colors duration-200
-                ${loading || !Object.values(passwordValidations).every(Boolean) ? 'bg-fuchsia-300 cursor-not-allowed' : 'bg-fuchsia-900 hover:bg-fuchsia-950'}`}
+                ${loading || !Object.values(passwordValidations).every(Boolean) ? 'bg-claro cursor-not-allowed' : 'bg-oscuro hover:bg-hover'}`}
             >
               {loading ? <FaSpinner className="animate-spin" /> : 'Restablecer Contraseña'}
             </button>

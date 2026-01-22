@@ -50,7 +50,7 @@ const BrandsPage = () => {
       />
 
       <div className="w-full flex justify-between items-center mb-8">
-        <h1 className="text-xl font-extrabold text-fuchsia-950 tracking-tight">
+        <h1 className="text-xl font-extrabold text-hover tracking-tight">
           Marcas
         </h1>
         <BrandsModal
@@ -62,7 +62,7 @@ const BrandsPage = () => {
 
       {loading ? (
         <div className="flex justify-center items-center min-h-screen">
-          <FaSpinner className="animate-spin text-fuchsia-900 text-4xl" />
+          <FaSpinner className="animate-spin text-oscuro text-4xl" />
         </div>
       ) : (
         <BrandsTable

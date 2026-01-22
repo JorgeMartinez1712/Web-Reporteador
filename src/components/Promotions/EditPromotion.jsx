@@ -43,7 +43,7 @@ const EditPromotion = ({
                 />
             ) : (
                 <div className="flex justify-center items-center h-48">
-                    <FaSpinner className="animate-spin text-fuchsia-500 text-3xl" />
+                    <FaSpinner className="animate-spin text-claro text-3xl" />
                 </div>
             )}
         </>

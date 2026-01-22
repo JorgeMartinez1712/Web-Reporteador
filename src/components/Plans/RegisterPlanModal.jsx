@@ -26,7 +26,7 @@ const RegisterPlanModal = ({ onPlanRegistered, setGlobalSuccessMessage, setGloba
     <>
       <button
         onClick={handleOpenModal}
-        className="bg-fuchsia-900 text-white py-2 px-4 rounded-lg hover:bg-fuchsia-950 transition duration-200 ease-in-out"
+        className="bg-oscuro text-white py-2 px-4 rounded-lg hover:bg-hover transition duration-200 ease-in-out"
       >
         Registrar
       </button>

@@ -35,14 +35,14 @@ const Inventorypage = () => {
     <div className="min-h-screen p-8 relative">
       <SuccessNotification isOpen={showSuccessNotification} message={notificationMessage} />
       <div className="w-full flex justify-between items-center mb-8">
-        <h2 className="text-xl font-extrabold text-fuchsia-950 tracking-tight">Inventario de Productos</h2>
+        <h2 className="text-xl font-extrabold text-hover tracking-tight">Inventario de Productos</h2>
         <div className="flex space-x-2">
           <InventoryImportModal importProducts={importInventory} onProductsImported={handleInventoriesImported} loading={loading} excelFieldName="file" />
         </div>
       </div>
       {loading ? (
         <div className="flex justify-center items-center min-h-screen">
-          <FaSpinner className="animate-spin text-fuchsia-900 text-4xl" />
+          <FaSpinner className="animate-spin text-oscuro text-4xl" />
         </div>
       ) : (
         <InventoryTable inventories={productInventories} />

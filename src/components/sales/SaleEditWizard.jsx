@@ -417,13 +417,13 @@ const SaleEditWizard = ({ initialSaleData }) => {
             return (
               <li
                 key={index}
-                className={`flex md:w-full items-center ${currentStep > index + 1 ? 'text-fuchsia-900' : ''} ${currentStep === index + 1 ? 'text-fuchsia-500 font-bold' : 'text-gray-500'} sm:after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-300 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10`}
+                className={`flex md:w-full items-center ${currentStep > index + 1 ? 'text-oscuro' : ''} ${currentStep === index + 1 ? 'text-claro font-bold' : 'text-gray-500'} sm:after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-300 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10`}
               >
                 <span className="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-400">
                   {currentStep > index + 1 ? (
-                    <FaCheckCircle className="w-4 h-4 sm:w-5 sm:h-5 me-2.5 text-fuchsia-500" />
+                    <FaCheckCircle className="w-4 h-4 sm:w-5 sm:h-5 me-2.5 text-claro" />
                   ) : (
-                    <span className={`me-2 ${currentStep === index + 1 ? 'text-fuchsia-500' : ''}`}>
+                    <span className={`me-2 ${currentStep === index + 1 ? 'text-claro' : ''}`}>
                       <IconComponent className="w-4 h-4 sm:w-5 sm:h-5" />
                     </span>
                   )}
@@ -439,7 +439,7 @@ const SaleEditWizard = ({ initialSaleData }) => {
           <h2 className="text-xl font-bold text-gray-900">Continuar Venta</h2>
           <div className="flex items-center gap-3">
             {saleData.sale_code && (
-              <span className="text-md font-bold text-fuchsia-900">
+              <span className="text-md font-bold text-oscuro">
                 Código de venta: {saleData.sale_code}
               </span>
             )}
@@ -456,7 +456,7 @@ const SaleEditWizard = ({ initialSaleData }) => {
         </div>
         {isInitialLoading ? (
           <div className="flex justify-center items-center h-40">
-            <FaSpinner className="animate-spin text-fuchsia-500 w-8 h-8 mr-2" />
+            <FaSpinner className="animate-spin text-claro w-8 h-8 mr-2" />
             <span className="text-lg text-gray-600">Cargando condiciones del plan...</span>
           </div>
         ) : renderStep()}

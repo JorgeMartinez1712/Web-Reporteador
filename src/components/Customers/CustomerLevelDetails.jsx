@@ -16,8 +16,8 @@ const CustomerLevelDetails = ({ customer }) => {
   return (
     <div className="w-full rounded-xl shadow-sm">
       <div className="px-6 pt-5 pb-3">
-        <h3 className="flex items-center gap-2 text-fuchsia-900 text-lg font-medium">
-          <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-fuchsia-50 text-fuchsia-900">
+        <h3 className="flex items-center gap-2 text-oscuro text-lg font-medium">
+          <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-bg text-oscuro">
             <i className="bi bi-award-fill" />
           </span>
           <span>Nivel Actual del Cliente</span>
@@ -82,7 +82,7 @@ const CustomerLevelDetails = ({ customer }) => {
             <div className="mt-1 text-gray-900">{utilizacion.toFixed(1)}%</div>
             <div className="mt-2 h-2 w-full rounded-full bg-gray-200 overflow-hidden">
               <div
-                className="h-2 rounded-full bg-fuchsia-500"
+                className="h-2 rounded-full bg-claro"
                 style={{ width: `${Math.min(utilizacion, 100)}%` }}
               />
             </div>

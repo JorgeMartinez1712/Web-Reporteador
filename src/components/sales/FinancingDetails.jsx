@@ -21,11 +21,11 @@ const FinancingDetails = ({ financingContract, totalAmount }) => {
   }, [total_amount_pay, installment_number]);
 
   return (
-    <div className="p-6 rounded-lg border border-fuchsia-200 col-span-full mt-15">
-      <h4 className="text-xl font-bold text-fuchsia-800 mb-4 border-b border-fuchsia-200 pb-3 text-left">
+    <div className="p-6 rounded-lg border border-claro col-span-full mt-15">
+      <h4 className="text-xl font-bold text-oscuro mb-4 border-b border-claro pb-3 text-left">
         Detalle del Plan de Pago: {planName}
       </h4>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-fuchsia-950 text-left">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-hover text-left">
         <div>
           <p className="font-semibold">Monto Total del Producto:</p>
           <p className="text-lg font-bold">${parseFloat(amount_sale).toFixed(2)}</p>

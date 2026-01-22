@@ -99,22 +99,22 @@ const ForgotPasswordForm = ({ initialEmail = '', initialToken = '' }) => {
         message={notificationMessage}
         onClose={() => setIsNotificationOpen(false)}
       />
-      <div className="w-full max-w-md bg-white/30 backdrop-blur-sm rounded-lg shadow-xl border border-fuchsia-900 p-6">
-        <h1 className="text-xl font-bold leading-tight tracking-tight text-fuchsia-900 md:text-2xl text-center mb-6">
+      <div className="w-full max-w-md bg-white/30 backdrop-blur-sm rounded-lg shadow-xl border border-oscuro p-6">
+        <h1 className="text-xl font-bold leading-tight tracking-tight text-oscuro md:text-2xl text-center mb-6">
           {step === 1 && !emailSent ? 'Recuperar Contraseña' : 'Establecer Nueva Contraseña'}
         </h1>
 
         {step === 1 && !emailSent ? (
           <form className="space-y-4" onSubmit={handleSubmitEmail}>
             <div>
-              <label htmlFor="email" className="block mb-2 text-sm font-medium text-fuchsia-900">
+              <label htmlFor="email" className="block mb-2 text-sm font-medium text-oscuro">
                 Correo Electrónico
               </label>
               <input
                 type="email"
                 id="email"
                 name="email"
-                className="border border-fuchsia-800 text-fuchsia-900 rounded-lg block w-full p-2.5 focus:outline-none"
+                className="border border-oscuro text-oscuro rounded-lg block w-full p-2.5 focus:outline-none"
                 placeholder="ejemplo@mail.com"
                 required
                 value={email}
@@ -123,7 +123,7 @@ const ForgotPasswordForm = ({ initialEmail = '', initialToken = '' }) => {
             </div>
             <button
               type="submit"
-              className="w-full text-white bg-fuchsia-900 hover:bg-fuchsia-950 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+              className="w-full text-white bg-oscuro hover:bg-hover focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center"
               disabled={loading}
             >
               {loading ? <FaSpinner className="animate-spin mx-auto" /> : 'Enviar Enlace'}
@@ -216,7 +216,7 @@ const ForgotPasswordForm = ({ initialEmail = '', initialToken = '' }) => {
             <PasswordRequirements validations={validations} />
             <button
               type="submit"
-              className="w-full text-white bg-fuchsia-900 hover:bg-fuchsia-950 focus:ring-4 focus:outline-none focus:ring-fuchsia-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mt-4"
+              className="w-full text-white bg-oscuro hover:bg-hover focus:ring-4 focus:outline-none focus:ring-claro font-medium rounded-lg text-sm px-5 py-2.5 text-center mt-4"
               disabled={loading || !isPasswordValid}
             >
               {loading ? <FaSpinner className="animate-spin mx-auto" /> : 'Restablecer Contraseña'}
@@ -226,7 +226,7 @@ const ForgotPasswordForm = ({ initialEmail = '', initialToken = '' }) => {
 
         <p className="text-sm font-light text-gray-500 text-center mt-4">
           ¿Recordaste tu contraseña?{' '}
-          <Link to="/login" className="text-sm font-medium text-fuchsia-900 hover:underline">
+          <Link to="/login" className="text-sm font-medium text-oscuro hover:underline">
             Iniciar sesión
           </Link>
         </p>

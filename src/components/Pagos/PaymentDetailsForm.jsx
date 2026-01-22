@@ -56,7 +56,7 @@ const PaymentDetailsForm = ({
             value={amountUsd}
             onChange={(e) => handleAmountChange(e, 'amount')}
             required={usdFieldConfig.required}
-            className={`${formErrors.amount ? `${baseClasses} border-red-500` : `${baseClasses} border-gray-300 focus:ring-fuchsia-500 focus:border-fuchsia-500`}`}
+            className={`${formErrors.amount ? `${baseClasses} border-red-500` : `${baseClasses} border-gray-300 focus:ring-claro focus:border-claro`}`}
             placeholder="0.00"
           />
           {formErrors.amount && <p className="mt-1 text-xs text-red-600">{formErrors.amount}</p>}
@@ -73,7 +73,7 @@ const PaymentDetailsForm = ({
               value={amountVes}
               onChange={(e) => handleAmountChange(e, 'amount_converted')}
               required={vesFieldConfig.required}
-              className={`${formErrors.amount_converted ? `${baseClasses} border-red-500` : `${baseClasses} border-gray-300 focus:ring-fuchsia-500 focus:border-fuchsia-500`}`}
+              className={`${formErrors.amount_converted ? `${baseClasses} border-red-500` : `${baseClasses} border-gray-300 focus:ring-claro focus:border-claro`}`}
               placeholder="0.00"
             />
             {formErrors.amount_converted && <p className="mt-1 text-xs text-red-600">{formErrors.amount_converted}</p>}
@@ -94,8 +94,8 @@ const PaymentDetailsForm = ({
 
       {isPagoMovil && paymentMovilDestino && (
         <div className="p-4 border border-gray-200 rounded-lg space-y-2">
-          <h4 className="font-bold text-fuchsia-950 flex items-center border-b border-fuchsia-200 pb-1">
-            <FaMobileAlt className="mr-2 text-fuchsia-900" /> Datos Pago Móvil Destino
+          <h4 className="font-bold text-hover flex items-center border-b border-claro pb-1">
+            <FaMobileAlt className="mr-2 text-oscuro" /> Datos Pago Móvil Destino
           </h4>
           <p className="text-sm text-gray-700">Banco: <strong className="text-gray-800">{paymentMovilDestino.destino_banco}</strong></p>
           <p className="text-sm text-gray-700">Teléfono: <strong className="text-gray-800">{paymentMovilDestino.destino_movil}</strong></p>
@@ -111,7 +111,7 @@ const PaymentDetailsForm = ({
 
           if (['amount', 'amount_converted', 'bcv_rate', 'payment_status_id', 'processed_by_admin_user_id', 'retail_unit_id', 'seller_id', 'payment_type_id'].includes(key)) return null;
 
-          const inputClasses = formErrors[key] ? `${baseClasses} border-red-500 focus:ring-red-500 focus:border-red-500` : `${baseClasses} border-gray-300 focus:ring-fuchsia-500 focus:border-fuchsia-500`;
+          const inputClasses = formErrors[key] ? `${baseClasses} border-red-500 focus:ring-red-500 focus:border-red-500` : `${baseClasses} border-gray-300 focus:ring-claro focus:border-claro`;
 
           const renderField = () => {
 

@@ -45,14 +45,14 @@ const PromotionsModal = ({
     <>
       <button
         onClick={toggleModal}
-        className="bg-fuchsia-900 text-white py-2 px-4 rounded-lg hover:bg-fuchsia-950 cursor-pointer"
+        className="bg-oscuro text-white py-2 px-4 rounded-lg hover:bg-hover cursor-pointer"
       >
         Registrar
       </button>
       <CustomModal isOpen={isOpen} onClose={toggleModal} title="Registrar Promoción" customClasses="max-w-4xl">
         {isPromotionsDataLoading ? (
           <div className="flex justify-center items-center h-48">
-            <FaSpinner className="animate-spin text-fuchsia-500 text-3xl" />
+            <FaSpinner className="animate-spin text-claro text-3xl" />
           </div>
         ) : (
           <PromotionsForm

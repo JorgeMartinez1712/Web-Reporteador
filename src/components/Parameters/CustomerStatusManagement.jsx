@@ -75,7 +75,7 @@ const CustomerStatusManagement = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <FaSpinner className="animate-spin text-fuchsia-900 text-4xl" />
+        <FaSpinner className="animate-spin text-oscuro text-4xl" />
       </div>
     );
   }
@@ -91,7 +91,7 @@ const CustomerStatusManagement = () => {
             <input
               type="text"
               id="statusCode"
-              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-claro"
               value={statusCode}
               onChange={(e) => setStatusCode(e.target.value)}
               placeholder="Ej: CST-01"
@@ -103,7 +103,7 @@ const CustomerStatusManagement = () => {
             <input
               type="text"
               id="statusName"
-              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+              className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-claro"
               value={statusName}
               onChange={(e) => setStatusName(e.target.value)}
               placeholder="Ej: Activo, Bloqueado"
@@ -117,7 +117,7 @@ const CustomerStatusManagement = () => {
           <textarea
             id="statusDescription"
             rows="3"
-            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-claro"
             value={statusDescription}
             onChange={(e) => setStatusDescription(e.target.value)}
             placeholder="Descripción del estado"
@@ -135,7 +135,7 @@ const CustomerStatusManagement = () => {
           )}
           <button
             type="submit"
-            className="bg-fuchsia-900 hover:bg-fuchsia-950 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-oscuro hover:bg-hover text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
             Guardar
           </button>

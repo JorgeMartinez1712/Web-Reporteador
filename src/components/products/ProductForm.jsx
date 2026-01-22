@@ -21,7 +21,7 @@ const ProductForm = ({
             name="sku"
             value={formData.sku}
             onChange={handleChange}
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 sm:text-sm"
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-claro focus:border-claro sm:text-sm"
             placeholder="Ej: SKU-001"
             maxLength="50"
             required
@@ -37,7 +37,7 @@ const ProductForm = ({
             name="name"
             value={formData.name}
             onChange={handleChange}
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 sm:text-sm"
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-claro focus:border-claro sm:text-sm"
             placeholder="Ej: Producto XYZ"
             maxLength="100"
             required
@@ -52,7 +52,7 @@ const ProductForm = ({
             name="base_price"
             value={formData.base_price}
             onChange={handleChange}
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 sm:text-sm"
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-claro focus:border-claro sm:text-sm"
             placeholder="Ej: 100.00"
             step="0.01"
             required
@@ -67,7 +67,7 @@ const ProductForm = ({
             name="category_id"
             value={formData.category_id}
             onChange={handleChange}
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 sm:text-sm"
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-claro focus:border-claro sm:text-sm"
             disabled={!isEditing}
           >
             <option value="">--Seleccionar--</option>
@@ -86,7 +86,7 @@ const ProductForm = ({
             name="brand_id"
             value={formData.brand_id}
             onChange={handleChange}
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 sm:text-sm"
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-claro focus:border-claro sm:text-sm"
             disabled={!isEditing}
           >
             <option value="">--Seleccionar--</option>
@@ -107,7 +107,7 @@ const ProductForm = ({
             name="model"
             value={formData.model}
             onChange={handleChange}
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 sm:text-sm"
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-claro focus:border-claro sm:text-sm"
             placeholder="Ej: Galaxy S23"
             maxLength="100"
             disabled={!isEditing}
@@ -121,7 +121,7 @@ const ProductForm = ({
             name="description"
             value={formData.description}
             onChange={handleChange}
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 sm:text-sm h-10 resize-none"
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-claro focus:border-claro sm:text-sm h-10 resize-none"
             placeholder="Una pequeña descripción del producto."
             rows="1"
             maxLength="500"
@@ -147,7 +147,7 @@ const ProductForm = ({
             name="status_id"
             value={formData.status_id}
             onChange={handleChange}
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 sm:text-sm"
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-claro focus:border-claro sm:text-sm"
             disabled={!isEditing}
           >
             <option value="">--Seleccionar--</option>
@@ -169,7 +169,7 @@ const ProductForm = ({
               name="requires_device_lock"
               checked={formData.requires_device_lock}
               onChange={handleChange}
-              className="h-4 w-4 text-fuchsia-900 focus:ring-fuchsia-500 border-gray-300 rounded"
+              className="h-4 w-4 text-oscuro focus:ring-claro border-gray-300 rounded"
               disabled={!isEditing}
             />
             <label htmlFor="requires_device_lock" className="ml-2 block text-sm font-medium text-gray-700">Requiere Bloqueo de Dispositivo</label>
@@ -182,7 +182,7 @@ const ProductForm = ({
               name="is_service"
               checked={formData.is_service}
               onChange={handleChange}
-              className="h-4 w-4 text-fuchsia-900 focus:ring-fuchsia-500 border-gray-300 rounded"
+              className="h-4 w-4 text-oscuro focus:ring-claro border-gray-300 rounded"
               disabled={!isEditing}
             />
             <label htmlFor="is_service" className="ml-2 block text-sm font-medium text-gray-700">Es un Servicio</label>

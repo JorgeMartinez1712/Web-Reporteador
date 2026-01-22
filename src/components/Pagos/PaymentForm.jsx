@@ -386,7 +386,7 @@ const PaymentForm = forwardRef(({ sale, registerPayment, onFormChange, registerP
 
       {loading && (
         <div className="flex justify-center items-center py-4">
-          <FaSpinner className="animate-spin text-fuchsia-900 text-3xl" />
+          <FaSpinner className="animate-spin text-oscuro text-3xl" />
           <p className="ml-3 text-lg text-gray-700">Procesando...</p>
         </div>
       )}

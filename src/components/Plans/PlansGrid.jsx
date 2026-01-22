@@ -32,7 +32,7 @@ const PlansGrid = ({ plans = [], onPlanClick, levels = [], loading = false, hook
     if (loading) {
         return (
             <div className="flex justify-center items-center min-h-screen">
-                <FaSpinner className="animate-spin text-fuchsia-900 text-4xl" />
+                <FaSpinner className="animate-spin text-oscuro text-4xl" />
             </div>
         );
     }
@@ -52,7 +52,7 @@ const PlansGrid = ({ plans = [], onPlanClick, levels = [], loading = false, hook
             {plans.map((plan) => (
                 <div
                     key={plan.id}
-                    className="rounded-lg shadow-2xl hover:shadow-lg transition-shadow duration-300 overflow-hidden flex flex-col h-auto min-h-[300px] border-1 border-fuchsia-300 cursor-pointer"
+                    className="rounded-lg shadow-2xl hover:shadow-lg transition-shadow duration-300 overflow-hidden flex flex-col h-auto min-h-[300px] border-1 border-claro cursor-pointer"
                     onClick={() => onPlanClick(plan.id)}
                 >
                     <div className="p-5 flex-grow text-left">

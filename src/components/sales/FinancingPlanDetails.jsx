@@ -17,43 +17,43 @@ const FinancingPlanDetails = ({ financingPlan }) => {
   } = financingPlan;
 
   return (
-    <div className="bg-fuchsia-50 p-6 rounded-lg border border-fuchsia-200">
-      <h4 className="text-xl font-bold text-fuchsia-800 mb-2 border-b border-fuchsia-200 pb-2 text-left">
+    <div className="bg-bg p-6 rounded-lg border border-claro">
+      <h4 className="text-xl font-bold text-oscuro mb-2 border-b border-claro pb-2 text-left">
         Plan de Financiamiento Aprobado: <span className="font-normal">{name}</span>
       </h4>
-      <p className="text-fuchsia-950 text-left mb-4">{description}</p>
+      <p className="text-hover text-left mb-4">{description}</p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-left">
         <div>
-          <p className="font-semibold text-fuchsia-950">Tasa de Interés:</p>
-          <p className="text-lg font-bold text-fuchsia-900">{parseFloat(interest_rate).toFixed(2)}%</p>
+          <p className="font-semibold text-hover">Tasa de Interés:</p>
+          <p className="text-lg font-bold text-oscuro">{parseFloat(interest_rate).toFixed(2)}%</p>
         </div>
         <div>
-          <p className="font-semibold text-fuchsia-950">Monto Máximo a Financiar:</p>
-          <p className="text-lg font-bold text-fuchsia-900">${parseFloat(max_financing_amount).toFixed(2)}</p>
+          <p className="font-semibold text-hover">Monto Máximo a Financiar:</p>
+          <p className="text-lg font-bold text-oscuro">${parseFloat(max_financing_amount).toFixed(2)}</p>
         </div>
         <div>
-          <p className="font-semibold text-fuchsia-950">Cuotas:</p>
-          <p className="text-lg font-bold text-fuchsia-900">{cuotas}</p>
+          <p className="font-semibold text-hover">Cuotas:</p>
+          <p className="text-lg font-bold text-oscuro">{cuotas}</p>
         </div>
         <div>
-          <p className="font-semibold text-fuchsia-950">Frecuencia de las cuotas:</p>
-          <p className="text-lg font-bold text-fuchsia-900">{installment_frecuency}</p>
+          <p className="font-semibold text-hover">Frecuencia de las cuotas:</p>
+          <p className="text-lg font-bold text-oscuro">{installment_frecuency}</p>
         </div>
         <div>
-          <p className="font-semibold text-fuchsia-950">Pago Inicial Mínimo:</p>
-          <p className="text-lg font-bold text-fuchsia-900">{parseFloat(min_down_payment_rate).toFixed(0)}%</p>
+          <p className="font-semibold text-hover">Pago Inicial Mínimo:</p>
+          <p className="text-lg font-bold text-oscuro">{parseFloat(min_down_payment_rate).toFixed(0)}%</p>
         </div>
         <div>
-          <p className="font-semibold text-fuchsia-950">Recargo por Mora:</p>
-          <p className="text-lg font-bold text-fuchsia-900">
+          <p className="font-semibold text-hover">Recargo por Mora:</p>
+          <p className="text-lg font-bold text-oscuro">
             {late_fee_fixed ? `$${parseFloat(late_fee_fixed).toFixed(2)} + ` : ''}
             {late_fee_rate ? `${parseFloat(late_fee_rate).toFixed(2)}%` : 'N/A'}
           </p>
         </div>
         <div>
-          <p className="font-semibold text-fuchsia-950">Período de Gracia:</p>
-          <p className="text-lg font-bold text-fuchsia-900">{grace_period_days} días</p>
+          <p className="font-semibold text-hover">Período de Gracia:</p>
+          <p className="text-lg font-bold text-oscuro">{grace_period_days} días</p>
         </div>
       </div>
     </div>

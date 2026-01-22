@@ -73,7 +73,7 @@ const ProductInventorySection = ({ devices, onInventoryUpdated, productId }) => 
       <ErrorNotification isOpen={showErrorNotification} message={errorMessage} />
 
       <div className="w-full flex justify-between items-center mb-6">
-        <h3 className="text-lg font-extrabold text-fuchsia-950">Dispositivos del producto</h3>
+        <h3 className="text-lg font-extrabold text-hover">Dispositivos del producto</h3>
         <InventoryModal
           productId={productId}
           retailUnits={retailUnits}
@@ -87,7 +87,7 @@ const ProductInventorySection = ({ devices, onInventoryUpdated, productId }) => 
 
       {inventoryLoading ? (
         <div className="flex justify-center items-center h-48">
-          <FaSpinner className="animate-spin text-fuchsia-900 text-3xl" />
+          <FaSpinner className="animate-spin text-oscuro text-3xl" />
         </div>
       ) : (
         <InventoryTable

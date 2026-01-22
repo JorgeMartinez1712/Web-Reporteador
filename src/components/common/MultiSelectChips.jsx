@@ -35,7 +35,7 @@ const MultiSelectChips = ({ options, selectedValues, onChange, label, name, disa
                         className={`
                             px-3 py-1 rounded-lg text-sm transition-colors duration-200
                             ${isSelected(option.id)
-                                ? 'bg-fuchsia-500 text-white shadow-md'
+                                ? 'bg-claro text-white shadow-md'
                                 : 'bg-gray-200 text-gray-800'
                             }
                             ${disabled ? 'cursor-not-allowed opacity-70' : 'cursor-pointer hover:bg-gray-300'}

@@ -133,7 +133,7 @@ const RegisterPaymentPage = () => {
         if (authLoading || hookLoading && currentStep < 3) {
             return (
                 <div className="flex justify-center items-center h-64">
-                    <FaSpinner className="animate-spin text-fuchsia-900 text-4xl" />
+                    <FaSpinner className="animate-spin text-oscuro text-4xl" />
                     <p className="ml-3 text-lg text-gray-700">Cargando...</p>
                 </div>
             );
@@ -196,7 +196,7 @@ const RegisterPaymentPage = () => {
     return (
         <div className="min-h-screen p-8 relative">
             <div className="w-full flex items-center mb-8">
-                <h2 className="text-xl font-extrabold text-fuchsia-950 tracking-tight">
+                <h2 className="text-xl font-extrabold text-hover tracking-tight">
                     Registro de Pago
                 </h2>
             </div>
@@ -208,13 +208,13 @@ const RegisterPaymentPage = () => {
                             return (
                                 <li
                                     key={index}
-                                    className={`flex md:w-full items-center ${currentStep > index + 1 ? 'text-fuchsia-900' : ''} ${currentStep === index + 1 ? 'text-fuchsia-500' : ''} sm:after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-300 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10`}
+                                    className={`flex md:w-full items-center ${currentStep > index + 1 ? 'text-oscuro' : ''} ${currentStep === index + 1 ? 'text-claro' : ''} sm:after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-300 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10`}
                                 >
                                     <span className="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-400">
                                         {currentStep > index + 1 ? (
                                             <FaCheckCircle className="w-4 h-4 sm:w-5 sm:h-5 me-2.5" />
                                         ) : (
-                                            <span className={`me-2 ${currentStep === index + 1 ? 'text-fuchsia-500' : 'text-gray-500'}`}>
+                                            <span className={`me-2 ${currentStep === index + 1 ? 'text-claro' : 'text-gray-500'}`}>
                                                 <IconComponent className="w-4 h-4 sm:w-5 sm:h-5" />
                                             </span>
                                         )}
@@ -252,7 +252,7 @@ const RegisterPaymentPage = () => {
                                     type="button"
                                     onClick={handleNext}
                                     disabled={hookLoading || !selectedSaleOption}
-                                    className="inline-flex items-center px-6 py-2 border border-transparent text-base font-medium rounded-lg shadow-md text-white bg-fuchsia-900 hover:bg-fuchsia-950 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-fuchsia-500 transition duration-150 disabled:opacity-50"
+                                    className="inline-flex items-center px-6 py-2 border border-transparent text-base font-medium rounded-lg shadow-md text-white bg-oscuro hover:bg-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-claro transition duration-150 disabled:opacity-50"
                                 >
                                     Siguiente
                                     <FaArrowRight className="ml-2 h-4 w-4" />
@@ -264,7 +264,7 @@ const RegisterPaymentPage = () => {
                                     type="button"
                                     onClick={handleRegisterPayment}
                                     disabled={hookLoading || !paymentFormValid}
-                                    className="inline-flex items-center px-6 py-2 border border-transparent text-base font-medium rounded-lg shadow-md text-white bg-fuchsia-900 hover:bg-fuchsia-950 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-fuchsia-500 transition duration-150 disabled:opacity-50"
+                                    className="inline-flex items-center px-6 py-2 border border-transparent text-base font-medium rounded-lg shadow-md text-white bg-oscuro hover:bg-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-claro transition duration-150 disabled:opacity-50"
                                 >
                                     {hookLoading ? (
                                         <FaSpinner className="animate-spin -ml-1 mr-2 h-5 w-5" />

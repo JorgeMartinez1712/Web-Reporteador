@@ -58,7 +58,7 @@ const PromotionsSection = ({ planId }) => {
   <ErrorNotification isOpen={showErrorNotification} message={errorMessage} onClose={() => setShowErrorNotification(false)} />
 
       <div className="w-full flex justify-between items-center mb-6">
-        <h3 className="text-lg font-extrabold text-fuchsia-950">Promociones</h3>
+        <h3 className="text-lg font-extrabold text-hover">Promociones</h3>
         <PromotionsModal
           planId={planId} 
           createPromotion={createPromotion}
@@ -70,7 +70,7 @@ const PromotionsSection = ({ planId }) => {
 
       {promotionsLoading ? (
         <div className="flex justify-center items-center h-48">
-          <FaSpinner className="animate-spin text-fuchsia-900 text-3xl" />
+          <FaSpinner className="animate-spin text-oscuro text-3xl" />
         </div>
       ) : promotionsError ? (
         <ErrorNotification isOpen={true} message={promotionsError} />

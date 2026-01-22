@@ -49,7 +49,7 @@ const LevelsTable = ({ levels, loading, onEdit }) => {
         <>
             {loading ? (
                 <div className="flex justify-center items-center p-8">
-                    <FaSpinner className="animate-spin text-fuchsia-900 text-4xl" />
+                    <FaSpinner className="animate-spin text-oscuro text-4xl" />
                 </div>
             ) : (
                 <DataTable

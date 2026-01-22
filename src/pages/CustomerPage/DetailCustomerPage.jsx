@@ -197,7 +197,7 @@ const DetailCustomerPage = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <FaSpinner className="animate-spin text-fuchsia-900 text-4xl" />
+        <FaSpinner className="animate-spin text-oscuro text-4xl" />
       </div>
     );
   }
@@ -230,9 +230,9 @@ const DetailCustomerPage = () => {
       />
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-        <div className="bg-white flex flex-col gap-2 rounded-xl border border-gray-200 border-l-4 border-l-fuchsia-500 px-6 py-4 text-left">
+        <div className="bg-white flex flex-col gap-2 rounded-xl border border-gray-200 border-l-4 border-l-claro px-6 py-4 text-left">
           <div className="text-sm font-medium text-gray-600 flex items-center gap-2">
-            <i className="bi bi-cash-coin text-fuchsia-500" />
+            <i className="bi bi-cash-coin text-claro" />
             <span>Línea de Financiamiento</span>
           </div>
           <div className="text-xl font-semibold text-gray-900">
@@ -258,9 +258,9 @@ const DetailCustomerPage = () => {
           <p className="text-xs text-gray-500">Relación entre deuda actual y línea de crédito</p>
         </div>
 
-        <div className="bg-white flex flex-col gap-1.5 rounded-xl border border-gray-200 border-l-4 border-l-fuchsia-900 px-4 py-3 text-left">
+        <div className="bg-white flex flex-col gap-1.5 rounded-xl border border-gray-200 border-l-4 border-l-oscuro px-4 py-3 text-left">
           <div className="text-sm font-medium text-gray-600 flex items-center gap-2">
-            <i className="bi bi-credit-card text-fuchsia-900" />
+            <i className="bi bi-credit-card text-oscuro" />
             <span>% Disponible</span>
           </div>
           <div className="text-xl font-semibold text-gray-900">
@@ -268,7 +268,7 @@ const DetailCustomerPage = () => {
           </div>
           <div className="mt-0.5 h-1.5 w-full rounded-full bg-gray-200 overflow-hidden">
             <div
-              className="h-2 rounded-full bg-fuchsia-500"
+              className="h-2 rounded-full bg-claro"
               style={{ width: `${Math.min(Math.max(porcentajeDisponible, 0), 100)}%` }}
             />
           </div>

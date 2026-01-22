@@ -165,7 +165,7 @@ const BcvCurrenciesManagement = () => {
     if (bcvCurrenciesLoading || bcvRatesLoading || currenciesLoading) {
         return (
             <div className="flex justify-center items-center min-h-screen">
-                <FaSpinner className="animate-spin text-fuchsia-900 text-4xl" />
+                <FaSpinner className="animate-spin text-oscuro text-4xl" />
             </div>
         );
     }
@@ -186,7 +186,7 @@ const BcvCurrenciesManagement = () => {
                         <input
                             type="text"
                             id="code"
-                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-claro"
                             value={code}
                             onChange={(e) => setCode(e.target.value)}
                             placeholder="Ej: VES"
@@ -201,7 +201,7 @@ const BcvCurrenciesManagement = () => {
                         <input
                             type="text"
                             id="name"
-                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-claro"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             placeholder="Ej: Bolívar Digital"
@@ -215,7 +215,7 @@ const BcvCurrenciesManagement = () => {
                         <input
                             type="text"
                             id="symbol"
-                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-claro"
                             value={symbol}
                             onChange={(e) => setSymbol(e.target.value)}
                             placeholder="Ej: Bs"
@@ -229,7 +229,7 @@ const BcvCurrenciesManagement = () => {
                         </label>
                         <select
                             id="bcvRateId"
-                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-claro"
                             value={bcvRateId}
                             onChange={(e) => setBcvRateId(e.target.value)}
                             required
@@ -250,7 +250,7 @@ const BcvCurrenciesManagement = () => {
                         </label>
                         <select
                             id="currencyId"
-                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-claro"
                             value={currencyId}
                             onChange={(e) => setCurrencyId(e.target.value)}
                             required
@@ -272,7 +272,7 @@ const BcvCurrenciesManagement = () => {
                         <input
                             type="number"
                             id="rate"
-                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-claro"
                             value={rate}
                             onChange={(e) => setRate(e.target.value)}
                             placeholder="Ej: 36.50"
@@ -288,7 +288,7 @@ const BcvCurrenciesManagement = () => {
                         <input
                             type="number"
                             id="count"
-                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+                            className="border border-gray-300 rounded-lg p-2 w-full text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-claro"
                             value={count}
                             onChange={(e) => setCount(e.target.value)}
                             placeholder="Ej: 1"
@@ -309,7 +309,7 @@ const BcvCurrenciesManagement = () => {
                     )}
                     <button
                         type="submit"
-                        className="bg-fuchsia-900 hover:bg-fuchsia-950 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        className="bg-oscuro hover:bg-hover text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     >
                         Guardar
                     </button>

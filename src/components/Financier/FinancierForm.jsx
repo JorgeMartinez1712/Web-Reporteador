@@ -202,7 +202,7 @@ const FinancierForm = ({ initialFinancier, isEditing, setIsEditing, onSave, docT
             type="submit"
             disabled={saving}
             className={`px-6 py-2 rounded-lg font-semibold text-white transition-colors duration-200
-              ${saving ? 'bg-fuchsia-300 cursor-not-allowed' : 'bg-fuchsia-900 hover:bg-fuchsia-950 shadow-md'}`}
+              ${saving ? 'bg-claro cursor-not-allowed' : 'bg-oscuro hover:bg-hover shadow-md'}`}
           >
             {saving ? 'Guardando...' : 'Guardar'}
           </button>

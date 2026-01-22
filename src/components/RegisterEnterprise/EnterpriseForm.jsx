@@ -26,7 +26,7 @@ const EnterpriseForm = ({
                             name="doc_type"
                             value={selectedDocType}
                             onChange={(e) => handleDocTypeChange(e.target.value)}
-                            className="border border-gray-300 rounded-l-lg p-2 focus:ring-fuchsia-500 focus:border-fuchsia-500"
+                            className="border border-gray-300 rounded-l-lg p-2 focus:ring-claro focus:border-claro"
                             disabled={!isEditing}
                         >
                             {docTypes.map(type => (
@@ -58,7 +58,7 @@ const EnterpriseForm = ({
                         name="legal_name"
                         value={formData.legal_name}
                         onChange={handleChange}
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 sm:text-sm"
+                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-claro focus:border-claro sm:text-sm"
                         placeholder="Empresa C.A."
                         maxLength="100"
                         required
@@ -74,7 +74,7 @@ const EnterpriseForm = ({
                         name="comercial_name"
                         value={formData.comercial_name}
                         onChange={handleChange}
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 sm:text-sm"
+                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-claro focus:border-claro sm:text-sm"
                         placeholder="Mi Tienda"
                         maxLength="100"
                         required
@@ -89,7 +89,7 @@ const EnterpriseForm = ({
                         name="financiers_id"
                         value={formData.financiers_id}
                         onChange={handleChange}
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 sm:text-sm"
+                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-claro focus:border-claro sm:text-sm"
                         disabled={!isEditing}
                     >
                         <option value="">Seleccione un financiero</option>
@@ -108,7 +108,7 @@ const EnterpriseForm = ({
                         name="currency_id"
                         value={formData.currency_id}
                         onChange={handleChange}
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 sm:text-sm"
+                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-claro focus:border-claro sm:text-sm"
                         required
                         disabled={!isEditing}
                     >
@@ -128,7 +128,7 @@ const EnterpriseForm = ({
                         name="address"
                         value={formData.address}
                         onChange={handleChange}
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 sm:text-sm h-10 resize-none"
+                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-claro focus:border-claro sm:text-sm h-10 resize-none"
                         placeholder="Av. Principal, Edificio Central, Piso 5"
                         rows="1"
                         maxLength="255"
@@ -158,7 +158,7 @@ const EnterpriseForm = ({
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 sm:text-sm"
+                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-claro focus:border-claro sm:text-sm"
                         placeholder="correo@ejemplo.com"
                         maxLength="100"
                         required
@@ -173,7 +173,7 @@ const EnterpriseForm = ({
                         name="status_id"
                         value={formData.status_id}
                         onChange={handleChange}
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 sm:text-sm"
+                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-claro focus:border-claro sm:text-sm"
                         disabled={!isEditing}
                     >
                         <option value="">Seleccione un estatus</option>

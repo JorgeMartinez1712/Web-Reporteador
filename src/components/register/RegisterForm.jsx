@@ -87,13 +87,13 @@ const RegisterForm = () => {
 
   return (
     <section className="bg-[url('/assets/fondo_login.jpg')] bg-cover bg-center h-screen flex items-center justify-center">
-      <div className="w-full max-w-md bg-white/30 backdrop-blur-sm rounded-lg shadow-xl border border-fuchsia-900 p-6">
-        <h1 className="text-xl font-bold leading-tight tracking-tight text-fuchsia-900 md:text-2xl text-center">
+      <div className="w-full max-w-md bg-white/30 backdrop-blur-sm rounded-lg shadow-xl border border-oscuro p-6">
+        <h1 className="text-xl font-bold leading-tight tracking-tight text-oscuro md:text-2xl text-center">
           Crear una cuenta
         </h1>
         <form className="space-y-4 mt-4" onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="name" className="block text-sm font-medium text-fuchsia-900">
+            <label htmlFor="name" className="block text-sm font-medium text-oscuro">
               Nombre
             </label>
             <input
@@ -102,13 +102,13 @@ const RegisterForm = () => {
               name="name"
               maxLength="50"
               required
-              className="border border-fuchsia-800 text-fuchsia-800 rounded-lg block w-full p-2.5 focus:outline-none"
+              className="border border-oscuro text-oscuro rounded-lg block w-full p-2.5 focus:outline-none"
               value={formData.name}
               onChange={handleChange}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="email" className="block text-sm font-medium text-fuchsia-900">
+            <label htmlFor="email" className="block text-sm font-medium text-oscuro">
               Correo Electrónico
             </label>
             <input
@@ -117,13 +117,13 @@ const RegisterForm = () => {
               name="email"
               maxLength="50"
               required
-              className="border border-fuchsia-800 text-fuchsia-800 rounded-lg block w-full p-2.5 focus:outline-none"
+              className="border border-oscuro text-oscuro rounded-lg block w-full p-2.5 focus:outline-none"
               value={formData.email}
               onChange={handleChange}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="phone_number" className="block text-sm font-medium text-fuchsia-900">
+            <label htmlFor="phone_number" className="block text-sm font-medium text-oscuro">
               Número de Teléfono
             </label>
             <input
@@ -132,13 +132,13 @@ const RegisterForm = () => {
               name="phone_number"
               maxLength="15"
               required
-              className="border border-fuchsia-800 text-fuchsia-800 rounded-lg block w-full p-2.5 focus:outline-none"
+              className="border border-oscuro text-oscuro rounded-lg block w-full p-2.5 focus:outline-none"
               value={formData.phone_number}
               onChange={handleChange}
             />
           </div>
           <div className="form-group relative">
-            <label htmlFor="password" className="block text-sm font-medium text-fuchsia-900">
+            <label htmlFor="password" className="block text-sm font-medium text-oscuro">
               Contraseña
             </label>
             <div className="relative">
@@ -148,7 +148,7 @@ const RegisterForm = () => {
                 name="password"
                 maxLength="50"
                 required
-                className="border border-fuchsia-800 text-fuchsia-800 rounded-lg block w-full p-2.5 focus:outline-none"
+                className="border border-oscuro text-oscuro rounded-lg block w-full p-2.5 focus:outline-none"
                 value={formData.password}
                 onChange={handleChange}
               />
@@ -163,7 +163,7 @@ const RegisterForm = () => {
             <PasswordRequirements validations={passwordValidations} />
           </div>
           <div className="form-group relative">
-            <label htmlFor="password_confirmation" className="block text-sm font-medium text-fuchsia-900">
+            <label htmlFor="password_confirmation" className="block text-sm font-medium text-oscuro">
               Repetir Contraseña
             </label>
             <div className="relative">
@@ -173,7 +173,7 @@ const RegisterForm = () => {
                 name="password_confirmation"
                 maxLength="50"
                 required
-                className="border border-fuchsia-800 text-fuchsia-800 rounded-lg block w-full p-2.5 focus:outline-none"
+                className="border border-oscuro text-oscuro rounded-lg block w-full p-2.5 focus:outline-none"
                 value={formData.password_confirmation}
                 onChange={handleChange}
               />
@@ -192,9 +192,9 @@ const RegisterForm = () => {
               passwordValidations.hasNumber &&
               passwordValidations.minLength &&
               passwordValidations.passwordsMatch
-              ? 'bg-fuchsia-900 hover:bg-fuchsia-950'
-              : 'bg-fuchsia-900 cursor-not-allowed'
-              } rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-fuchsia-500`}
+              ? 'bg-oscuro hover:bg-hover'
+              : 'bg-oscuro cursor-not-allowed'
+              } rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-claro`}
             disabled={
               !(
                 passwordValidations.hasUpperCase &&
@@ -208,9 +208,9 @@ const RegisterForm = () => {
           </button>
         </form>
         {error && <p className="text-sm text-red-500 text-center mt-2">{error}</p>} 
-        <p className="text-sm font-light text-fuchsia-900 mt-4 text-center">
+        <p className="text-sm font-light text-oscuro mt-4 text-center">
           ¿Ya tienes una cuenta?{' '}
-          <Link to="/login" className="font-medium text-fuchsia-900 hover:underline">
+          <Link to="/login" className="font-medium text-oscuro hover:underline">
             Inicia sesión
           </Link>
         </p>

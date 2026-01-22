@@ -74,7 +74,7 @@ const LoginForm = () => {
   if (!isImageLoaded) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <FaSpinner className="animate-spin text-fuchsia-900 text-4xl" />
+        <FaSpinner className="animate-spin text-oscuro text-4xl" />
       </div>
     );
   }
@@ -82,7 +82,7 @@ const LoginForm = () => {
   return (
     <section className="bg-[url('/assets/fondo_login.jpg')] bg-cover bg-center h-screen flex items-center justify-center">
       <ErrorNotification isOpen={isNotificationOpen} message={errorMessage} />
-      <div className="w-full max-w-md rounded-lg shadow-xl border border-fuchsia-900 p-6 bg-white/30 backdrop-blur-sm">
+      <div className="w-full max-w-md rounded-lg shadow-xl border border-oscuro p-6 bg-white/30 backdrop-blur-sm">
         <div className="flex items-center space-x-3 justify-center mb-4">
           <img
             className="w-30 h-auto"
@@ -90,19 +90,19 @@ const LoginForm = () => {
             alt="logo"
           />
         </div>
-        <h1 className="text-xl font-bold leading-tight tracking-tight text-fuchsia-900 md:text-2xl text-center mb-6">
+        <h1 className="text-xl font-bold leading-tight tracking-tight text-oscuro md:text-2xl text-center mb-6">
           Iniciar sesión
         </h1>
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="email" className="block mb-2 text-sm font-medium text-fuchsia-900">
+            <label htmlFor="email" className="block mb-2 text-sm font-medium text-oscuro">
               Correo Electrónico
             </label>
             <input
               type="email"
               name="email"
               id="email"
-              className="border border-fuchsia-800 text-fuchsia-900 rounded-lg block w-full p-2.5 focus:outline-none"
+              className="border border-oscuro text-oscuro rounded-lg block w-full p-2.5 focus:outline-none"
               placeholder="ejemplo@mail.com"
               required
               value={credentials.email}
@@ -110,7 +110,7 @@ const LoginForm = () => {
             />
           </div>
           <div className="relative">
-            <label htmlFor="password" className="block mb-2 text-sm font-medium text-fuchsia-900">
+            <label htmlFor="password" className="block mb-2 text-sm font-medium text-oscuro">
               Contraseña
             </label>
             <input
@@ -118,13 +118,13 @@ const LoginForm = () => {
               name="password"
               id="password"
               placeholder="••••••••"
-              className="border border-fuchsia-800 text-fuchsia-900 rounded-lg block w-full p-2.5 focus:outline-none"
+              className="border border-oscuro text-oscuro rounded-lg block w-full p-2.5 focus:outline-none"
               required
               value={credentials.password}
               onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
             />
             <i
-              className={`text-fuchsia-900 absolute right-3 top-10 cursor-pointer bi ${showPassword ? 'bi-eye-slash' : 'bi-eye'}`}
+              className={`text-oscuro absolute right-3 top-10 cursor-pointer bi ${showPassword ? 'bi-eye-slash' : 'bi-eye'}`}
               onClick={togglePasswordVisibility}
             ></i>
           </div>
@@ -132,14 +132,14 @@ const LoginForm = () => {
             <button
               type="button"
               onClick={handleForgotPassword}
-              className="text-sm font-medium text-fuchsia-900 hover:underline"
+              className="text-sm font-medium text-oscuro hover:underline"
             >
               ¿Olvidaste la contraseña?
             </button>
           </div>
           <button
             type="submit"
-            className="w-full text-white bg-fuchsia-900 hover:bg-fuchsia-950 focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center cursor-pointer"
+            className="w-full text-white bg-oscuro hover:bg-hover focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center cursor-pointer"
             disabled={loading}
           >
             {loading ? <FaSpinner className="animate-spin mx-auto" /> : 'Iniciar sesión'}
@@ -147,7 +147,7 @@ const LoginForm = () => {
           <button
             type="button"
             onClick={handleRegister}
-            className="w-full text-white bg-fuchsia-900 hover:bg-fuchsia-950 focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center cursor-pointer"
+            className="w-full text-white bg-oscuro hover:bg-hover focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center cursor-pointer"
           >
             Registrarse
           </button>

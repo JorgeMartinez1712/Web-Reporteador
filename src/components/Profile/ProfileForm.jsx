@@ -125,7 +125,7 @@ const ProfileForm = ({ onSaveSuccess, onEmailSendSuccess }) => {
               onClick={handleSubmit}
               disabled={loading}
               className={`px-6 py-2 rounded-lg font-semibold text-white transition-colors duration-200
-                ${loading ? 'bg-fuchsia-300 cursor-not-allowed' : 'bg-fuchsia-900 hover:bg-fuchsia-950 shadow-md'}`}
+                ${loading ? 'bg-claro cursor-not-allowed' : 'bg-oscuro hover:bg-hover shadow-md'}`}
             >
               {loading ? 'Guardando...' : 'Guardar'}
             </button>
@@ -142,14 +142,14 @@ const ProfileForm = ({ onSaveSuccess, onEmailSendSuccess }) => {
           <>
             <button
               onClick={handleEditClick}
-              className="px-6 py-2 rounded-lg font-semibold text-white bg-fuchsia-900 hover:bg-fuchsia-950 transition-colors duration-200 shadow-md"
+              className="px-6 py-2 rounded-lg font-semibold text-white bg-oscuro hover:bg-hover transition-colors duration-200 shadow-md"
             >
               Editar
             </button>
             <button
               onClick={handleSendPasswordResetEmail}
               disabled={emailLoading}
-              className={`px-6 py-2 rounded-lg font-semibold text-fuchsia-900 border border-fuchsia-900 bg-white hover:bg-fuchsia-100 hover:text-fuchsia-950 transition-colors duration-200 shadow-md
+              className={`px-6 py-2 rounded-lg font-semibold text-oscuro border border-oscuro bg-white hover:bg-bg hover:text-hover transition-colors duration-200 shadow-md
                 ${emailLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
               {emailLoading ? <FaSpinner className="animate-spin" /> : 'Cambiar Contraseña'}

@@ -247,7 +247,7 @@ const ProductsForm = ({
               name="requires_device_lock"
               checked={formData.requires_device_lock}
               onChange={handleChange}
-              className="form-checkbox h-5 w-5 text-fuchsia-900 rounded"
+              className="form-checkbox h-5 w-5 text-oscuro rounded"
             />
             <label htmlFor="requires_device_lock" className="ml-2 text-sm font-medium text-gray-700">Requiere bloqueo de dispositivo</label>
           </div>
@@ -258,7 +258,7 @@ const ProductsForm = ({
               name="is_service"
               checked={formData.is_service}
               onChange={handleChange}
-              className="form-checkbox h-5 w-5 text-fuchsia-900 rounded"
+              className="form-checkbox h-5 w-5 text-oscuro rounded"
             />
             <label htmlFor="is_service" className="ml-2 text-sm font-medium text-gray-700">Es un servicio</label>
           </div>
@@ -275,7 +275,7 @@ const ProductsForm = ({
         </button>
         <button
           type="submit"
-          className="bg-fuchsia-900 text-white py-2 px-4 rounded-lg hover:bg-fuchsia-950 cursor-pointer text-sm"
+          className="bg-oscuro text-white py-2 px-4 rounded-lg hover:bg-hover cursor-pointer text-sm"
           disabled={loading}
         >
           {loading ? <FaSpinner className="animate-spin mx-auto" /> : (initialData ? 'Actualizar' : 'Guardar')}

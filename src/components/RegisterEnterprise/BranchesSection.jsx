@@ -76,7 +76,7 @@ const BranchesSection = ({ retailId, retails, financiers, unitStatuses }) => {
             <ErrorNotification isOpen={showErrorNotification} message={errorMessage || branchesError} onClose={() => setShowErrorNotification(false)} />
 
             <div className="w-full flex justify-between items-center mb-6">
-                <h3 className="text-lg font-extrabold text-fuchsia-950">Sucursales</h3>
+                <h3 className="text-lg font-extrabold text-hover">Sucursales</h3>
                 <RegisterBranchModal
                     retails={retails}
                     financiers={financiers}
@@ -91,7 +91,7 @@ const BranchesSection = ({ retailId, retails, financiers, unitStatuses }) => {
 
             {branchesLoading ? (
                 <div className="flex justify-center items-center h-48">
-                    <FaSpinner className="animate-spin text-fuchsia-900 text-3xl" />
+                    <FaSpinner className="animate-spin text-oscuro text-3xl" />
                 </div>
             ) : (
                 <BranchTable

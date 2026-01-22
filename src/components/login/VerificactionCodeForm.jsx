@@ -124,7 +124,7 @@ const VerificactionCodeForm = () => {
 
           <button
             type="submit"
-            className="w-full text-white bg-fuchsia-900 hover:bg-fuchsia-950 focus:ring-4 focus:outline-none focus:ring-fuchsia-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center cursor-pointer"
+            className="w-full text-white bg-oscuro hover:bg-hover focus:ring-4 focus:outline-none focus:ring-claro font-medium rounded-lg text-sm px-5 py-2.5 text-center cursor-pointer"
             disabled={loading}
           >
             {loading ? <FaSpinner className="animate-spin mx-auto" /> : 'Verificar y Entrar'}
@@ -135,7 +135,7 @@ const VerificactionCodeForm = () => {
             <button
               type="button"
               onClick={handleResend}
-              className="w-full bg-white text-fuchsia-900 border border-fuchsia-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+              className="w-full bg-white text-oscuro border border-claro font-medium rounded-lg text-sm px-5 py-2.5 text-center"
               disabled={resendLoading || secondsLeft > 0}
             >
               {resendLoading ? (
@@ -150,13 +150,13 @@ const VerificactionCodeForm = () => {
             <button
               type="button"
               onClick={handleBackToLogin}
-              className="w-full text-white bg-fuchsia-900 hover:bg-fuchsia-950 focus:ring-4 focus:outline-none focus:ring-fuchsia-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+              className="w-full text-white bg-oscuro hover:bg-hover focus:ring-4 focus:outline-none focus:ring-claro font-medium rounded-lg text-sm px-5 py-2.5 text-center"
             >
               Volver
             </button>
           </div>
 
-          {resendMessage && <p className="text-sm text-fuchsia-950 text-center mt-2">{resendMessage}</p>}
+          {resendMessage && <p className="text-sm text-hover text-center mt-2">{resendMessage}</p>}
         </form>
       </div>
     </section>

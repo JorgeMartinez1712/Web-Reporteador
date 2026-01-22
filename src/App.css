@@ -46,13 +46,11 @@ header, footer {
 .main-content.ml-0 {
   margin-left: 0;
 }
-/* Custom scrollbar for sidebar */
 .custom-scrollbar {
   scrollbar-width: thin;
   scrollbar-color: #90109b transparent;
 }
 
-/* WebKit browsers */
 .custom-scrollbar::-webkit-scrollbar {
   width: 10px;
 }
