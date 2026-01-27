@@ -7,7 +7,7 @@ import {
   AccountsPage, OrdersPage, ShopPage, ProfitabilityPage,
   CategoriesPage,
   InitialPaymentsPage, InstallmentPaymentsPage,
-  DetallePagoPage, Inventorypage
+  DetallePagoPage, Inventorypage, PagoFallidoPage, PagoExistosoPage
 
 } from '../pages';
 import PrivateRoute from './PrivateRoute';
@@ -330,6 +330,24 @@ const AllRoutes = () => {
         element={
           <PrivateRoute>
             <DetallePagoPage />
+          </PrivateRoute>
+        }
+      />
+
+       <Route
+        path="/pagos/fallido"
+        element={
+          <PrivateRoute>
+            <PagoFallidoPage />
+          </PrivateRoute>
+        }
+      />
+
+       <Route
+        path="/pagos/exitoso"
+        element={
+          <PrivateRoute>
+            <PagoExistosoPage />
           </PrivateRoute>
         }
       />

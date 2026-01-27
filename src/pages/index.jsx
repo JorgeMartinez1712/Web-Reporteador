@@ -44,6 +44,8 @@ import InitialPaymentsPage from './PagosPage/InitialPaymentsPage.jsx';
 import InstallmentPaymentsPage from './PagosPage/InstallmentPaymentsPage.jsx';
 import DetallePagoPage from './PagosPage/DetallePagoPage.jsx';
 import Inventorypage from './InventoryPage/Inventorypage.jsx';
+import PagoFallidoPage from './PagosPage/PagoFallidoPage.jsx';
+import PagoExistosoPage from './PagosPage/PagoExistosoPage.jsx';
 
 export {
   RegisterEnterprisePage,
@@ -91,5 +93,7 @@ export {
   InitialPaymentsPage,
   InstallmentPaymentsPage,
   DetallePagoPage,
-  Inventorypage
+  Inventorypage,
+  PagoFallidoPage,
+  PagoExistosoPage
 };

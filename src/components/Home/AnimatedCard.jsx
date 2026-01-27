@@ -24,7 +24,7 @@ const AnimatedCard = ({ title, value, link }) => {
 
   return (
     <Link to={link} className="block">
-      <div className="bg-gray-800 text-white p-4 shadow rounded text-center hover:bg-gray-700 transition">
+      <div className="bg-oscuro text-white p-4 shadow rounded text-center hover:bg-hover transition">
         <h3 className="text-lg font-bold">{title}</h3>
         <p className="text-2xl">{displayValue}</p>
       </div>
