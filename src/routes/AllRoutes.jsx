@@ -2,7 +2,8 @@ import { Routes, Route } from 'react-router-dom';
 import {
   LoginPage, RegisterPage, ForgotPasswordPage, NotFoundPage,
   HomePage, VerificactionCodePage, ProfilePage, VerificationCodePasswordPage,
-   ResetPasswordPage, 
+  ResetPasswordPage, CreateVacancyPage, CandidatesPage, SelectionFilterPage,
+  ActiveVacanciesPage, ReportsPage,
 } from '../pages';
 import PrivateRoute from './PrivateRoute';
 
@@ -14,6 +15,47 @@ const AllRoutes = () => {
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/forgot-password" element={<ForgotPasswordPage />} />
       <Route path="/reset-password" element={<ResetPasswordPage />} />
+
+      <Route
+        path="/vacantes/crear"
+        element={
+          <PrivateRoute>
+            <CreateVacancyPage />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/candidatos"
+        element={
+          <PrivateRoute>
+            <CandidatesPage />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/Filtros"
+        element={
+          <PrivateRoute>
+            <SelectionFilterPage />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/vacantes"
+        element={
+          <PrivateRoute>
+            <ActiveVacanciesPage />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/reportes"
+        element={
+          <PrivateRoute>
+            <ReportsPage />
+          </PrivateRoute>
+        }
+      />
 
       <Route
         path="/"

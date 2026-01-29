@@ -2,15 +2,15 @@ import { Link, useLocation } from 'react-router-dom';
 import fullLogo from '/assets/logo.png';
 
 const quickActions = [
-  { label: 'Crear vacante', icon: 'bi bi-plus-square', to: '/ventas' },
-  { label: 'Ver candidatos', icon: 'bi bi-people', to: '/clientes' },
+  { label: 'Crear vacante', icon: 'bi bi-plus-square', to: '/vacantes/crear' },
+  { label: 'Ver candidatos', icon: 'bi bi-people', to: '/candidatos' },
 ];
 
 const navLinks = [
-  { label: 'Dashboard principal', description: 'Pulso general del talento', icon: 'bi bi-speedometer', to: '/home' },
-  { label: 'Embudo de selección', description: 'Etapas y conversiones', icon: 'bi bi-funnel', to: '/reportes/rentabilidad' },
-  { label: 'Vacantes activas', description: 'Procesos abiertos por área', icon: 'bi bi-list-task', to: '/ventas' },
-  { label: 'Reportes de desempeño', description: 'Indicadores y SLAs clave', icon: 'bi bi-clipboard-data', to: '/reportes/ordenes' },
+  { label: 'Dashboard principal', description: 'Pulso general del talento', icon: 'bi bi-speedometer', to: '/' },
+  { label: 'Filtro de selección', description: 'Etapas y conversiones', icon: 'bi bi-funnel', to: '/Filtros' },
+  { label: 'Vacantes activas', description: 'Procesos abiertos por área', icon: 'bi bi-list-task', to: '/vacantes' },
+  { label: 'Reportes de desempeño', description: 'Indicadores y SLAs clave', icon: 'bi bi-clipboard-data', to: '/reportes' },
 ];
 
 const Navigation = ({ isOpen }) => {

@@ -7,6 +7,11 @@ import VerificationCodePasswordPage from './VerificationCodePasswordPage';
 import ProfilePage from './ProfilePage'; 
 import VerificactionCodePage from './VerificactionCodePage';
 import ResetPasswordPage from './ResetPasswordPage';
+import CreateVacancyPage from './CreateVacancyPage';
+import CandidatesPage from './CandidatesPage';
+import SelectionFilterPage from './SelectionFilterPage';
+import ActiveVacanciesPage from './ActiveVacanciesPage';
+import ReportsPage from './ReportsPage';
 
 export {
   LoginPage,
@@ -18,4 +23,9 @@ export {
   VerificactionCodePage,
   ProfilePage,
   VerificationCodePasswordPage, 
+  CreateVacancyPage,
+  CandidatesPage,
+  SelectionFilterPage,
+  ActiveVacanciesPage,
+  ReportsPage,
 };

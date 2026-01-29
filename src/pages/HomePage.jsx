@@ -24,7 +24,7 @@ const HomePage = () => {
       { id: 'closing', label: 'Tiempo de Cierre', value: '14 días', caption: 'Promedio del último mes' },
     ],
     funnelStages: [
-      { label: 'Aplicaciones', value: 245 },
+      { label: 'Interesados', value: 245 },
       { label: 'Filtrados', value: 168 },
       { label: 'Entrevistas', value: 97 },
       { label: 'Ofertas', value: 32 },
@@ -106,7 +106,7 @@ const HomePage = () => {
       },
       title: {
         display: true,
-        text: 'Embudo de Reclutamiento',
+        text: 'Filtro de Reclutamiento',
         color: '#f5f5f5',
         font: { size: 16 },
         padding: { bottom: 16 },
