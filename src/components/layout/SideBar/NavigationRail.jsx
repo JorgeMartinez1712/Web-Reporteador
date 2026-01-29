@@ -45,7 +45,7 @@ const NavigationRail = ({ isOpen }) => {
 
   return (
     <aside
-      className={`fixed top-0 left-0 z-50 flex h-full w-72 flex-col border-r border-white/10 bg-[#050312] text-white/90 transition-transform duration-300 ${
+      className={`fixed top-0 left-0 z-50 flex h-full w-72 flex-col border-r border-white/10 bg-slate-950 text-white/90 transition-transform duration-300 ${
         isOpen ? 'translate-x-0' : '-translate-x-full'
       }`}
     >
