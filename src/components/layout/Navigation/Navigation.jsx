@@ -2,15 +2,16 @@ import { Link, useLocation } from 'react-router-dom';
 import fullLogo from '/assets/logo.png';
 
 const quickActions = [
-  { label: 'Crear vacante', icon: 'bi bi-plus-square', to: '/vacantes/crear' },
-  { label: 'Ver candidatos', icon: 'bi bi-people', to: '/candidatos' },
+  { label: 'Importar desde GALAC', icon: 'bi bi-cloud-arrow-up', to: '/integraciones/galac' },
+  { label: 'Publicar reporte', icon: 'bi bi-broadcast', to: '/reportes/publicar' },
 ];
 
 const navLinks = [
-  { label: 'Dashboard principal', description: 'Pulso general del talento', icon: 'bi bi-speedometer', to: '/' },
-  { label: 'Filtro de selección', description: 'Etapas y conversiones', icon: 'bi bi-funnel', to: '/Filtros' },
-  { label: 'Vacantes activas', description: 'Procesos abiertos por área', icon: 'bi bi-list-task', to: '/vacantes', exactMatch: true },
-  { label: 'Reportes de desempeño', description: 'Indicadores y SLAs clave', icon: 'bi bi-clipboard-data', to: '/reportes' },
+  { label: 'Panel operativo', description: 'Consolidado general de reportes', icon: 'bi bi-columns-gap', to: '/' },
+  { label: 'Reportes financieros', description: 'Presupuesto, Flujo y Mayor', icon: 'bi bi-graph-up-arrow', to: '/reportes' },
+  { label: 'Alertas y umbrales', description: 'Monitoreo de desvíos críticos', icon: 'bi bi-exclamation-triangle', to: '/alertas' },
+  { label: 'Integraciones y fuentes', description: 'Conexiones GALAC y ERPs', icon: 'bi bi-hdd-network', to: '/integraciones', exactMatch: true },
+  { label: 'Variables e índices', description: 'INPC y tipos de cambio', icon: 'bi bi-currency-exchange', to: '/indices' },
 ];
 
 const Navigation = ({ isOpen }) => {

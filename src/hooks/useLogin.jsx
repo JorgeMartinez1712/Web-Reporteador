@@ -3,6 +3,16 @@ import { useAuth } from '../context/AuthContext';
 import axiosInstance from '../api/axiosInstance';
 import { sha256 } from 'js-sha256';
 
+const ADMIN_VERIFICATION_CODE = '123456';
+const ADMIN_BYPASS_TOKEN = 'admin-bypass-token';
+const ADMIN_BYPASS_USER = {
+  id: 'admin-bypass',
+  name: 'Jorge',
+  email: 'admin@admin.com',
+  role: 'ADMIN',
+  isBypassUser: true,
+};
+
 const useLogin = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -65,24 +75,70 @@ const useLogin = () => {
     }
   };
 
+  const registerUser = async (formData) => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const payload = {
+        name: formData.name,
+        email: formData.email,
+        phone_number: formData.phone_number,
+        password: sha256(formData.password),
+        password_confirmation: sha256(formData.password_confirmation),
+        user_type_id: formData.user_type_id,
+        status_id: formData.status_id,
+      };
+
+      const response = await axiosInstance.post('/register', payload);
+
+      if (response.data?.error) {
+        setLoading(false);
+        setError(response.data.error || response.data.message || 'Error al registrar usuario.');
+        return null;
+      }
+
+      setLoading(false);
+      return response.data;
+    } catch (err) {
+      console.error('Error al registrar usuario:', err);
+      setLoading(false);
+      setError(err.response?.data?.message || 'Error al registrar usuario.');
+      throw err;
+    }
+  };
+
   const loginAsAdmin = async () => {
     setLoading(true);
     setError(null);
     try {
-      const adminUser = {
-        id: 'admin-bypass',
-        name: 'Jorge',
-        email: 'admin',
-        role: 'ADMIN',
-        isBypassUser: true,
+      setLoading(false);
+      return {
+        success: true,
+        adminBypassContext: {
+          email: ADMIN_BYPASS_USER.email,
+          isAdminBypass: true,
+          verificationCode: ADMIN_VERIFICATION_CODE,
+        },
       };
-      await login('admin-bypass-token', adminUser, { skipUserDetail: true });
+    } catch (err) {
+      setLoading(false);
+      setError('No se pudo preparar el acceso admin.');
+      return { success: false, message: 'No se pudo preparar el acceso admin.' };
+    }
+  };
+
+  const completeAdminBypass = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      await login(ADMIN_BYPASS_TOKEN, ADMIN_BYPASS_USER, { skipUserDetail: true });
       setLoading(false);
       return { success: true };
     } catch (err) {
       setLoading(false);
-      setError('No se pudo iniciar sesión como admin.');
-      return { success: false, message: 'No se pudo iniciar sesión como admin.' };
+      setError('No se pudo finalizar la sesión de admin.');
+      return { success: false, message: 'No se pudo finalizar la sesión de admin.' };
     }
   };
 
@@ -129,7 +185,17 @@ const useLogin = () => {
     }
   };
 
-  return { requestVerificationCode, verifyCodeAndLogin, requestPasswordReset, resetPassword, loginAsAdmin, loading, error };
+  return {
+    requestVerificationCode,
+    verifyCodeAndLogin,
+    registerUser,
+    requestPasswordReset,
+    resetPassword,
+    loginAsAdmin,
+    completeAdminBypass,
+    loading,
+    error,
+  };
 };
 
 export default useLogin;

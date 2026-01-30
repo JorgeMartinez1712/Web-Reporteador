@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import ForgotPasswordForm from '../components/forgotPassword/ForgotPasswordForm';
+import ForgotPasswordPage from './ForgotPasswordPage';
 
 const ResetPasswordPage = () => {
   const location = useLocation();
@@ -7,7 +7,7 @@ const ResetPasswordPage = () => {
   const token = queryParams.get('token');
   const email = queryParams.get('email');
 
-  return <ForgotPasswordForm initialEmail={email} initialToken={token} />;
+  return <ForgotPasswordPage initialEmail={email || ''} initialToken={token || ''} />;
 };
 
 export default ResetPasswordPage;

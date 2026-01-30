@@ -1,9 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import {
-  LoginPage, RegisterPage, ForgotPasswordPage, NotFoundPage,
-  HomePage, VerificactionCodePage, ProfilePage, VerificationCodePasswordPage,
-  ResetPasswordPage, CreateVacancyPage, CandidatesPage, SelectionFilterPage,
-  ActiveVacanciesPage, ReportsPage,
+  LoginPage, RegisterPage, ForgotPasswordPage, NotFoundPage, HomePage, VerificactionCodePage,
+  ResetPasswordPage,
 } from '../pages';
 import PrivateRoute from './PrivateRoute';
 
@@ -17,47 +15,6 @@ const AllRoutes = () => {
       <Route path="/reset-password" element={<ResetPasswordPage />} />
 
       <Route
-        path="/vacantes/crear"
-        element={
-          <PrivateRoute>
-            <CreateVacancyPage />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/candidatos"
-        element={
-          <PrivateRoute>
-            <CandidatesPage />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/Filtros"
-        element={
-          <PrivateRoute>
-            <SelectionFilterPage />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/vacantes"
-        element={
-          <PrivateRoute>
-            <ActiveVacanciesPage />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/reportes"
-        element={
-          <PrivateRoute>
-            <ReportsPage />
-          </PrivateRoute>
-        }
-      />
-
-      <Route
         path="/"
         element={
           <PrivateRoute>
@@ -65,22 +22,7 @@ const AllRoutes = () => {
           </PrivateRoute>
         }
       />
-      <Route
-        path="/perfil"
-        element={
-          <PrivateRoute>
-            <ProfilePage />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/perfil/verificacion"
-        element={
-          <PrivateRoute>
-            <VerificationCodePasswordPage />
-          </PrivateRoute>
-        }
-      />
+
       <Route path="/*" element={<NotFoundPage />} />
     </Routes>
   );

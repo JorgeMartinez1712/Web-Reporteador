@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-export const IMAGE_BASE_URL = 'https://api.dev.financiados.app';
+export const IMAGE_BASE_URL = 'https://localhost:8000';
 
 const axiosInstance = axios.create({
-  baseURL: 'https://api.dev.financiados.app/api/admin',
+  baseURL: 'https://localhost:8000/api',
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
