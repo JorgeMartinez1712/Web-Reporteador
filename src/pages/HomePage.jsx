@@ -161,7 +161,7 @@ const HomePage = () => {
   const glassPanel = 'rounded-2xl border border-glass-border bg-glass-card backdrop-blur-xl shadow-[0_20px_60px_rgba(2,6,23,0.65)]';
 
   return (
-    <div className="min-h-screen bg-app-bg text-text-base px-6 py-8 lg:px-12 space-y-8">
+    <div className="min-h-screen bg-app-bg text-text-base p-6 space-y-8">
       <header className="flex flex-col gap-1 text-left">
         <h1 className="text-2xl md:text-3xl font-bold text-white tracking-tight">¡Hola, {firstName}! Así va el talento hoy</h1>
         <p className="text-text-muted text-sm mt-2 mb-2">{formattedDate}</p>

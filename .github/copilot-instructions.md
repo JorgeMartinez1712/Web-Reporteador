@@ -37,6 +37,7 @@ Patrones obligatorios
 - Cero comentarios en código fuente; documenta decisiones en la PR/issue.
 - Subidas de archivos => `FormData` (revisa `useProducts.jsx`).
 - URLs de imagen => `IMAGE_BASE_URL` + path del backend.
+- Toda página nueva debe envolverse en un div con este patrón exacto para mantener la consistencia: <div className="min-h-screen bg-app-bg text-text-base p-6 space-y-8">
 
 Auth & edge cases
 - El token puede venir de localStorage **o** sessionStorage. Al escribir scripts/tests, limpia ambos.
