@@ -3,6 +3,7 @@ import DataTable from '../components/common/DataTable';
 import ErrorNotification from '../components/common/ErrorNotification';
 import SuccessNotification from '../components/common/SuccessNotification';
 import CustomModal from '../components/common/CustomModal';
+import GlassSelect from '../components/common/GlassSelect';
 
 const mockCurrencies = [
   {
@@ -524,17 +525,17 @@ const CurrenciesPage = () => {
               />
             </div>
             <div className="flex items-center gap-2">
-              <i className="bi bi-funnel text-text-muted text-base" />
-              <select
-                name="status"
+              <GlassSelect
                 value={filters.status}
-                onChange={(event) => handleFilterChange({ status: event.target.value })}
-                className="rounded-2xl border border-glass-border bg-glass-card px-4 py-3 text-sm text-text-base focus:outline-none focus:ring-2 focus:ring-brand-secondary"
-              >
-                <option value="all">Todas las monedas</option>
-                <option value="active">Solo activas</option>
-                <option value="inactive">Solo inactivas</option>
-              </select>
+                onChange={(value) => handleFilterChange({ status: value })}
+                options={[
+                  { value: 'all', label: 'Todas las monedas' },
+                  { value: 'active', label: 'Solo activas' },
+                  { value: 'inactive', label: 'Solo inactivas' },
+                ]}
+                icon="bi bi-funnel"
+                buttonClassName="rounded-2xl border border-glass-border bg-glass-card px-4 py-3 text-sm text-text-base"
+              />
             </div>
             <p className="text-xs text-text-muted lg:ml-4">Última sincronización: {lastUpdateLabel}</p>
           </div>
@@ -634,15 +635,15 @@ const CurrenciesPage = () => {
             </div>
             <div className="space-y-2">
               <label className="text-xs uppercase tracking-[0.3em] text-text-muted">Estado</label>
-              <select
-                name="status"
+              <GlassSelect
                 value={formValues.status}
-                onChange={handleInputChange}
-                className="w-full rounded-2xl border border-glass-border bg-glass-card px-4 py-3 text-sm text-text-base focus:outline-none focus:ring-2 focus:ring-brand-secondary"
-              >
-                <option value="activa">Activa</option>
-                <option value="inactiva">Inactiva</option>
-              </select>
+                onChange={(value) => setFormValues((prev) => ({ ...prev, status: value }))}
+                options={[
+                  { value: 'activa', label: 'Activa' },
+                  { value: 'inactiva', label: 'Inactiva' },
+                ]}
+                buttonClassName="w-full rounded-2xl border border-glass-border bg-glass-card px-4 py-3 text-sm text-text-base"
+              />
             </div>
             <div className="space-y-2">
               <label className="text-xs uppercase tracking-[0.3em] text-text-muted">Tipo de cambio</label>

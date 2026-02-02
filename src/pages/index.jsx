@@ -7,6 +7,7 @@ import VerificactionCodePage from './VerificactionCodePage';
 import ResetPasswordPage from './ResetPasswordPage';
 import CurrenciesPage from './CurrenciesPage';
 import SubscriptionsPage from './SubscriptionsPage';
+import ReportsPage from './ReportsPage';
 
 
 export {
@@ -18,5 +19,6 @@ export {
   NotFoundPage,
   VerificactionCodePage,
   CurrenciesPage,
+  ReportsPage,
   SubscriptionsPage,
 };

@@ -82,6 +82,12 @@
   text-align: center;
 }
 
+/* Hacer el icono de acciones del header un poco más grande */
+.table-actions-header i {
+  font-size: 1.125rem; /* ~18px */
+  line-height: 1;
+}
+
 .table-actions-cell {
   min-width: 140px;
 }

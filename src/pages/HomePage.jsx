@@ -1,10 +1,6 @@
 import { useMemo } from 'react';
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
-import { Bar, Doughnut } from 'react-chartjs-2';
 import { useAuth } from '../context/AuthContext';
 import ReportCard from '../components/common/ReportCard';
-
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
 
 const HomePage = () => {
   const { user } = useAuth();
@@ -18,10 +14,6 @@ const HomePage = () => {
   const formattedDateRaw = dateFormatter.format(new Date());
   const formattedDate = formattedDateRaw.charAt(0).toUpperCase() + formattedDateRaw.slice(1);
 
-  const axisColor = 'rgba(148,163,184,0.6)';
-  const gridColor = 'rgba(148,163,184,0.2)';
-  const tooltipBg = 'rgba(15,23,42,0.95)';
-  const tooltipText = '#f8fafc';
 
   const reportKpis = [
     { id: 'reports', label: 'Reportes publicados', value: '248', caption: 'Últimas 24 horas' },
@@ -52,102 +44,54 @@ const HomePage = () => {
     { id: 'monedas', label: 'Actualizaciones de moneda', value: '12', detail: 'Tipos de cambio aplicados', trend: 'success' },
   ];
 
-  const latencyData = useMemo(
+  const latencyChartConfig = useMemo(
     () => ({
       labels: ['00h', '04h', '08h', '12h', '16h', '20h'],
       datasets: [
         {
           label: 'Latencia de publicación (min)',
           data: [3.5, 2.8, 2.2, 2.9, 1.8, 1.6],
-          backgroundColor: 'rgba(14,165,233,0.35)',
-          borderColor: 'rgba(14,165,233,1)',
-          borderWidth: 2,
           borderRadius: 16,
         },
       ],
+      options: {
+        plugins: {
+          legend: { display: false },
+          title: {
+            display: true,
+            text: 'Latencia de publicación por franja horaria',
+            align: 'start',
+          },
+        },
+      },
+      beginAtZero: true,
     }),
     [],
   );
 
-  const latencyOptions = useMemo(
-    () => ({
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          backgroundColor: tooltipBg,
-          titleColor: tooltipText,
-          bodyColor: tooltipText,
-          padding: 12,
-          cornerRadius: 12,
-        },
-        title: {
-          display: true,
-          text: 'Latencia de publicación por franja horaria',
-          color: axisColor,
-          align: 'start',
-          font: { size: 16, weight: 600 },
-          padding: { bottom: 16 },
-        },
-      },
-      scales: {
-        x: {
-          grid: { color: gridColor },
-          ticks: { color: axisColor },
-        },
-        y: {
-          beginAtZero: true,
-          grid: { color: gridColor },
-          ticks: { color: axisColor },
-        },
-      },
-    }),
-    [axisColor, gridColor, tooltipBg, tooltipText],
-  );
-
-  const coverageData = useMemo(
+  const coverageChartConfig = useMemo(
     () => ({
       labels: ['Portal web', 'App móvil', 'Email programado', 'API externa'],
       datasets: [
         {
+          label: 'Participación',
           data: [45, 22, 18, 15],
-          backgroundColor: ['#6366F1', '#14B8A6', '#F59E0B', '#EC4899'],
-          borderWidth: 0,
         },
       ],
-    }),
-    [],
-  );
-
-  const coverageOptions = useMemo(
-    () => ({
-      cutout: '65%',
-      plugins: {
-        legend: {
-          display: true,
-          position: 'bottom',
-          labels: {
-            color: axisColor,
-            boxWidth: 12,
-            padding: 16,
+      options: {
+        plugins: {
+          legend: {
+            display: true,
+            position: 'bottom',
           },
-        },
-        tooltip: {
-          backgroundColor: tooltipBg,
-          titleColor: tooltipText,
-          bodyColor: tooltipText,
-        },
-        title: {
-          display: true,
-          text: 'Cobertura por canal de publicación',
-          color: axisColor,
-          font: { size: 16, weight: 600 },
-          padding: { bottom: 12 },
+          title: {
+            display: true,
+            text: 'Cobertura por canal de publicación',
+          },
         },
       },
     }),
-    [axisColor, tooltipBg, tooltipText],
+    [],
   );
 
   const publicationStatusStyles = {
@@ -179,25 +123,23 @@ const HomePage = () => {
       <section className="grid grid-cols-1 xl:grid-cols-5 gap-6">
         <ReportCard
           className="xl:col-span-3"
-          bodyClassName="h-[280px]"
           title="Latencia de publicación"
           description="Comportamiento por franja horaria registrado hoy"
-        >
-          <div className="h-full">
-            <Bar data={latencyData} options={latencyOptions} />
-          </div>
-        </ReportCard>
+          chartConfig={latencyChartConfig}
+          chartInitialType="bar"
+          chartTypeOptions={['line', 'bar', 'pie']}
+          chartHeight={280}
+        />
         <ReportCard
           className="xl:col-span-2"
           bodyClassName="flex flex-col gap-6"
           title="Cobertura omnicanal"
           description="Distribución de publicaciones y métricas complementarias"
+          chartConfig={coverageChartConfig}
+          chartInitialType="pie"
+          chartTypeOptions={['pie', 'bar', 'line']}
+          chartHeight={280}
         >
-          <div className="flex-1 flex items-center justify-center">
-            <div className="w-full max-w-sm">
-              <Doughnut data={coverageData} options={coverageOptions} />
-            </div>
-          </div>
           <div className="grid grid-cols-2 gap-3 text-sm">
             {monitoringInsights.map((insight) => (
               <div
