@@ -15,6 +15,7 @@ import PasswordRequirements from '../components/common/PasswordRequeriments';
 import useLogin from '../hooks/useLogin';
 import SuccessNotification from '../components/common/SuccessNotification';
 import ErrorNotification from '../components/common/ErrorNotification';
+import ReportCard from '../components/common/ReportCard';
 import logo from '/assets/logo.png';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Filler);
@@ -230,9 +231,14 @@ const RegisterPage = () => {
               {theme === 'dark' ? 'Modo claro' : 'Modo oscuro'}
             </button>
           </div>
-          <div className="relative rounded-3xl border border-glass-border bg-glass-card p-1 shadow-2xl overflow-hidden">
+          <ReportCard
+            title="Onboarding operativo"
+            description="Seguimiento de despliegues y licenciamiento"
+            className="shadow-2xl overflow-hidden"
+            bodyClassName="relative"
+          >
             <div className="absolute inset-0 bg-gradient-to-br from-brand-secondary/10 via-transparent to-brand-primary/20" />
-            <div className="relative z-10 rounded-[26px] bg-glass-card backdrop-blur-2xl p-8 space-y-6">
+            <div className="relative z-10 space-y-6">
               <div className="flex flex-wrap items-start justify-between gap-6">
                 <div>
                   <p className="text-text-muted text-sm">Instancias desplegadas</p>
@@ -261,7 +267,7 @@ const RegisterPage = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </ReportCard>
         </div>
         <div className="w-full lg:w-1/2 px-6 lg:px-12 py-12 flex items-center justify-center">
           <div className="w-full max-w-md rounded-3xl border border-glass-border bg-glass-card backdrop-blur-2xl shadow-2xl p-8 space-y-6">

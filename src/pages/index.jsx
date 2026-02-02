@@ -5,6 +5,8 @@ import ForgotPasswordPage from './ForgotPasswordPage';
 import NotFoundPage from './NotFoundPage';
 import VerificactionCodePage from './VerificactionCodePage';
 import ResetPasswordPage from './ResetPasswordPage';
+import CurrenciesPage from './CurrenciesPage';
+import SubscriptionsPage from './SubscriptionsPage';
 
 
 export {
@@ -15,4 +17,6 @@ export {
   ResetPasswordPage,
   NotFoundPage,
   VerificactionCodePage,
+  CurrenciesPage,
+  SubscriptionsPage,
 };

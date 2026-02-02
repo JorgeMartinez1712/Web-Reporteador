@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
 import { Bar, Doughnut } from 'react-chartjs-2';
 import { useAuth } from '../context/AuthContext';
+import ReportCard from '../components/common/ReportCard';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
 
@@ -176,10 +177,22 @@ const HomePage = () => {
       </section>
 
       <section className="grid grid-cols-1 xl:grid-cols-5 gap-6">
-        <div className={`xl:col-span-3 ${glassPanel} p-6 h-[360px]`}>
-          <Bar data={latencyData} options={latencyOptions} />
-        </div>
-        <div className={`xl:col-span-2 ${glassPanel} p-6 flex flex-col gap-6`}>
+        <ReportCard
+          className="xl:col-span-3"
+          bodyClassName="h-[280px]"
+          title="Latencia de publicación"
+          description="Comportamiento por franja horaria registrado hoy"
+        >
+          <div className="h-full">
+            <Bar data={latencyData} options={latencyOptions} />
+          </div>
+        </ReportCard>
+        <ReportCard
+          className="xl:col-span-2"
+          bodyClassName="flex flex-col gap-6"
+          title="Cobertura omnicanal"
+          description="Distribución de publicaciones y métricas complementarias"
+        >
           <div className="flex-1 flex items-center justify-center">
             <div className="w-full max-w-sm">
               <Doughnut data={coverageData} options={coverageOptions} />
@@ -197,14 +210,13 @@ const HomePage = () => {
               </div>
             ))}
           </div>
-        </div>
+        </ReportCard>
       </section>
 
       <section className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className={`lg:col-span-1 ${glassPanel} p-6 space-y-4`}>
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-semibold">Integraciones y fuentes</h2>
-            <span className="text-xs text-text-muted">Sincronizaciones en vivo</span>
           </div>
           <div className="space-y-4">
             {integrationHealth.map((source) => (
@@ -227,7 +239,7 @@ const HomePage = () => {
         <div className={`lg:col-span-2 ${glassPanel} p-6 space-y-4`}>
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
             <div>
-              <h2 className="text-lg font-semibold">Cola de publicación</h2>
+              <h2 className="text-lg font-semibold flex">Cola de publicación</h2>
               <p className="text-sm text-text-muted">Estado de los informes automatizados</p>
             </div>
             <button className="px-4 py-2 rounded-2xl border border-glass-border text-sm font-semibold text-text-base hover:border-brand-secondary">

@@ -1,61 +1,15 @@
-Purpose
-Guía operativa para cualquier agente Copilot que toque este repositorio. Resume los archivos clave, patrones aprobados y errores comunes que debemos evitar.
+Purpose Esta es una guía operativa para cualquier agente Copilot que trabaje en este repositorio. Actualmente nos encontramos en una fase de diseño general y prototipado rápido para validación con el cliente. El objetivo principal es la velocidad visual y la fidelidad estética, por lo que se prioriza la creación de interfaces completas antes que la abstracción arquitectónica.
 
-Quick facts
-- **Stack**: React 19 + Vite + Tailwind v4 (`@theme` vive en `src/index.css`).
-- **Routing**: `react-router-dom`; las rutas se registran en `src/routes/AllRoutes.jsx` y se protegen con `PrivateRoute`.
-- **Estado/Auth**: `AuthProvider` (`src/context/AuthContext.jsx`) guarda token/usuario (localStorage o sessionStorage) y expone `useAuth`, `login`, `logout`, `updateUser`.
-- **HTTP**: siempre usa `src/api/axiosInstance.jsx` (inyecta encabezados, transforma errores a `friendlyMessage`, exporta `IMAGE_BASE_URL`).
-- **Hooks**: la lógica de dominio vive en `src/hooks/*`. Los componentes solo consumen hooks y manejan estado local/UI.
+Quick facts & Stack El proyecto utiliza React 19 con Vite y Tailwind CSS v4. Todos los tokens de diseño están declarados mediante la directiva @theme en el archivo src/index.css. Para la navegación empleamos react-router-dom, registrando todas las rutas en src/routes/AllRoutes.jsx. Aunque existe una estructura de AuthProvider y axiosInstance para el futuro, en esta etapa nos enfocaremos exclusivamente en la capa de presentación.
 
-Theme & styling
-- Tokens declarados en `@theme` (`src/index.css`). Usa utilidades como `bg-app-bg`, `bg-glass-card`, `text-text-muted`, `border-glass-border`, `from-surface-start`, etc. No uses `bg-[var(--...)]`.
-- Layout general: `App.jsx` pinta header, sidebar, footer y children sobre `bg-app-bg`. Mantén la jerarquía.
-- Formularios/tarjetas = vidrio (`bg-glass-card`, `border-glass-border`, `backdrop-blur`). Inputs usan `focus:ring-brand-secondary` y `text-text-base`/`text-text-muted`.
-- Gradientes y badges usan alias (`from-brand-primary`, `bg-status-success-soft`, ...). Si falta un alias, agrégalo en `@theme`.
-- Notificaciones: `components/common/ErrorNotification.jsx` y `SuccessNotification.jsx`. Tablas: `components/common/DataTable.jsx`. Modales: `components/common/CustomModal.jsx`.
-- Iconos: Bootstrap Icons mediante clases (`bi bi-eye`).
+Estrategia de Prototipado Para agilizar el feedback del cliente, no crearemos hooks personalizados ni separaremos la lógica en múltiples componentes de dominio. Toda la lógica de la funcionalidad, el manejo de estados de UI y los datos de prueba (Mock Data) deben definirse directamente dentro del archivo de la página correspondiente (src/pages/FeaturePage.jsx). Esto permite realizar ajustes visuales instantáneos sin navegar por múltiples archivos.
 
-Arquitectura clave
-- `src/main.jsx`: monta `AuthProvider` + `BrowserRouter`.
-- `src/App.jsx`: organiza layout e inyecta sidebar/header según ruta.
-- `src/routes/AllRoutes.jsx`: importa páginas desde `src/pages/index.jsx` y arma la matriz de rutas.
-- `src/routes/PrivateRoute.jsx`: muestra loader hasta conocer el estado auth y redirige a `/login` si no hay sesión.
-- `src/api/axiosInstance.jsx`: baseURL (`${VITE_API_URL}api/admin`), interceptores, `IMAGE_BASE_URL`.
+Patrón de Diseño Obligatorio Toda página nueva debe envolverse estrictamente en un div contenedor que garantice la consistencia espacial con la siguiente estructura de clases: min-h-screen, bg-app-bg, text-text-base, p-6 y space-y-8. No se deben utilizar colores fijos o valores arbitrarios en el código; en su lugar, utiliza siempre los alias del tema como bg-glass-card para tarjetas, border-glass-border para bordes con transparencia y text-text-muted para textos secundarios.
 
-Checklist para nuevas pantallas
-1. **Hook**: crea `src/hooks/use<Feature>.jsx` y usa `axiosInstance` para toda IO.
-2. **Componentes**: arma UI en `src/components/<Feature>/` (listas/tablas, formularios, modales) reutilizando patrones existentes.
-3. **Página**: `src/pages/<Feature>Page.jsx` con header (texto izquierda + CTA derecha), spinner y contenido principal.
-4. **Export**: agrega la página al barrel `src/pages/index.jsx`.
-5. **Ruta**: importa la página en `src/routes/AllRoutes.jsx` y añade tu `<Route>` (envuelto en `PrivateRoute` si aplica).
+Estructura del Header Cada pantalla debe implementar un encabezado estandarizado siguiendo un orden jerárquico específico. Primero, un párrafo con texto extra pequeño en mayúsculas, tracking amplio y color text-text-muted para la categoría del módulo. Debajo, un contenedor flexible que albergue el título principal en tamaño text-3xl con fuente semi-bold y una descripción breve en text-sm. Las acciones principales o botones de la página deben ubicarse a la derecha de este bloque en pantallas medianas y grandes.
 
+Componentes y Estética Para la construcción de la interfaz, utiliza el estilo "Glassmorphism" mediante las clases de vidrio y backdrop-blur. Para los formularios, los inputs deben resaltar con focus:ring-brand-secondary. En cuanto a la iconografía, utiliza exclusivamente Bootstrap Icons mediante clases de texto. Si necesitas componentes complejos como tablas o modales, reutiliza los existentes en src/components/common/ pero inyecta los datos de prueba directamente desde la página.
 
-Patrones obligatorios
-- Hooks = única fuente de verdad para lógica de negocio. No hagas `axios` directo desde componentes.
-- Errores: muestra `error.friendlyMessage` cuando exista y usa los componentes de notificación comunes.
-- Cero comentarios en código fuente; documenta decisiones en la PR/issue.
-- Subidas de archivos => `FormData` (revisa `useProducts.jsx`).
-- URLs de imagen => `IMAGE_BASE_URL` + path del backend.
-- Toda página nueva debe envolverse en un div con este patrón exacto para mantener la consistencia: <div className="min-h-screen bg-app-bg text-text-base p-6 space-y-8">
+Visualización de reportes Todos los gráficos, dashboards o paneles analíticos deben renderizarse utilizando el componente ReportCard disponible en src/components/common/ReportCard.jsx, ya que ese contenedor estandariza el card con el logo y el nombre de Manapro.
 
-Auth & edge cases
-- El token puede venir de localStorage **o** sessionStorage. Al escribir scripts/tests, limpia ambos.
-- Si `VITE_API_URL` no está seteado, las llamadas apuntan a `undefinedapi/admin`. Valida la env antes de depurar.
-- Algunos endpoints devuelven `response.data.data`. Examina hooks existentes antes de asumir la forma.
-
-UI references
-- Layout general: `src/pages/HomePage/HomePage.jsx`.
-- Formularios Auth: `src/components/login/*`, `src/components/register/RegisterForm.jsx`, `src/components/forgotPassword/ForgotPasswordForm.jsx`.
-- Sidebar/Header/Footer: `src/components/layout/*`.
-
-Cuando tengas dudas
-- Pide el contrato/endpoints del backend si necesitas payloads exactos.
-- Solicita ejemplos de tablas/modales existentes antes de inventar nuevos estilos.
-
-
-
-
-
-
-
+Checklist de Entrega Al crear una nueva pantalla, asegúrate de definir primero el objeto de datos ficticios al inicio del archivo. Luego, construye la UI siguiendo el patrón de contenedor y el header especificado. Finalmente, exporta la página desde el archivo barrel en src/pages/index.jsx y regístrala en AllRoutes.jsx para que sea accesible. No escribas comentarios extensos en el código; el código debe ser lo suficientemente claro para que el cliente valide la propuesta visual.

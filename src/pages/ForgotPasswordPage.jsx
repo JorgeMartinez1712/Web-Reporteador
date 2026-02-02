@@ -15,6 +15,7 @@ import useLogin from '../hooks/useLogin';
 import ErrorNotification from '../components/common/ErrorNotification';
 import SuccessNotification from '../components/common/SuccessNotification';
 import PasswordRequirements from '../components/common/PasswordRequeriments';
+import ReportCard from '../components/common/ReportCard';
 import logo from '/assets/logo.png';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Filler);
@@ -198,7 +199,7 @@ const ForgotPasswordPage = ({ initialEmail = '', initialToken = '' }) => {
         onClose={() => setIsNotificationOpen(false)}
       />
       <section className="relative min-h-screen bg-app-bg text-text-base overflow-hidden">
-      <div className="absolute inset-0">
+        <div className="absolute inset-0">
         <div className="absolute -top-24 right-10 w-[420px] h-[420px] rounded-full bg-brand-primary/20 blur-3xl" />
         <div className="absolute top-1/2 -left-24 w-[320px] h-[320px] rounded-full bg-brand-secondary/25 blur-3xl" />
         <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-app-bg to-transparent" />
@@ -216,9 +217,14 @@ const ForgotPasswordPage = ({ initialEmail = '', initialToken = '' }) => {
               {theme === 'dark' ? 'Modo claro' : 'Modo oscuro'}
             </button>
           </div>
-          <div className="relative rounded-3xl border border-glass-border bg-glass-card p-1 shadow-2xl overflow-hidden">
+          <ReportCard
+            title="Recuperación de reportes"
+            description="Seguimiento operativo de restablecimientos"
+            className="shadow-2xl overflow-hidden"
+            bodyClassName="relative"
+          >
             <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/10 via-transparent to-brand-secondary/20" />
-            <div className="relative z-10 rounded-[26px] bg-glass-card backdrop-blur-2xl p-8 space-y-6">
+            <div className="relative z-10 space-y-6">
               <div className="flex flex-wrap items-start justify-between gap-6">
                 <div>
                   <p className="text-text-muted text-sm">Reportes recuperados</p>
@@ -247,7 +253,7 @@ const ForgotPasswordPage = ({ initialEmail = '', initialToken = '' }) => {
                 </div>
               </div>
             </div>
-          </div>
+          </ReportCard>
         </div>
         <div className="w-full lg:w-1/2 px-6 lg:px-12 py-12 flex items-center justify-center">
           <div className="w-full max-w-md rounded-3xl border border-glass-border bg-glass-card backdrop-blur-2xl shadow-2xl p-8 space-y-6">

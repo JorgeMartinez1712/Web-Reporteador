@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import fullLogo from '/assets/logo.png';
+import './Navigation.css';
 
 const quickActions = [
   { label: 'Importar desde GALAC', icon: 'bi bi-cloud-arrow-up', to: '/integraciones/galac' },
@@ -9,8 +10,8 @@ const quickActions = [
 const navLinks = [
   { label: 'Panel operativo', description: 'Consolidado general de reportes', icon: 'bi bi-columns-gap', to: '/' },
   { label: 'Reportes financieros', description: 'Presupuesto, Flujo y Mayor', icon: 'bi bi-graph-up-arrow', to: '/reportes' },
-  { label: 'Alertas y umbrales', description: 'Monitoreo de desvíos críticos', icon: 'bi bi-exclamation-triangle', to: '/alertas' },
-  { label: 'Integraciones y fuentes', description: 'Conexiones GALAC y ERPs', icon: 'bi bi-hdd-network', to: '/integraciones', exactMatch: true },
+  { label: 'Gestión de monedas', description: 'Tipos de cambio y bases contables', icon: 'bi bi-cash-coin', to: '/monedas' },
+  { label: 'Suscripciones', description: 'Empresas, planes y límites', icon: 'bi bi-people-fill', to: '/suscripciones' },
   { label: 'Variables e índices', description: 'INPC y tipos de cambio', icon: 'bi bi-currency-exchange', to: '/indices' },
 ];
 
@@ -49,7 +50,7 @@ const Navigation = ({ isOpen }) => {
         </div>
       </div>
 
-      <nav className="flex-1 overflow-y-auto px-4 pb-8 space-y-3">
+      <nav className="flex-1 overflow-y-auto px-4 pb-8 space-y-3 navigation-scroll">
         {navLinks.map((item) => {
           const isActive = isActiveRoute(item.to, { exactMatch: item.exactMatch });
           return (

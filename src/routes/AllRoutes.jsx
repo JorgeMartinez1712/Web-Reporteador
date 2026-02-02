@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import {
   LoginPage, RegisterPage, ForgotPasswordPage, NotFoundPage, HomePage, VerificactionCodePage,
-  ResetPasswordPage,
+  ResetPasswordPage, CurrenciesPage, SubscriptionsPage,
 } from '../pages';
 import PrivateRoute from './PrivateRoute';
 
@@ -19,6 +19,24 @@ const AllRoutes = () => {
         element={
           <PrivateRoute>
             <HomePage />
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/monedas"
+        element={
+          <PrivateRoute>
+            <CurrenciesPage />
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/suscripciones"
+        element={
+          <PrivateRoute>
+            <SubscriptionsPage />
           </PrivateRoute>
         }
       />

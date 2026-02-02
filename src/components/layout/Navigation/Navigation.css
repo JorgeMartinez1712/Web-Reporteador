@@ -1,0 +1,33 @@
+.navigation-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-brand-secondary) transparent;
+}
+
+.navigation-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 10px;
+}
+
+.navigation-scroll::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 9999px;
+}
+
+.navigation-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-brand-secondary);
+  border-radius: 9999px;
+}
+
+.navigation-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand-primary);
+}
+
+.navigation-scroll::-webkit-scrollbar-button,
+.navigation-scroll::-webkit-scrollbar-button:single-button,
+.navigation-scroll::-webkit-scrollbar-button:increment,
+.navigation-scroll::-webkit-scrollbar-button:decrement {
+  width: 0;
+  height: 0;
+  background: transparent;
+  border: none;
+}
