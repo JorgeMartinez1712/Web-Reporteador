@@ -13,7 +13,7 @@ function App() {
   const [isSidebarOpen] = useState(true);
   const { isAuthenticated, authLoading, successMessage } = useAuth();
   const location = useLocation();
-  const publicRoutes = ['/login', '/register', '/forgot-password', '/change-password', '/*', '/verification', '/reset-password'];
+  const publicRoutes = ['/', '/login', '/register', '/forgot-password', '/change-password', '/*', '/verification', '/reset-password'];
   const isPublicRoute = publicRoutes.includes(location.pathname);
   const showNavigation = !isPublicRoute && isAuthenticated && isSidebarOpen;
 

@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
-import DataTable from '../components/common/DataTable';
-import ErrorNotification from '../components/common/ErrorNotification';
-import SuccessNotification from '../components/common/SuccessNotification';
-import CustomModal from '../components/common/CustomModal';
-import GlassSelect from '../components/common/GlassSelect';
+import DataTable from '../../components/common/DataTable';
+import ErrorNotification from '../../components/common/ErrorNotification';
+import SuccessNotification from '../../components/common/SuccessNotification';
+import CustomModal from '../../components/common/CustomModal';
+import GlassSelect from '../../components/common/GlassSelect';
 
 const mockCurrencies = [
   {

@@ -11,10 +11,11 @@ import {
   Tooltip,
   Filler,
 } from 'chart.js';
-import useLogin from '../hooks/useLogin';
-import ErrorNotification from '../components/common/ErrorNotification';
-import SuccessNotification from '../components/common/SuccessNotification';
-import ReportCard from '../components/common/ReportCard';
+import useLogin from '../../hooks/useLogin';
+import { useAuth } from '../../context/AuthContext';
+import ErrorNotification from '../../components/common/ErrorNotification';
+import SuccessNotification from '../../components/common/SuccessNotification';
+import ReportCard from '../../components/common/ReportCard';
 import logo from '/assets/logo.png';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Filler);
@@ -29,16 +30,17 @@ const getInitialTheme = () => {
 const VerificactionCodePage = () => {
   const [theme, setTheme] = useState(getInitialTheme);
   const [code, setCode] = useState('');
-  const { requestVerificationCode, verifyCodeAndLogin, completeAdminBypass, loading, error } = useLogin();
+  const { requestVerificationCode, verifyCodeAndLogin, loading, error } = useLogin();
   const [resendLoading, setResendLoading] = useState(false);
   const [resendMessage, setResendMessage] = useState('');
   const [secondsLeft, setSecondsLeft] = useState(30);
   const [notification, setNotification] = useState({ type: null, message: '', isOpen: false });
   const navigate = useNavigate();
   const location = useLocation();
-  const { credentials, rememberMe } = location.state || {};
-  const isAdminBypass = Boolean(credentials?.isAdminBypass);
-  const adminBypassCode = credentials?.verificationCode || '123456';
+  const { credentials, rememberMe, mockUser } = location.state || {};
+  const { login } = useAuth();
+  const isMockLogin = Boolean(credentials?.isMock && mockUser);
+  const mockVerificationCode = '123456';
 
   const triggerNotification = useCallback((message, type = 'error') => {
     setNotification({ type, message, isOpen: true });
@@ -87,10 +89,10 @@ const VerificactionCodePage = () => {
   }, [notification.isOpen]);
 
   useEffect(() => {
-    if (isAdminBypass) {
+    if (isMockLogin) {
       setSecondsLeft(0);
     }
-  }, [isAdminBypass]);
+  }, [isMockLogin]);
 
   const chartColors = useMemo(
     () =>
@@ -171,23 +173,13 @@ const VerificactionCodePage = () => {
       return;
     }
 
-    if (isAdminBypass) {
-      if (code !== adminBypassCode) {
-        triggerNotification('Código inválido. Recuerda usar 123456.', 'error');
+    if (isMockLogin) {
+      if (code !== mockVerificationCode) {
+        triggerNotification('Codigo invalido. Recuerda usar 123456.', 'error');
         return;
       }
-
-      try {
-        const result = await completeAdminBypass();
-        if (result.success) {
-          triggerNotification('Autenticación exitosa. Redirigiendo...', 'success');
-          setTimeout(() => navigate('/'), 1200);
-        } else {
-          triggerNotification(result.message || 'No pudimos finalizar el acceso admin.', 'error');
-        }
-      } catch (err) {
-        triggerNotification(err.message || 'No pudimos finalizar el acceso admin.', 'error');
-      }
+      login(`mock-${mockUser.id}`, mockUser);
+      triggerNotification('Autenticacion exitosa. Redirigiendo...', 'success');
       return;
     }
 
@@ -200,7 +192,6 @@ const VerificactionCodePage = () => {
       const result = await verifyCodeAndLogin(loginPayload, rememberMe);
       if (result.success) {
         triggerNotification('Autenticación exitosa. Redirigiendo...', 'success');
-        setTimeout(() => navigate('/'), 1200);
       }
     } catch (err) {
       triggerNotification(err.response?.data?.message || 'No pudimos validar el código.', 'error');
@@ -208,9 +199,9 @@ const VerificactionCodePage = () => {
   };
 
   const handleResend = async () => {
-    if (isAdminBypass) {
-      triggerNotification(`El código para este acceso es ${adminBypassCode}.`, 'success');
-      setResendMessage('El código fijo para admin es 123456.');
+    if (isMockLogin) {
+      triggerNotification(`El codigo para este acceso es ${mockVerificationCode}.`, 'success');
+      setResendMessage('El codigo fijo para este acceso es 123456.');
       return;
     }
 

@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
-import { useAuth } from '../context/AuthContext';
-import ReportCard from '../components/common/ReportCard';
+import { useAuth } from '../../context/AuthContext';
+import ReportCard from '../../components/common/ReportCard';
 
-const HomePage = () => {
+const AnalystHomePage = () => {
   const { user } = useAuth();
   const firstName = user?.name?.split(' ')[0] || user?.first_name || 'Usuario';
   const dateFormatter = new Intl.DateTimeFormat('es-ES', {
@@ -218,4 +218,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default AnalystHomePage;

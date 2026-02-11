@@ -11,11 +11,11 @@ import {
   Tooltip,
   Filler,
 } from 'chart.js';
-import useLogin from '../hooks/useLogin';
-import ErrorNotification from '../components/common/ErrorNotification';
-import SuccessNotification from '../components/common/SuccessNotification';
-import PasswordRequirements from '../components/common/PasswordRequeriments';
-import ReportCard from '../components/common/ReportCard';
+import useLogin from '../../hooks/useLogin';
+import ErrorNotification from '../../components/common/ErrorNotification';
+import SuccessNotification from '../../components/common/SuccessNotification';
+import PasswordRequirements from '../../components/common/PasswordRequeriments';
+import ReportCard from '../../components/common/ReportCard';
 import logo from '/assets/logo.png';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Filler);

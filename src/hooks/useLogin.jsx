@@ -3,16 +3,6 @@ import { useAuth } from '../context/AuthContext';
 import axiosInstance from '../api/axiosInstance';
 import { sha256 } from 'js-sha256';
 
-const ADMIN_VERIFICATION_CODE = '123456';
-const ADMIN_BYPASS_TOKEN = 'admin-bypass-token';
-const ADMIN_BYPASS_USER = {
-  id: 'admin-bypass',
-  name: 'Jorge',
-  email: 'admin@admin.com',
-  role: 'ADMIN',
-  isBypassUser: true,
-};
-
 const useLogin = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -108,39 +98,6 @@ const useLogin = () => {
     }
   };
 
-  const loginAsAdmin = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      setLoading(false);
-      return {
-        success: true,
-        adminBypassContext: {
-          email: ADMIN_BYPASS_USER.email,
-          isAdminBypass: true,
-          verificationCode: ADMIN_VERIFICATION_CODE,
-        },
-      };
-    } catch (err) {
-      setLoading(false);
-      setError('No se pudo preparar el acceso admin.');
-      return { success: false, message: 'No se pudo preparar el acceso admin.' };
-    }
-  };
-
-  const completeAdminBypass = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      await login(ADMIN_BYPASS_TOKEN, ADMIN_BYPASS_USER, { skipUserDetail: true });
-      setLoading(false);
-      return { success: true };
-    } catch (err) {
-      setLoading(false);
-      setError('No se pudo finalizar la sesión de admin.');
-      return { success: false, message: 'No se pudo finalizar la sesión de admin.' };
-    }
-  };
 
   const requestPasswordReset = async (email) => {
     setLoading(true);
@@ -191,8 +148,6 @@ const useLogin = () => {
     registerUser,
     requestPasswordReset,
     resetPassword,
-    loginAsAdmin,
-    completeAdminBypass,
     loading,
     error,
   };

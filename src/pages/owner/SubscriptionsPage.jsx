@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
-import DataTable from '../components/common/DataTable';
-import GlassSelect from '../components/common/GlassSelect';
+import DataTable from '../../components/common/DataTable';
+import GlassSelect from '../../components/common/GlassSelect';
 
 const tenantSubscriptions = [
   {

@@ -11,9 +11,9 @@ import {
   Tooltip,
   Filler,
 } from 'chart.js';
-import useLogin from '../hooks/useLogin';
-import ErrorNotification from '../components/common/ErrorNotification';
-import ReportCard from '../components/common/ReportCard';
+import useLogin from '../../hooks/useLogin';
+import ErrorNotification from '../../components/common/ErrorNotification';
+import ReportCard from '../../components/common/ReportCard';
 import logo from '/assets/logo.png';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Filler);
@@ -28,11 +28,34 @@ const getInitialTheme = () => {
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [credentials, setCredentials] = useState({ email: '', password: '' });
-  const { requestVerificationCode, loginAsAdmin, loading, error } = useLogin();
+  const { requestVerificationCode, loading, error } = useLogin();
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [theme, setTheme] = useState(getInitialTheme);
   const navigate = useNavigate();
+
+  const mockUsers = [
+    {
+      email: 'admin@admin.com',
+      password: 'admin',
+      user: { id: 'admin-001', name: 'Jorge', email: 'admin@admin.com', role: 'ADMIN' },
+    },
+    {
+      email: 'dueno@demo.com',
+      password: 'dueno',
+      user: { id: 'dueno-001', name: 'Valeria', email: 'dueno@demo.com', role: 'DUENO' },
+    },
+    {
+      email: 'analista@demo.com',
+      password: 'analista',
+      user: { id: 'analista-001', name: 'Luis', email: 'analista@demo.com', role: 'ANALISTA' },
+    },
+    {
+      email: 'interesado@demo.com',
+      password: 'interesado',
+      user: { id: 'interesado-001', name: 'Camila', email: 'interesado@demo.com', role: 'INTERESADO' },
+    },
+  ];
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
@@ -139,24 +162,21 @@ const LoginPage = () => {
     const normalizedEmail = credentials.email.trim().toLowerCase();
     const normalizedPassword = credentials.password.trim().toLowerCase();
 
-    if (normalizedEmail === 'admin@admin.com' && normalizedPassword === 'admin') {
-      try {
-        const adminResult = await loginAsAdmin();
-        if (adminResult?.success && adminResult.adminBypassContext) {
-          navigate('/verification', {
-            state: {
-              credentials: adminResult.adminBypassContext,
-              rememberMe: true,
-            },
-          });
-        } else {
-          setErrorMessage(adminResult?.message || 'No pudimos preparar el acceso admin.');
-          setIsNotificationOpen(true);
-        }
-      } catch (err) {
-        setErrorMessage(err.message || 'No pudimos preparar el acceso admin.');
-        setIsNotificationOpen(true);
-      }
+    const mockMatch = mockUsers.find(
+      (mockUser) => mockUser.email === normalizedEmail && mockUser.password === normalizedPassword,
+    );
+    if (mockMatch) {
+      navigate('/verification', {
+        state: {
+          credentials: {
+            email: mockMatch.user.email,
+            role: mockMatch.user.role,
+            isMock: true,
+          },
+          mockUser: mockMatch.user,
+          rememberMe: true,
+        },
+      });
       return;
     }
 

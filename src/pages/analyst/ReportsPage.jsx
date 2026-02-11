@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import GlassSelect from '../components/common/GlassSelect';
-import ReportCard from '../components/common/ReportCard';
+import GlassSelect from '../../components/common/GlassSelect';
+import ReportCard from '../../components/common/ReportCard';
 
 const reportsMock = {
   summary: [

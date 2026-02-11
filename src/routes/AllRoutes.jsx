@@ -1,13 +1,29 @@
 import { Routes, Route } from 'react-router-dom';
 import {
-  LoginPage, RegisterPage, ForgotPasswordPage, NotFoundPage, HomePage, VerificactionCodePage,
-  ResetPasswordPage, CurrenciesPage, ReportsPage, SubscriptionsPage,
+  PublicHomePage,
+  LoginPage,
+  RegisterPage,
+  ForgotPasswordPage,
+  ResetPasswordPage,
+  VerificactionCodePage,
+  NotFoundPage,
+  InterestedHomePage,
+  RequirementsChecklistPage,
+  InterestedReviewPage,
+  InterestedPaymentPage,
+  OwnerHomePage,
+  SubscriptionsPage,
+  AnalystHomePage,
+  ReportsPage,
+  CurrenciesPage,
+  SuperAdminHomePage,
 } from '../pages';
 import PrivateRoute from './PrivateRoute';
 
 const AllRoutes = () => {
   return (
     <Routes>
+      <Route path="/" element={<PublicHomePage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/verification" element={<VerificactionCodePage />} />
       <Route path="/register" element={<RegisterPage />} />
@@ -15,10 +31,59 @@ const AllRoutes = () => {
       <Route path="/reset-password" element={<ResetPasswordPage />} />
 
       <Route
-        path="/"
+        path="/home-01"
         element={
-          <PrivateRoute>
-            <HomePage />
+          <PrivateRoute allowedRoles={['INTERESADO']}>
+            <InterestedHomePage />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/home-02"
+        element={
+          <PrivateRoute allowedRoles={['DUENO']}>
+            <OwnerHomePage />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/home-03"
+        element={
+          <PrivateRoute allowedRoles={['ANALISTA']}>
+            <AnalystHomePage />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/home-04"
+        element={
+          <PrivateRoute allowedRoles={['ADMIN']}>
+            <SuperAdminHomePage />
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/requisitos"
+        element={
+          <PrivateRoute allowedRoles={['INTERESADO']}>
+            <RequirementsChecklistPage />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/revision"
+        element={
+          <PrivateRoute allowedRoles={['INTERESADO']}>
+            <InterestedReviewPage />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/pago"
+        element={
+          <PrivateRoute allowedRoles={['INTERESADO']}>
+            <InterestedPaymentPage />
           </PrivateRoute>
         }
       />
@@ -26,25 +91,23 @@ const AllRoutes = () => {
       <Route
         path="/monedas"
         element={
-          <PrivateRoute>
+          <PrivateRoute allowedRoles={['ADMIN', 'DUENO', 'ANALISTA']}>
             <CurrenciesPage />
           </PrivateRoute>
         }
       />
-
       <Route
         path="/reportes"
         element={
-          <PrivateRoute>
+          <PrivateRoute allowedRoles={['ADMIN', 'DUENO', 'ANALISTA']}>
             <ReportsPage />
           </PrivateRoute>
         }
       />
-
       <Route
         path="/suscripciones"
         element={
-          <PrivateRoute>
+          <PrivateRoute allowedRoles={['ADMIN', 'DUENO']}>
             <SubscriptionsPage />
           </PrivateRoute>
         }

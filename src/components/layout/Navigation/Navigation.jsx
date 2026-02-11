@@ -1,22 +1,53 @@
 import { Link, useLocation } from 'react-router-dom';
+import { useAuth } from '../../../context/AuthContext';
 import fullLogo from '/assets/logo.png';
 import './Navigation.css';
 
 const quickActions = [
-  { label: 'Importar desde GALAC', icon: 'bi bi-cloud-arrow-up', to: '/integraciones/galac' },
-  { label: 'Publicar reporte', icon: 'bi bi-broadcast', to: '/reportes/publicar' },
+  { label: 'Importar desde GALAC', icon: 'bi bi-cloud-arrow-up', to: '/integraciones/galac', roles: ['ADMIN', 'DUENO', 'ANALISTA'] },
+  { label: 'Publicar reporte', icon: 'bi bi-broadcast', to: '/reportes/publicar', roles: ['ADMIN', 'DUENO', 'ANALISTA'] },
 ];
 
-const navLinks = [
-  { label: 'Panel operativo', description: 'Consolidado general de reportes', icon: 'bi bi-columns-gap', to: '/' },
-  { label: 'Reportes financieros', description: 'Presupuesto, Flujo y Mayor', icon: 'bi bi-graph-up-arrow', to: '/reportes' },
-  { label: 'Gestión de monedas', description: 'Tipos de cambio y bases contables', icon: 'bi bi-cash-coin', to: '/monedas' },
-  { label: 'Suscripciones', description: 'Empresas, planes y límites', icon: 'bi bi-people-fill', to: '/suscripciones' },
-  { label: 'Variables e índices', description: 'INPC y tipos de cambio', icon: 'bi bi-currency-exchange', to: '/indices' },
-];
+const roleHomeMap = {
+  INTERESADO: '/home-01',
+  DUENO: '/home-02',
+  ANALISTA: '/home-03',
+  ADMIN: '/home-04',
+};
+
+const navLinksByRole = {
+  INTERESADO: [
+    { label: 'Resumen', description: 'Estado del onboarding', icon: 'bi bi-house', to: '/home-01' },
+    { label: 'Requisitos', description: 'Checklist de onboarding', icon: 'bi bi-clipboard-check', to: '/requisitos' },
+    { label: 'Estatus de revision', description: 'Seguimiento del expediente', icon: 'bi bi-hourglass-split', to: '/revision' },
+    { label: 'Pago', description: 'Activacion de suscripcion', icon: 'bi bi-credit-card', to: '/pago' },
+  ],
+  DUENO: [
+    { label: 'Home', description: 'Panel de la suscripcion', icon: 'bi bi-house', to: '/home-02' },
+    { label: 'Suscripciones', description: 'Empresas, planes y limites', icon: 'bi bi-people-fill', to: '/suscripciones' },
+    { label: 'Reportes financieros', description: 'Presupuesto, Flujo y Mayor', icon: 'bi bi-graph-up-arrow', to: '/reportes' },
+    { label: 'Gestion de monedas', description: 'Tipos de cambio', icon: 'bi bi-cash-coin', to: '/monedas' },
+  ],
+  ANALISTA: [
+    { label: 'Home', description: 'Panel operativo', icon: 'bi bi-house', to: '/home-03' },
+    { label: 'Reportes financieros', description: 'Presupuesto, Flujo y Mayor', icon: 'bi bi-graph-up-arrow', to: '/reportes' },
+    { label: 'Gestion de monedas', description: 'Tipos de cambio', icon: 'bi bi-cash-coin', to: '/monedas' },
+    { label: 'Variables e indices', description: 'INPC y tipos de cambio', icon: 'bi bi-currency-exchange', to: '/indices' },
+  ],
+  ADMIN: [
+    { label: 'Home', description: 'Control global', icon: 'bi bi-house', to: '/home-04' },
+    { label: 'Suscripciones', description: 'Empresas, planes y limites', icon: 'bi bi-people-fill', to: '/suscripciones' },
+    { label: 'Reportes financieros', description: 'Presupuesto, Flujo y Mayor', icon: 'bi bi-graph-up-arrow', to: '/reportes' },
+    { label: 'Gestion de monedas', description: 'Tipos de cambio', icon: 'bi bi-cash-coin', to: '/monedas' },
+  ],
+};
 
 const Navigation = ({ isOpen }) => {
   const location = useLocation();
+  const { user } = useAuth();
+  const role = user?.role || 'INTERESADO';
+  const roleHome = roleHomeMap[role] || '/home-01';
+  const navLinks = navLinksByRole[role] || navLinksByRole.INTERESADO;
 
   const isActiveRoute = (to, { exactMatch } = {}) =>
     exactMatch ? location.pathname === to : location.pathname === to || location.pathname.startsWith(`${to}/`);
@@ -28,14 +59,16 @@ const Navigation = ({ isOpen }) => {
       }`}
     >
       <div className="px-6 pt-8 pb-4">
-        <Link to="/" className="flex justify-center">
+        <Link to={roleHome} className="flex justify-center">
           <img src={fullLogo} alt="logo" className="h-12 w-auto object-contain" />
         </Link>
       </div>
 
       <div className="px-6 pb-4">
         <div className="grid grid-cols-2 gap-3">
-          {quickActions.map((action) => (
+          {quickActions
+            .filter((action) => !action.roles || action.roles.includes(role))
+            .map((action) => (
             <Link
               key={action.to}
               to={action.to}
