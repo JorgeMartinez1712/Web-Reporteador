@@ -1,9 +1,11 @@
 import { Link, useLocation } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
+import { useAuth } from '../../../context/AuthContext';
 
 const Breadcrumbs = () => {
   const location = useLocation();
+  const { user } = useAuth();
   const pathnames = location.pathname.split('/').filter((x) => x);
 
   let sectionName = pathnames[0] ? pathnames[0].toUpperCase() : 'HOME';
@@ -34,27 +36,41 @@ const Breadcrumbs = () => {
     }
   }
 
+  const homeTarget = '/dashboard';
+  const isDashboard = location.pathname === '/dashboard';
+  const onlyInicio = pathnames.length === 0 || isDashboard;
+
   return (
     <nav className="text-sm text-oscuro">
       <ul className="flex space-x-2">
         <li>
-          <Tippy content="Ir al Inicio" placement="bottom">
-            <Link to="/" className="hover:underline text-oscuro font-bold text-lg">
-              INICIO
-            </Link>
-          </Tippy>
-        </li>
-        {sectionName && sectionName !== 'HOME' && (
-          <li className="flex items-center">
-            <span className="mx-2">/</span>
-            <Tippy content={`Ir a ${sectionName.toLowerCase()}`} placement="bottom">
-              <Link to={sectionLink} className="hover:underline text-oscuro text-lg">
-                {sectionName}
+          {onlyInicio ? (
+            <span className="text-oscuro font-bold text-lg">INICIO</span>
+          ) : (
+            <Tippy content="Ir al Inicio" placement="bottom">
+              <Link to={homeTarget} className="hover:underline text-oscuro font-bold text-lg">
+                INICIO
               </Link>
             </Tippy>
+          )}
+        </li>
+
+        {!onlyInicio && sectionName && sectionName !== 'HOME' && (
+          <li className="flex items-center">
+            <span className="mx-2">/</span>
+            {location.pathname === sectionLink ? (
+              <span className="text-oscuro text-lg">{sectionName}</span>
+            ) : (
+              <Tippy content={`Ir a ${sectionName.toLowerCase()}`} placement="bottom">
+                <Link to={sectionLink} className="hover:underline text-oscuro text-lg">
+                  {sectionName}
+                </Link>
+              </Tippy>
+            )}
           </li>
         )}
-        {currentItem && (
+
+        {!onlyInicio && currentItem && (
           <li className="flex items-center">
             <span className="mx-2">/</span>
             <span className="text-oscuro text-lg">{currentItem}</span>

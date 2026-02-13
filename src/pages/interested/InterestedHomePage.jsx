@@ -51,11 +51,10 @@ const InterestedHomePage = () => {
   return (
     <div className="min-h-screen bg-app-bg text-text-base p-6 space-y-8">
       <header className="space-y-3">
-        <p className="text-xs uppercase tracking-[0.35em] text-text-muted">Proceso de onboarding</p>
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="space-y-2">
-            <h1 className="text-3xl font-semibold text-text-base">Resumen de activacion</h1>
-            <p className="text-sm text-text-muted">{statusMeta.message}</p>
+            <h1 className="text-3xl font-semibold text-text-base flex">Resumen de activacion</h1>
+            <p className="text-sm text-text-muted mb-4">{statusMeta.message}</p>
           </div>
           <span className={`rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] ${statusMeta.badge}`}>
             {statusMeta.label}
@@ -110,7 +109,7 @@ const InterestedHomePage = () => {
           <div className="space-y-3">
             {paymentMethods.map((method) => (
               <div key={method.id} className="rounded-2xl border border-glass-border bg-glass-card-strong p-3">
-                <div className="flex items-center gap-3">
+                <div className="flex items-start gap-3 text-left">
                   <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-glass-card">
                     <i className={`${method.icon} text-lg text-brand-secondary`} />
                   </span>

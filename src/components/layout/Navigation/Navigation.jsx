@@ -3,42 +3,45 @@ import { useAuth } from '../../../context/AuthContext';
 import fullLogo from '/assets/logo.png';
 import './Navigation.css';
 
-const quickActions = [
-  { label: 'Importar desde GALAC', icon: 'bi bi-cloud-arrow-up', to: '/integraciones/galac', roles: ['ADMIN', 'DUENO', 'ANALISTA'] },
-  { label: 'Publicar reporte', icon: 'bi bi-broadcast', to: '/reportes/publicar', roles: ['ADMIN', 'DUENO', 'ANALISTA'] },
-];
 
 const roleHomeMap = {
-  INTERESADO: '/home-01',
-  DUENO: '/home-02',
-  ANALISTA: '/home-03',
-  ADMIN: '/home-04',
+  INTERESADO: '/dashboard',
+  DUENO: '/dashboard',
+  ANALISTA: '/dashboard',
+  ADMIN: '/dashboard',
 };
 
 const navLinksByRole = {
+  DUENO: [
+    { label: 'Dashboard de servicio', description: 'Estado de la suscripcion', icon: 'bi bi-speedometer2', to: '/dashboard' },
+    { label: 'Usuarios', description: 'Cupos y accesos', icon: 'bi bi-people', to: '/usuarios' },
+    { label: 'Multiempresa', description: 'Empresas y analistas asignados', icon: 'bi bi-building', to: '/multiempresa' },
+    { label: 'Seguridad y dispositivos', description: 'Administrar dispositivos', icon: 'bi bi-shield-check', to: '/dispositivos' },
+    { label: 'Aprobacion de presupuestos', description: 'Filtro final del analista', icon: 'bi bi-clipboard-check', to: '/aprobaciones' },
+    { label: 'Ajustes', description: 'Editar configuración inicial', icon: 'bi bi-gear', to: '/ajustes' },
+  ],
+  ANALISTA: [
+    { label: 'Dashboard financiero', description: 'Pulso operativo', icon: 'bi bi-house', to: '/dashboard' },
+    { label: 'Mapeo GALAC', description: 'Plan de cuentas a EERR', icon: 'bi bi-diagram-3', to: '/mapeo-galac' },
+    { label: 'Tasas e INPC', description: 'Configuracion tecnica', icon: 'bi bi-graph-up', to: '/tasas-inpc' },
+    { label: 'Estado de resultados', description: 'Visor principal', icon: 'bi bi-clipboard-data', to: '/estado-resultados' },
+    { label: 'Flujo de caja', description: 'Ingresos y egresos', icon: 'bi bi-cash-coin', to: '/flujo-caja' },
+    { label: 'Simulador de proyecciones', description: 'Escenarios editables', icon: 'bi bi-sliders', to: '/proyecciones' },
+    { label: 'Carga de presupuestos', description: 'Plantilla y envío', icon: 'bi bi-cloud-arrow-up', to: '/presupuestos' },
+    { label: 'Comparativo', description: 'Presupuesto vs real', icon: 'bi bi-bar-chart', to: '/comparativo' },
+  ],
+  ADMIN: [
+    { label: 'Panel de control', description: 'Métricas de la plataforma', icon: 'bi bi-speedometer2', to: '/dashboard' },
+    { label: 'Bandeja de solicitudes', description: 'Revisión de expedientes', icon: 'bi bi-file-earmark-check', to: '/solicitudes' },
+    { label: 'Gestión de clientes', description: 'Maestro de suscriptores', icon: 'bi bi-people', to: '/clientes' },
+    { label: 'Configurador de planes', description: 'Precios y límites', icon: 'bi bi-gear-wide-connected', to: '/planes' },
+    { label: 'Logs de auditoría', description: 'Seguridad y movimientos', icon: 'bi bi-shield-lock', to: '/auditoria' },
+  ],
   INTERESADO: [
-    { label: 'Resumen', description: 'Estado del onboarding', icon: 'bi bi-house', to: '/home-01' },
+    { label: 'Resumen', description: 'Estado del onboarding', icon: 'bi bi-house', to: '/dashboard' },
     { label: 'Requisitos', description: 'Checklist de onboarding', icon: 'bi bi-clipboard-check', to: '/requisitos' },
     { label: 'Estatus de revision', description: 'Seguimiento del expediente', icon: 'bi bi-hourglass-split', to: '/revision' },
     { label: 'Pago', description: 'Activacion de suscripcion', icon: 'bi bi-credit-card', to: '/pago' },
-  ],
-  DUENO: [
-    { label: 'Home', description: 'Panel de la suscripcion', icon: 'bi bi-house', to: '/home-02' },
-    { label: 'Suscripciones', description: 'Empresas, planes y limites', icon: 'bi bi-people-fill', to: '/suscripciones' },
-    { label: 'Reportes financieros', description: 'Presupuesto, Flujo y Mayor', icon: 'bi bi-graph-up-arrow', to: '/reportes' },
-    { label: 'Gestion de monedas', description: 'Tipos de cambio', icon: 'bi bi-cash-coin', to: '/monedas' },
-  ],
-  ANALISTA: [
-    { label: 'Home', description: 'Panel operativo', icon: 'bi bi-house', to: '/home-03' },
-    { label: 'Reportes financieros', description: 'Presupuesto, Flujo y Mayor', icon: 'bi bi-graph-up-arrow', to: '/reportes' },
-    { label: 'Gestion de monedas', description: 'Tipos de cambio', icon: 'bi bi-cash-coin', to: '/monedas' },
-    { label: 'Variables e indices', description: 'INPC y tipos de cambio', icon: 'bi bi-currency-exchange', to: '/indices' },
-  ],
-  ADMIN: [
-    { label: 'Home', description: 'Control global', icon: 'bi bi-house', to: '/home-04' },
-    { label: 'Suscripciones', description: 'Empresas, planes y limites', icon: 'bi bi-people-fill', to: '/suscripciones' },
-    { label: 'Reportes financieros', description: 'Presupuesto, Flujo y Mayor', icon: 'bi bi-graph-up-arrow', to: '/reportes' },
-    { label: 'Gestion de monedas', description: 'Tipos de cambio', icon: 'bi bi-cash-coin', to: '/monedas' },
   ],
 };
 
@@ -46,7 +49,7 @@ const Navigation = ({ isOpen }) => {
   const location = useLocation();
   const { user } = useAuth();
   const role = user?.role || 'INTERESADO';
-  const roleHome = roleHomeMap[role] || '/home-01';
+  const roleHome = roleHomeMap[role] || '/dashboard';
   const navLinks = navLinksByRole[role] || navLinksByRole.INTERESADO;
 
   const isActiveRoute = (to, { exactMatch } = {}) =>
@@ -64,24 +67,6 @@ const Navigation = ({ isOpen }) => {
         </Link>
       </div>
 
-      <div className="px-6 pb-4">
-        <div className="grid grid-cols-2 gap-3">
-          {quickActions
-            .filter((action) => !action.roles || action.roles.includes(role))
-            .map((action) => (
-            <Link
-              key={action.to}
-              to={action.to}
-              className="rounded-2xl border border-glass-border bg-glass-card px-3 py-2 text-[11px] font-semibold uppercase tracking-wide text-text-muted transition hover:border-brand-primary hover:text-text-base"
-            >
-              <div className="flex items-center gap-2">
-                <i className={`${action.icon} text-xs text-brand-secondary`} />
-                <span className="leading-tight">{action.label}</span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </div>
 
       <nav className="flex-1 overflow-y-auto px-4 pb-8 space-y-3 navigation-scroll">
         {navLinks.map((item) => {

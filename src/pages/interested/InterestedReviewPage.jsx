@@ -51,10 +51,10 @@ const InterestedReviewPage = () => {
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="space-y-2 text-left">
             <h1 className="text-3xl font-semibold text-text-base">Estatus de revision</h1>
-            <p className="text-sm text-text-muted">{statusMeta.description}</p>
+            <p className="text-sm text-text-muted mb-4">{statusMeta.description}</p>
           </div>
           <span className={`rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] ${statusMeta.badge}`}>
-            {statusMeta.label}
+            {statusMeta.label}  
           </span>
         </div>
       </header>
@@ -64,7 +64,7 @@ const InterestedReviewPage = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs uppercase tracking-[0.25em] text-text-muted">Bandeja de observaciones</p>
-              <p className="text-lg font-semibold text-text-base">Validaciones legales</p>
+              <p className="text-lg font-semibold text-text-base flex">Validaciones legales</p>
             </div>
             <span className="text-sm text-text-muted">
               {observationItems.length > 0 ? `${observationItems.length} observaciones` : 'Sin observaciones'}

@@ -122,25 +122,24 @@ const RequirementsChecklistPage = () => {
 
   return (
     <div className="min-h-screen bg-app-bg text-text-base p-6 space-y-8">
-      <header className="flex flex-col gap-4">
+      <header className="space-y-3">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <div className="space-y-2 text-left">
-            <h1 className="text-3xl font-semibold text-text-base">Carga de requisitos</h1>
-            <p className="text-sm text-text-muted">
-              Completa el checklist para activar el analisis financiero.
-            </p>
+          <div className="space-y-2">
+            <h1 className="text-3xl font-semibold text-text-base flex">Carga de requisitos</h1>
+            <p className="text-sm text-text-muted mb-4">Completa el checklist para activar el analisis financiero.</p>
           </div>
           <button
             type="button"
             disabled={!isComplete}
             onClick={handleSubmitRequirements}
-            className={`rounded-2xl px-5 py-3 text-sm font-semibold transition ${
+            className={`rounded-2xl px-5 py-3 text-sm font-semibold transition flex items-center justify-center gap-2 ${
               isComplete
                 ? 'bg-brand-secondary text-text-base hover:bg-brand-secondary-soft'
                 : 'border border-glass-border text-text-muted cursor-not-allowed'
             }`}
           >
-            Enviar requisitos
+            <i className="bi bi-send text-sm" />
+            <span>Enviar requisitos</span>
           </button>
         </div>
       </header>
@@ -149,8 +148,7 @@ const RequirementsChecklistPage = () => {
         <div className={`${glassPanel} lg:col-span-2 p-6 space-y-5`}>
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-xs uppercase tracking-[0.25em] text-text-muted">Checklist dinamico</p>
-              <p className="text-lg font-semibold text-text-base">Documentos obligatorios</p>
+              <p className="text-lg font-semibold text-text-base flex">Documentos obligatorios</p>
             </div>
             <span className="text-sm text-text-muted">
               Llevas {uploadedCount} de {totalRequired} documentos cargados
@@ -176,8 +174,8 @@ const RequirementsChecklistPage = () => {
                     isActive ? 'bg-glass-card-strong' : 'bg-glass-card'
                   }`}
                 >
-                  <div className="flex items-center justify-between gap-4">
-                    <div className="space-y-1">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="space-y-1 text-left">
                       <p className="text-sm font-semibold text-text-base">{item.title}</p>
                       <p className="text-xs text-text-muted">{item.detail}</p>
                     </div>
@@ -199,7 +197,6 @@ const RequirementsChecklistPage = () => {
 
         <div className={`${glassPanel} lg:col-span-3 p-6 space-y-6`}>
           <div className="space-y-2">
-            <p className="text-xs uppercase tracking-[0.25em] text-text-muted">Dropzone</p>
             <h2 className="text-lg font-semibold text-text-base">Sube {activeRequirement?.title}</h2>
             <p className="text-sm text-text-muted">Arrastra el archivo o haz click para cargar.</p>
           </div>

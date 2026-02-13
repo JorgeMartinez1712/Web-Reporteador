@@ -3,16 +3,16 @@ import { useAuth } from '../context/AuthContext';
 import { FaSpinner } from 'react-icons/fa';
 
 const roleHomeMap = {
-  INTERESADO: '/home-01',
-  DUENO: '/home-02',
-  ANALISTA: '/home-03',
-  ADMIN: '/home-04',
+  INTERESADO: '/dashboard',
+  DUENO: '/dashboard',
+  ANALISTA: '/dashboard',
+  ADMIN: '/dashboard',
 };
 
 const PrivateRoute = ({ children, allowedRoles }) => {
   const { isAuthenticated, authLoading, user } = useAuth();
   const role = user?.role || 'INTERESADO';
-  const roleHome = roleHomeMap[role] || '/home-04';
+  const roleHome = roleHomeMap[role] || '/dashboard';
 
   if (authLoading) {
     return (

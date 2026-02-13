@@ -23,32 +23,54 @@ const getStoredStatus = () => {
 
 const InterestedPaymentPage = () => {
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, updateUser } = useAuth();
   const [method, setMethod] = useState('card');
-
-  const status = getStoredStatus() || { status: 'in_review' };
-  const statusKey = status.status || 'in_review';
+  const [statusKey, setStatusKey] = useState(() => getStoredStatus()?.status || 'approved');
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   useEffect(() => {
     if (statusKey !== 'approved') {
-      navigate('/revision');
+      const approvedState = { status: 'approved' };
+      localStorage.setItem(STATUS_STORAGE_KEY, JSON.stringify(approvedState));
+      setStatusKey('approved');
     }
-  }, [navigate, statusKey]);
+  }, [statusKey]);
 
   const planInfo = useMemo(() => planPriceMap[user?.plan] || planPriceMap.basic, [user?.plan]);
   const glassPanel = 'glass-elevation rounded-3xl border border-glass-border bg-glass-card backdrop-blur-xl';
 
+  const handleFakePayment = () => {
+    setIsProcessing(true);
+    setShowSuccess(false);
+    setTimeout(() => {
+      const updatedUser = { ...(user || { name: 'Nuevo cliente' }), role: 'DUENO', plan: user?.plan || 'basic' };
+      updateUser(updatedUser);
+      setIsProcessing(false);
+      setShowSuccess(true);
+      navigate('/setup');
+    }, 750);
+  };
+
   return (
     <div className="min-h-screen bg-app-bg text-text-base p-6 space-y-8">
-      <header className="flex flex-col gap-4">
+      <header className="flex flex-col gap-6 mb-4">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="space-y-2 text-left">
-            <h1 className="text-3xl font-semibold text-text-base">Pantalla de pago</h1>
-            <p className="text-sm text-text-muted">Finaliza la activacion para iniciar el servicio.</p>
+            <h1 className="text-3xl font-semibold text-text-base">Pago y activacion inmediata</h1>
+            <p className="text-sm text-text-muted mb-4">Ingresa los datos de pago y te llevamos al flujo de configuracion inicial.</p>
           </div>
-          <span className="rounded-full bg-status-success-soft px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-status-success">
-            Aprobado
-          </span>
+          <div className="flex items-center gap-3">
+            <span className="rounded-full bg-status-success-soft px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-status-success">
+              Aprobado
+            </span>
+            <button
+              type="button"
+              className="rounded-2xl border border-glass-border bg-glass-card px-4 py-2 text-sm font-semibold text-text-base transition hover:bg-glass-card-strong"
+            >
+              Hablar con soporte
+            </button>
+          </div>
         </div>
       </header>
 
@@ -63,11 +85,10 @@ const InterestedPaymentPage = () => {
             <button
               type="button"
               onClick={() => setMethod('card')}
-              className={`rounded-2xl border px-4 py-3 text-left transition ${
-                method === 'card'
+              className={`rounded-2xl border px-4 py-3 text-left transition ${method === 'card'
                   ? 'border-brand-secondary bg-glass-card-strong text-text-base'
                   : 'border-glass-border text-text-muted'
-              }`}
+                }`}
             >
               <p className="text-sm font-semibold">Tarjeta</p>
               <p className="text-xs text-text-muted">Visa, MasterCard, Amex</p>
@@ -75,11 +96,10 @@ const InterestedPaymentPage = () => {
             <button
               type="button"
               onClick={() => setMethod('transfer')}
-              className={`rounded-2xl border px-4 py-3 text-left transition ${
-                method === 'transfer'
+              className={`rounded-2xl border px-4 py-3 text-left transition ${method === 'transfer'
                   ? 'border-brand-secondary bg-glass-card-strong text-text-base'
                   : 'border-glass-border text-text-muted'
-              }`}
+                }`}
             >
               <p className="text-sm font-semibold">Transferencia</p>
               <p className="text-xs text-text-muted">Cuenta bancaria corporativa</p>
@@ -169,10 +189,14 @@ const InterestedPaymentPage = () => {
 
           <button
             type="button"
-            className="w-full rounded-2xl bg-brand-secondary px-4 py-3 text-sm font-semibold text-text-base transition hover:bg-brand-secondary-soft"
+            onClick={handleFakePayment}
+            disabled={isProcessing}
+            className={`w-full rounded-2xl px-4 py-3 text-sm font-semibold text-text-base transition ${isProcessing ? 'bg-brand-secondary/60' : 'bg-brand-secondary hover:bg-brand-secondary-soft'
+              }`}
           >
-            Finalizar pago
+            {isProcessing ? 'Procesando...' : 'Finalizar pago y continuar'}
           </button>
+          {showSuccess && <p className="text-xs text-status-success">Listo, activamos tu cuenta y te llevamos al configurador inicial.</p>}
           <p className="text-xs text-text-muted">
             Al confirmar, tu suscripcion quedara activa y se habilitara el acceso completo.
           </p>

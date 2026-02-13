@@ -76,12 +76,12 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (authToken, userData, options = {}) => {
     const roleRedirects = {
-      INTERESADO: '/home-01',
-      DUENO: '/home-02',
-      ANALISTA: '/home-03',
-      ADMIN: '/home-04',
+      INTERESADO: '/dashboard',
+      DUENO: '/dashboard',
+      ANALISTA: '/dashboard',
+      ADMIN: '/dashboard',
     };
-    const defaultRedirect = roleRedirects[userData?.role] || '/home-04';
+    const defaultRedirect = roleRedirects[userData?.role] || '/dashboard';
     const { redirectTo = defaultRedirect } = options;
     localStorage.setItem('token', authToken);
     localStorage.setItem('user', JSON.stringify(userData));

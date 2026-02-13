@@ -1,5 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useMemo } from 'react';
 
 const mockSubscription = {
   plan: 'Corporativo',
@@ -11,33 +10,19 @@ const mockSubscription = {
 };
 
 const quickLinks = [
-  { id: 'people', label: 'Gestionar personal', icon: 'bi bi-people', hint: 'Invita o revoca accesos', to: '/usuarios' },
+  { id: 'people', label: 'Gestionar personal', icon: 'bi bi-people', hint: 'Invita o revoca accesos' },
   { id: 'companies', label: 'Ver empresas', icon: 'bi bi-building', hint: 'Multiempresa y branding' },
-  { id: 'billing', label: 'Facturacion', icon: 'bi bi-receipt', hint: 'Metodo de pago y facturas' },
+  { id: 'billing', label: 'Facturacion', icon: 'bi bi-receipt', hint: 'Método de pago y facturas' },
 ];
 
 const serviceHighlights = [
   { id: 'sla', label: 'SLA operativo', value: '99.5%', caption: 'Disponibilidad semanal' },
-  { id: 'alerts', label: 'Alertas abiertas', value: '2', caption: 'Requieren revision' },
+  { id: 'alerts', label: 'Alertas abiertas', value: '2', caption: 'Requieren revisión' },
   { id: 'tickets', label: 'Tickets soporte', value: '3', caption: 'En curso' },
 ];
 
-const OwnerHomePage = () => {
-  const navigate = useNavigate();
+const SubscriptionDashboardPage = () => {
   const glassPanel = 'glass-elevation rounded-3xl border border-glass-border bg-glass-card backdrop-blur-xl';
-  const [setupStatus, setSetupStatus] = useState(() => {
-    const stored = typeof window !== 'undefined' ? localStorage.getItem('ownerSetupStatus') : null;
-    if (stored) {
-      try {
-        const parsed = JSON.parse(stored);
-        return { completion: parsed.completion || 0, completed: !!parsed.completed };
-      } catch (err) {
-        return { completion: 0, completed: false };
-      }
-    }
-    return { completion: 0, completed: false };
-  });
-
   const usageBars = useMemo(
     () => [
       { id: 'users', label: 'Usuarios creados', used: mockSubscription.users.used, limit: mockSubscription.users.limit },
@@ -46,23 +31,12 @@ const OwnerHomePage = () => {
     [],
   );
 
-  useEffect(() => {
-    const stored = typeof window !== 'undefined' ? localStorage.getItem('ownerSetupStatus') : null;
-    if (stored) {
-      try {
-        const parsed = JSON.parse(stored);
-        setSetupStatus({ completion: parsed.completion || 0, completed: !!parsed.completed });
-      } catch (err) {
-        setSetupStatus({ completion: 0, completed: false });
-      }
-    }
-  }, []);
-
   return (
     <div className="min-h-screen bg-app-bg text-text-base p-6 space-y-8">
       <header className="flex flex-col gap-6 mb-4">
+        <p className="text-xs uppercase tracking-[0.25em] text-text-muted">Control de suscripcion</p>
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <div className="space-y-2 text-left mb-4">
+          <div className="space-y-2 text-left">
             <h1 className="text-3xl font-semibold text-text-base">Panel de servicio</h1>
             <p className="text-sm text-text-muted">Estado general, cupos y accesos rapidos para operar la suscripcion.</p>
           </div>
@@ -74,40 +48,6 @@ const OwnerHomePage = () => {
           </div>
         </div>
       </header>
-
-      <section className={`${glassPanel} p-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between`}>
-        <div className="space-y-1">
-          <p className="text-lg font-semibold text-text-base">Progreso del wizard</p>
-          <p className="text-sm text-text-muted">Completa los pasos para cerrar la activacion.</p>
-        </div>
-        <div className="flex flex-col gap-3 md:flex-row md:items-center md:gap-6 w-full md:w-auto">
-          <div className="flex items-center gap-3">
-            <div className="h-14 w-14 rounded-full border-2 border-brand-secondary flex items-center justify-center text-lg font-semibold text-text-base">
-              {setupStatus.completion}%
-            </div>
-            <div className="text-sm text-text-muted">
-              {setupStatus.completed ? 'Setup completado' : 'Pendiente de finalizar'}
-            </div>
-          </div>
-          {setupStatus.completed ? (
-            <button
-              type="button"
-              onClick={() => navigate('/ajustes')}
-              className="rounded-2xl bg-brand-secondary px-4 py-2 text-sm font-semibold text-text-base transition hover:bg-brand-secondary-soft"
-            >
-              Ir a ajustes
-            </button>
-          ) : (
-            <button
-              type="button"
-              onClick={() => navigate('/setup')}
-              className="rounded-2xl border border-glass-border bg-glass-card px-4 py-2 text-sm font-semibold text-text-base transition hover:border-brand-secondary"
-            >
-              Continuar wizard
-            </button>
-          )}
-        </div>
-      </section>
 
       <section className="grid grid-cols-1 gap-6 xl:grid-cols-3">
         <div className={`${glassPanel} p-6 space-y-4 xl:col-span-2`}>
@@ -148,7 +88,6 @@ const OwnerHomePage = () => {
               <button
                 key={link.id}
                 type="button"
-                onClick={() => link.to && navigate(link.to)}
                 className="flex w-full items-center justify-between rounded-2xl border border-glass-border bg-glass-card-strong px-4 py-3 text-left text-sm font-semibold text-text-base transition hover:border-brand-secondary"
               >
                 <div className="flex items-center gap-3">
@@ -191,4 +130,4 @@ const OwnerHomePage = () => {
   );
 };
 
-export default OwnerHomePage;
+export default SubscriptionDashboardPage;
