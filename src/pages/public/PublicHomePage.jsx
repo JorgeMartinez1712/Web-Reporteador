@@ -72,7 +72,7 @@ const PublicHomePage = () => {
       <header className="mb-10 space-y-6">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="space-y-3 mb-4">
-            <h1 className="text-3xl font-semibold text-text-base flex">Elige el plan que acompana tu ritmo</h1>
+            <h1 className="text-3xl font-semibold text-text-base flex">Elige el plan que acompaña tu ritmo</h1>
             <p className="text-sm text-text-muted text-left">
               Selecciona el nivel de automatizacion y escala que necesitas para tus reportes.
             </p>

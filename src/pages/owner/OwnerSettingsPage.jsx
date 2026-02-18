@@ -25,11 +25,52 @@ const wizardMocks = {
   ],
 };
 
+const modules = [
+  { id: 'reports', name: 'Reportes' },
+  { id: 'budgets', name: 'Presupuestos' },
+  { id: 'config', name: 'Configuración' },
+  { id: 'users', name: 'Usuarios' },
+];
+
+const actions = [
+  { id: 'read', name: 'lectura' },
+  { id: 'write', name: 'Escritura' },
+  { id: 'delete', name: 'Eliminación' },
+  { id: 'export', name: 'Exportación' },
+];
+
+const mockRoles = [
+  {
+    id: 'r-1',
+    name: 'Analista Senior',
+    permissions: {
+      reports: ['read', 'write', 'export'],
+      budgets: ['read', 'write'],
+      config: ['read'],
+      users: ['read'],
+    },
+  },
+  {
+    id: 'r-2',
+    name: 'Visualizador',
+    permissions: {
+      reports: ['read'],
+      budgets: ['read'],
+      config: [],
+      users: [],
+    },
+  },
+];
+
 const SETUP_STORAGE_KEY = 'ownerSetupState';
 const SETUP_STATUS_KEY = 'ownerSetupStatus';
 
-const SetupWizardPage = () => {
+const OwnerSettingsPage = () => {
   const navigate = useNavigate();
+  const [activeTab, setActiveTab] = useState('general');
+  const [roles, setRoles] = useState(mockRoles);
+  const [newRole, setNewRole] = useState({ name: '', permissions: {} });
+
   const [steps, setSteps] = useState(() => {
     const stored = typeof window !== 'undefined' ? localStorage.getItem(SETUP_STORAGE_KEY) : null;
     if (stored) {
@@ -55,6 +96,33 @@ const SetupWizardPage = () => {
     const total = 3;
     return Math.round(((completedCount + (steps.analyst.status === 'complete' ? 1 : 0)) / total) * 100);
   }, [steps]);
+
+  const togglePermission = (moduleId, actionId) => {
+    setNewRole((prev) => {
+      const currentModulePerms = prev.permissions[moduleId] || [];
+      const updatedModulePerms = currentModulePerms.includes(actionId)
+        ? currentModulePerms.filter((p) => p !== actionId)
+        : [...currentModulePerms, actionId];
+
+      return {
+        ...prev,
+        permissions: {
+          ...prev.permissions,
+          [moduleId]: updatedModulePerms,
+        },
+      };
+    });
+  };
+
+  const handleCreateRole = () => {
+    if (!newRole.name.trim()) return;
+    const roleToAdd = {
+      id: `r-${roles.length + 1}`,
+      ...newRole,
+    };
+    setRoles((prev) => [...prev, roleToAdd]);
+    setNewRole({ name: '', permissions: {} });
+  };
 
   const connectionReady = steps.connection.status === 'complete';
   const brandingReady = steps.branding.status === 'complete';
@@ -105,29 +173,41 @@ const SetupWizardPage = () => {
     <div className="min-h-screen bg-app-bg text-text-base p-6 space-y-8">
       <header className="space-y-3">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <div className="space-y-2 mb-4">
-            <h1 className="text-3xl font-semibold text-text-base flex">Setup Wizard</h1>
-            <p className="text-sm text-text-muted text-left">Tres pasos guiados para que tu instancia quede lista y empiece a generar reportes.</p>
+          <div className="space-y-2 mb-4 text-left">
+            <h1 className="text-3xl font-semibold text-text-base flex">Ajustes de la Suscripción</h1>
+            <p className="text-sm text-text-muted">Gestiona tu conexión, branding y roles de acceso.</p>
           </div>
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2 rounded-2xl border border-glass-border bg-glass-card px-4 py-2 text-sm text-text-base">
-              <i className="bi bi-lightning-charge text-brand-secondary" />
-              <span>Avance {completion}%</span>
+            <div className={`flex items-center gap-1 rounded-full px-4 py-2 text-sm font-semibold border border-glass-border ${completion === 100 ? 'bg-status-success-soft text-status-success' : 'bg-glass-card text-text-base'}`}>
+              <i className={completion === 100 ? 'bi bi-check-circle-fill' : 'bi bi-lightning-charge'} />
+              <span>{completion === 100 ? 'Configuración completa' : `Avance ${completion}%`}</span>
             </div>
-            <button
-              type="button"
-              onClick={handleSkip}
-              className="rounded-2xl border border-glass-border bg-glass-card px-4 py-2 text-sm font-semibold text-text-base transition hover:bg-glass-card-strong"
-            >
-              Configurar mas tarde
-            </button>
           </div>
         </div>
       </header>
 
-      <div className={`${glassCard} p-6 space-y-4`}>
+      <div className="flex gap-4 border-b border-glass-border">
+        <button
+          onClick={() => setActiveTab('general')}
+          className={`pb-4 px-2 text-sm font-semibold transition-colors relative ${activeTab === 'general' ? 'text-brand-secondary' : 'text-text-muted hover:text-text-base'}`}
+        >
+          General y Conexión
+          {activeTab === 'general' && <div className="absolute bottom-0 left-0 w-full h-0.5 bg-brand-secondary" />}
+        </button>
+        <button
+          onClick={() => setActiveTab('roles')}
+          className={`pb-4 px-2 text-sm font-semibold transition-colors relative ${activeTab === 'roles' ? 'text-brand-secondary' : 'text-text-muted hover:text-text-base'}`}
+        >
+          Roles y Permisos
+          {activeTab === 'roles' && <div className="absolute bottom-0 left-0 w-full h-0.5 bg-brand-secondary" />}
+        </button>
+      </div>
+
+      {activeTab === 'general' ? (
+        <>
+          <div className={`${glassCard} p-6 space-y-4`}>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <div className="space-y-1">
+          <div className="space-y-1 text-left">
             <p className="text-xs uppercase tracking-[0.25em] text-text-muted">Progreso</p>
             <p className="text-lg font-semibold">Activación de tu instancia</p>
           </div>
@@ -240,7 +320,7 @@ const SetupWizardPage = () => {
         <div className={`${glassCard} p-6 space-y-4 lg:col-span-2`}>
           <div className="flex items-center justify-center">
             <div className="text-center">
-              <p className="text-lg font-semibold text-text-base">Invita a tu primer analista</p>
+              <p className="text-lg font-semibold text-text-base">Invita a un analista</p>
               <p className="text-sm text-text-muted">Si no tienes analista, puedes invitarlo luego.</p>
             </div>
           </div>
@@ -325,12 +405,130 @@ const SetupWizardPage = () => {
             onClick={handleFinish}
             className="w-full rounded-2xl bg-brand-secondary px-4 py-3 text-sm font-semibold text-text-base transition hover:bg-brand-secondary-soft"
           >
-            Terminar configuracion
+            Sincronizar cambios ahora
           </button>
         </div>
       </section>
+        </>
+      ) : (
+        <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <section className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+            <div className={`${glassCard} p-6 space-y-6 lg:col-span-2`}>
+              <div className="space-y-1 text-left">
+                <p className="text-lg font-semibold text-text-base">Crear nuevo rol personalizado</p>
+                <p className="text-sm text-text-muted">Define los módulos y acciones a los que tendrán acceso los usuarios con este rol.</p>
+              </div>
+
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <input
+                    id="role-name"
+                    type="text"
+                    value={newRole.name}
+                    onChange={(e) => setNewRole({ ...newRole, name: e.target.value })}
+                    placeholder="Ej. Auditor Externo, Asistente de Tesorería..."
+                    className="w-full rounded-2xl border border-glass-border bg-glass-card-strong px-4 py-3 text-sm text-text-base focus:outline-none focus:ring-2 focus:ring-brand-secondary"
+                  />
+                </div>
+
+                <div className="space-y-4">
+                  <p className="text-sm font-semibold text-text-base">Permisos</p>
+                  <div className="overflow-x-auto rounded-2xl border border-glass-border bg-glass-card-strong">
+                    <table className="w-full text-left text-sm">
+                      <thead className="bg-glass-card text-xs uppercase tracking-wider text-text-muted border-b border-glass-border">
+                        <tr>
+                          <th className="px-4 py-3 font-medium">Módulo</th>
+                          {actions.map((action) => (
+                            <th key={action.id} className="px-4 py-3 font-medium text-center">{action.name}</th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-glass-border">
+                        {modules.map((module) => (
+                          <tr key={module.id} className="hover:bg-glass-card/50 transition-colors">
+                            <td className="px-4 py-4 font-medium text-text-base">{module.name}</td>
+                            {actions.map((action) => (
+                              <td key={action.id} className="px-4 py-4 text-center">
+                                <button
+                                  type="button"
+                                  onClick={() => togglePermission(module.id, action.id)}
+                                  className={`inline-flex items-center justify-center h-6 w-6 rounded border transition-all ${
+                                    (newRole.permissions[module.id] || []).includes(action.id)
+                                      ? 'bg-brand-secondary border-brand-secondary text-text-base'
+                                      : 'border-glass-border bg-glass-card-strong text-transparent'
+                                  }`}
+                                >
+                                  <i className="bi bi-check-lg" />
+                                </button>
+                              </td>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div className="flex justify-end pt-2">
+                  <button
+                    onClick={handleCreateRole}
+                    disabled={!newRole.name.trim()}
+                    className={`rounded-2xl px-6 py-2.5 text-sm font-semibold text-text-base transition ${
+                      newRole.name.trim() ? 'bg-brand-secondary hover:bg-brand-secondary-soft' : 'bg-glass-card text-text-muted cursor-not-allowed'
+                    }`}
+                  >
+                    Crear Rol Personalizado
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-6">
+              <div className={`${glassCard} p-6 space-y-4`}>
+                <p className="text-lg font-semibold text-text-base">Roles Existentes</p>
+                <div className="space-y-3">
+                  {roles.map((role) => (
+                    <div key={role.id} className="p-4 rounded-2xl border border-glass-border bg-glass-card-strong space-y-3">
+                      <div className="flex items-center justify-between">
+                        <p className="font-semibold text-text-base">{role.name}</p>
+                        <button className="text-text-muted hover:text-status-error transition-colors">
+                          <i className="bi bi-trash" />
+                        </button>
+                      </div>
+                      <div className="flex flex-wrap gap-1.5">
+                        {Object.entries(role.permissions).flatMap(([mod, perms]) => 
+                          perms.length > 0 ? [
+                            <span key={`${role.id}-${mod}`} className="px-2 py-0.5 rounded-full bg-brand-secondary-soft/20 text-brand-secondary text-[10px] font-bold uppercase tracking-wider">
+                              {modules.find(m => m.id === mod)?.name} ({perms.length})
+                            </span>
+                          ] : []
+                        )}
+                        {Object.values(role.permissions).every(p => p.length === 0) && (
+                          <span className="text-xs text-text-muted italic">Sin permisos asignados</span>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="p-6 rounded-3xl bg-brand-secondary-soft/10 border border-brand-secondary/20">
+                <div className="flex gap-3">
+                  <i className="bi bi-info-circle text-brand-secondary text-xl" />
+                  <div className="space-y-1">
+                    <p className="text-sm font-semibold text-text-base">Nota de seguridad</p>
+                    <p className="text-xs text-text-muted leading-relaxed">
+                      Los cambios en los roles se aplican de forma inmediata a todos los usuarios asignados. Recomendamos auditar los permisos periódicamente.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      )}
     </div>
   );
 };
 
-export default SetupWizardPage;
+export default OwnerSettingsPage;

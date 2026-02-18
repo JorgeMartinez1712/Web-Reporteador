@@ -38,8 +38,7 @@ const IncomeStatementPage = () => {
   return (
     <div className="min-h-screen bg-app-bg text-text-base p-6 space-y-8">
       <header className="flex flex-col gap-6 mb-4">
-        <p className="text-xs uppercase tracking-[0.25em] text-text-muted">Reportes financieros</p>
-        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between mb-4">
           <div className="space-y-2 text-left">
             <h1 className="text-3xl font-semibold text-text-base">Estado de Resultados</h1>
             <p className="text-sm text-text-muted">Visor principal con subtotales, ISLR y reservas listos para exportar.</p>

@@ -73,16 +73,9 @@ const AdminPlansPage = () => {
           </div>
 
           <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-            <input
-              type="number"
-              min="0"
-              className="w-full md:w-1/3 rounded-2xl border border-glass-border bg-glass-card px-4 py-3 text-sm text-text-base focus:outline-none focus:ring-2 focus:ring-brand-secondary"
-              defaultValue={currentPlan?.price}
-            />
+          
             <div className="flex gap-2">
-              <button className="rounded-2xl border border-glass-border bg-glass-card px-4 py-2 text-sm font-semibold text-text-base transition hover:border-brand-secondary">
-                Guardar precio
-              </button>
+             
               <button className="rounded-2xl bg-brand-secondary px-4 py-2 text-sm font-semibold text-text-base transition hover:bg-brand-secondary-soft">
                 Publicar cambios
               </button>

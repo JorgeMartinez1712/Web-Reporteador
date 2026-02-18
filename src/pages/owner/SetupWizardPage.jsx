@@ -25,11 +25,26 @@ const wizardMocks = {
   ],
 };
 
+const modules = [
+  { id: 'reports', name: 'Reportes' },
+  { id: 'budgets', name: 'Presupuestos' },
+  { id: 'config', name: 'Configuración' },
+  { id: 'users', name: 'Usuarios' },
+];
+
+const actions = [
+  { id: 'read', name: 'Solo lectura' },
+  { id: 'write', name: 'Escritura' },
+  { id: 'delete', name: 'Eliminación' },
+  { id: 'export', name: 'Exportación' },
+];
+
 const SETUP_STORAGE_KEY = 'ownerSetupState';
 const SETUP_STATUS_KEY = 'ownerSetupStatus';
 
 const SetupWizardPage = () => {
   const navigate = useNavigate();
+  const [newRole, setNewRole] = useState({ name: '', permissions: {} });
   const [steps, setSteps] = useState(() => {
     const stored = typeof window !== 'undefined' ? localStorage.getItem(SETUP_STORAGE_KEY) : null;
     if (stored) {
@@ -52,9 +67,26 @@ const SetupWizardPage = () => {
 
   const completion = useMemo(() => {
     const completedCount = ['connection', 'branding'].filter((stepKey) => steps[stepKey].status === 'complete').length;
-    const total = 3;
+    const total = 4; // Subimos a 4 por el paso de roles
     return Math.round(((completedCount + (steps.analyst.status === 'complete' ? 1 : 0)) / total) * 100);
   }, [steps]);
+
+  const togglePermission = (moduleId, actionId) => {
+    setNewRole((prev) => {
+      const currentModulePerms = prev.permissions[moduleId] || [];
+      const updatedModulePerms = currentModulePerms.includes(actionId)
+        ? currentModulePerms.filter((p) => p !== actionId)
+        : [...currentModulePerms, actionId];
+
+      return {
+        ...prev,
+        permissions: {
+          ...prev.permissions,
+          [moduleId]: updatedModulePerms,
+        },
+      };
+    });
+  };
 
   const connectionReady = steps.connection.status === 'complete';
   const brandingReady = steps.branding.status === 'complete';
@@ -83,7 +115,6 @@ const SetupWizardPage = () => {
           navigate('/ajustes', { replace: true });
         }
       } catch (err) {
-        // ignore parse errors
       }
     }
   }, [navigate]);
@@ -106,7 +137,7 @@ const SetupWizardPage = () => {
       <header className="space-y-3">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="space-y-2 mb-4">
-            <h1 className="text-3xl font-semibold text-text-base flex">Setup Wizard</h1>
+            <h1 className="text-3xl font-semibold text-text-base flex">Configuración inicial</h1>
             <p className="text-sm text-text-muted text-left">Tres pasos guiados para que tu instancia quede lista y empiece a generar reportes.</p>
           </div>
           <div className="flex items-center gap-3">
@@ -127,7 +158,7 @@ const SetupWizardPage = () => {
 
       <div className={`${glassCard} p-6 space-y-4`}>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <div className="space-y-1">
+          <div className="space-y-1 text-left">
             <p className="text-xs uppercase tracking-[0.25em] text-text-muted">Progreso</p>
             <p className="text-lg font-semibold">Activación de tu instancia</p>
           </div>
@@ -311,22 +342,105 @@ const SetupWizardPage = () => {
               </div>
               <i className="bi bi-image text-brand-secondary" />
             </div>
-            <div className="flex items-start justify-between rounded-2xl border border-glass-border bg-glass-card-strong px-4 py-3">
-              <div className="space-y-1 text-left">
-                <p className="text-text-muted">Analista</p>
-                <p className="font-semibold text-text-base">{steps.analyst.fullName || 'Sin asignar'}</p>
-                <p className="text-xs text-text-muted">{steps.analyst.email || 'Agrega un correo para invitar'}</p>
-              </div>
-              <i className="bi bi-people text-brand-secondary" />
+          </div>
+        </div>
+      </section>
+
+      <section className="grid grid-cols-1 gap-6">
+        <div className={`${glassCard} p-6 space-y-6`}>
+          <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+            <div className="space-y-1 text-left">
+              <p className="text-lg font-semibold text-text-base">Roles y Permisos (Opcional)</p>
+              <p className="text-sm text-text-muted">Configura un rol personalizado para tus empleados.</p>
+            </div>
+            <div className="p-3 rounded-2xl bg-brand-secondary/10 border border-brand-secondary/20">
+               <p className="text-xs text-brand-secondary font-medium">HU-04: Definición de Roles</p>
             </div>
           </div>
-          <button
-            type="button"
-            onClick={handleFinish}
-            className="w-full rounded-2xl bg-brand-secondary px-4 py-3 text-sm font-semibold text-text-base transition hover:bg-brand-secondary-soft"
-          >
-            Terminar configuracion
-          </button>
+
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+            <div className="space-y-4">
+              <div className="space-y-2 text-left">
+                <label className="text-sm text-text-muted" htmlFor="role-name-wizard">Nombre del rol</label>
+                <input
+                  id="role-name-wizard"
+                  type="text"
+                  value={newRole.name}
+                  onChange={(e) => setNewRole({ ...newRole, name: e.target.value })}
+                  placeholder="Ej. Analista de Tesorería"
+                  className="w-full rounded-2xl border border-glass-border bg-glass-card-strong px-4 py-3 text-sm text-text-base focus:outline-none focus:ring-2 focus:ring-brand-secondary"
+                />
+              </div>
+
+              <div className="overflow-x-auto rounded-2xl border border-glass-border bg-glass-card-strong">
+                <table className="w-full text-left text-sm">
+                  <thead className="bg-glass-card text-xs uppercase tracking-wider text-text-muted border-b border-glass-border">
+                    <tr>
+                      <th className="px-4 py-3 font-medium">Módulo</th>
+                      {actions.map((action) => (
+                        <th key={action.id} className="px-4 py-3 font-medium text-center">{action.name}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-glass-border">
+                    {modules.map((module) => (
+                      <tr key={module.id} className="hover:bg-glass-card/50 transition-colors">
+                        <td className="px-4 py-4 font-medium text-text-base">{module.name}</td>
+                        {actions.map((action) => (
+                          <td key={action.id} className="px-4 py-4 text-center">
+                            <button
+                              type="button"
+                              onClick={() => togglePermission(module.id, action.id)}
+                              className={`inline-flex items-center justify-center h-5 w-5 rounded border transition-all ${
+                                (newRole.permissions[module.id] || []).includes(action.id)
+                                  ? 'bg-brand-secondary border-brand-secondary text-text-base'
+                                  : 'border-glass-border bg-glass-card-strong text-transparent'
+                              }`}
+                            >
+                              <i className="bi bi-check" />
+                            </button>
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div className="flex flex-col justify-between p-6 rounded-2xl bg-glass-card-strong border border-glass-border relative overflow-hidden">
+               <div className="space-y-4 relative z-10">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-xl bg-brand-secondary/20">
+                      <i className="bi bi-shield-check text-brand-secondary" />
+                    </div>
+                    <p className="font-semibold text-text-base">Vista previa del rol</p>
+                  </div>
+                  <div className="space-y-2">
+                    <p className="text-xl font-bold text-brand-secondary">{newRole.name || 'Nuevo Rol'}</p>
+                    <div className="flex flex-wrap gap-2">
+                       {Object.keys(newRole.permissions).length > 0 ? (
+                         Object.entries(newRole.permissions).map(([mod, perms]) => perms.length > 0 && (
+                           <span key={mod} className="px-3 py-1 rounded-full bg-glass-card border border-glass-border text-xs text-text-muted">
+                             {modules.find(m => m.id === mod)?.name}: {perms.length} permisos
+                           </span>
+                         ))
+                       ) : (
+                         <p className="text-sm text-text-muted italic">No has seleccionado permisos aún.</p>
+                       )}
+                    </div>
+                  </div>
+               </div>
+               <button
+                  type="button"
+                  onClick={handleFinish}
+                  className="w-full mt-8 rounded-2xl bg-brand-secondary px-4 py-4 text-sm font-semibold text-text-base transition hover:bg-brand-secondary-soft shadow-lg shadow-brand-secondary/20"
+                >
+                  Finalizar y Guardar todo
+                </button>
+                <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-brand-secondary/5 rounded-full blur-3xl" />
+            </div>
+          </div>
         </div>
       </section>
     </div>

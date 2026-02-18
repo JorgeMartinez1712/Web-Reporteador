@@ -1,15 +1,15 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaSpinner } from 'react-icons/fa';
-import { Line } from 'react-chartjs-2';
+import { Radar } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
+  RadialLinearScale,
   PointElement,
   LineElement,
   Tooltip,
   Filler,
+  Legend,
 } from 'chart.js';
 import PasswordRequirements from '../../components/common/PasswordRequeriments';
 import SuccessNotification from '../../components/common/SuccessNotification';
@@ -18,7 +18,7 @@ import ReportCard from '../../components/common/ReportCard';
 import logo from '/assets/logo.png';
 import { useAuth } from '../../context/AuthContext';
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Filler);
+ChartJS.register(RadialLinearScale, PointElement, LineElement, Tooltip, Filler, Legend);
 
 const getInitialTheme = () => {
   if (typeof window === 'undefined') {
@@ -113,16 +113,16 @@ const RegisterPage = () => {
     () =>
       theme === 'dark'
         ? {
-            line: 'rgba(14,165,233,1)',
-            fill: 'rgba(14,165,233,0.18)',
+            line: 'rgba(16, 185, 129, 1)',
+            fill: 'rgba(16, 185, 129, 0.2)',
             axis: 'rgba(248,250,252,0.45)',
             grid: 'rgba(148,163,184,0.25)',
             tooltipBg: 'rgba(2,6,23,0.95)',
             tooltipText: '#f8fafc',
           }
         : {
-            line: 'rgba(99,102,241,1)',
-            fill: 'rgba(99,102,241,0.16)',
+            line: 'rgba(5, 150, 105, 1)',
+            fill: 'rgba(5, 150, 105, 0.16)',
             axis: 'rgba(15,23,42,0.65)',
             grid: 'rgba(15,23,42,0.1)',
             tooltipBg: '#ffffff',
@@ -133,15 +133,18 @@ const RegisterPage = () => {
 
   const chartData = useMemo(
     () => ({
-      labels: ['Instancias', 'Licencias', 'Integraciones', 'Monedas', 'Variables INPC', 'Usuarios'],
+      labels: ['Cifrado', 'MFA', 'Auditoría', 'Respaldo', 'Privacidad'],
       datasets: [
         {
-          data: [5, 8, 6, 12, 7, 10],
+          label: 'Nivel de Seguridad',
+          data: [95, 98, 92, 96, 100],
           borderColor: chartColors.line,
           backgroundColor: chartColors.fill,
-          tension: 0.45,
           borderWidth: 2,
-          pointRadius: 0,
+          pointBackgroundColor: chartColors.line,
+          pointBorderColor: '#fff',
+          pointHoverBackgroundColor: '#fff',
+          pointHoverBorderColor: chartColors.line,
           fill: true,
         },
       ],
@@ -164,16 +167,17 @@ const RegisterPage = () => {
           cornerRadius: 12,
         },
       },
-      interaction: { intersect: false, mode: 'index' },
       scales: {
-        x: {
-          grid: { display: false },
-          ticks: { color: chartColors.axis, font: { weight: 500 } },
-        },
-        y: {
-          grid: { color: chartColors.grid, drawTicks: false },
-          ticks: { color: chartColors.axis, callback: (value) => `${value}%` },
-          border: { display: false },
+        r: {
+          angleLines: { color: chartColors.grid },
+          grid: { color: chartColors.grid },
+          pointLabels: {
+            color: chartColors.axis,
+            font: { size: 10, weight: 600 },
+          },
+          ticks: { display: false, stepSize: 20 },
+          suggestedMin: 0,
+          suggestedMax: 100,
         },
       },
     }),
@@ -331,7 +335,7 @@ const RegisterPage = () => {
         <div className="relative z-10 flex flex-col lg:flex-row min-h-screen">
           <div className="w-full lg:w-1/2 px-6 lg:px-16 py-10 space-y-10">
             <div className="flex items-center justify-between flex-wrap gap-4">
-              <p className="uppercase tracking-[0.35em] text-xs text-text-muted">Onboarding automatizado</p>
+              <p className="uppercase tracking-[0.35em] text-xs text-text-muted">Registro</p>
               <button
                 type="button"
                 onClick={toggleTheme}
@@ -350,31 +354,25 @@ const RegisterPage = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-brand-secondary/10 via-transparent to-brand-primary/20" />
               <div className="relative z-10 space-y-6">
                 <div className="flex flex-wrap items-start justify-between gap-6">
-                  <div>
-                    <p className="text-text-muted text-sm">Instancias desplegadas</p>
-                    <p className="text-3xl font-semibold text-text-base">12 sedes</p>
+                  <div className="text-left">
+                    <p className="text-text-muted text-sm">empresas respaldadas</p>
+                    <p className="text-3xl font-semibold text-text-base">12 </p>
                   </div>
-                  <div>
+                  <div className="text-left">
                     <p className="text-text-muted text-sm">Variables configuradas</p>
                     <p className="text-3xl font-semibold text-brand-accent">28 claves</p>
                   </div>
                 </div>
                 <div className="h-48">
-                  <Line data={chartData} options={chartOptions} />
+                  <Radar data={chartData} options={chartOptions} />
                 </div>
                 <div className="flex flex-wrap gap-8 text-sm text-text-muted">
-                  <div>
+                  <div className="text-left">
                     <p className="uppercase tracking-[0.3em] text-xs">Modelos de licencia</p>
                     <p className="text-xl font-semibold text-status-success">3 activos</p>
                   </div>
-                  <div>
-                    <p className="uppercase tracking-[0.3em] text-xs">Integraciones</p>
-                    <p className="text-xl font-semibold text-text-base">GALAC + 2 sistemas ERP</p>
-                  </div>
-                  <div>
-                    <p className="uppercase tracking-[0.3em] text-xs">Administradores</p>
-                    <p className="text-xl font-semibold text-status-warning">6 pendientes</p>
-                  </div>
+                 
+                 
                 </div>
               </div>
             </ReportCard>

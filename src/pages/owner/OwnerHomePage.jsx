@@ -76,9 +76,9 @@ const OwnerHomePage = () => {
       </header>
 
       <section className={`${glassPanel} p-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between`}>
-        <div className="space-y-1">
-          <p className="text-lg font-semibold text-text-base">Progreso del wizard</p>
-          <p className="text-sm text-text-muted">Completa los pasos para cerrar la activacion.</p>
+        <div className="space-y-1 text-left">
+          <p className="text-lg font-semibold text-text-base">Progreso de la configuración</p>
+          <p className="text-sm text-text-muted">Completa los pasos para cerrar la activación.</p>
         </div>
         <div className="flex flex-col gap-3 md:flex-row md:items-center md:gap-6 w-full md:w-auto">
           <div className="flex items-center gap-3">
@@ -103,7 +103,7 @@ const OwnerHomePage = () => {
               onClick={() => navigate('/setup')}
               className="rounded-2xl border border-glass-border bg-glass-card px-4 py-2 text-sm font-semibold text-text-base transition hover:border-brand-secondary"
             >
-              Continuar wizard
+              Continuar configuración
             </button>
           )}
         </div>
@@ -169,7 +169,7 @@ const OwnerHomePage = () => {
 
       <section className={`${glassPanel} p-6 space-y-4`}>
         <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-          <div>
+          <div className='text-left'>
             <p className="text-xs uppercase tracking-[0.25em] text-text-muted">Salud del servicio</p>
             <p className="text-lg font-semibold text-text-base">Visor ejecutivo</p>
           </div>

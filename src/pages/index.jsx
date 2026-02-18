@@ -26,7 +26,8 @@ import AnalystHomePage from './analyst/AnalystHomePage';
 import ReportsPage from './analyst/ReportsPage';
 import CurrenciesPage from './analyst/CurrenciesPage';
 import AccountMappingPage from './analyst/AccountMappingPage';
-import IndicesConfigPage from './analyst/IndicesConfigPage';
+import CurrencyPage from './analyst/CurrencyPage';
+import InpcVariablesPage from './analyst/InpcVariablesPage';
 import IncomeStatementPage from './analyst/IncomeStatementPage';
 import CashflowPage from './analyst/CashflowPage';
 import ProjectionsSimulatorPage from './analyst/ProjectionsSimulatorPage';
@@ -65,7 +66,8 @@ export {
   ReportsPage,
   CurrenciesPage,
   AccountMappingPage,
-  IndicesConfigPage,
+  CurrencyPage,
+  InpcVariablesPage,
   IncomeStatementPage,
   CashflowPage,
   ProjectionsSimulatorPage,

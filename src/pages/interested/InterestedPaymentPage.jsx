@@ -77,8 +77,7 @@ const InterestedPaymentPage = () => {
       <section className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <div className={`${glassPanel} lg:col-span-2 p-6 space-y-6`}>
           <div>
-            <p className="text-xs uppercase tracking-[0.25em] text-text-muted">Metodo de pago</p>
-            <p className="text-lg font-semibold text-text-base">Selecciona tu pasarela</p>
+            <p className="text-lg font-semibold text-text-base">Método de pago</p>
           </div>
 
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">

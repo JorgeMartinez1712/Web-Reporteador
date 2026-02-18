@@ -14,6 +14,7 @@ const roleHomeMap = {
 const navLinksByRole = {
   DUENO: [
     { label: 'Dashboard de servicio', description: 'Estado de la suscripcion', icon: 'bi bi-speedometer2', to: '/dashboard' },
+    { label: 'Monedas y tasas', description: 'Gestión de divisas', icon: 'bi bi-currency-exchange', to: '/tasas-monedas' },
     { label: 'Usuarios', description: 'Cupos y accesos', icon: 'bi bi-people', to: '/usuarios' },
     { label: 'Multiempresa', description: 'Empresas y analistas asignados', icon: 'bi bi-building', to: '/multiempresa' },
     { label: 'Seguridad y dispositivos', description: 'Administrar dispositivos', icon: 'bi bi-shield-check', to: '/dispositivos' },
@@ -23,7 +24,8 @@ const navLinksByRole = {
   ANALISTA: [
     { label: 'Dashboard financiero', description: 'Pulso operativo', icon: 'bi bi-house', to: '/dashboard' },
     { label: 'Mapeo GALAC', description: 'Plan de cuentas a EERR', icon: 'bi bi-diagram-3', to: '/mapeo-galac' },
-    { label: 'Tasas e INPC', description: 'Configuracion tecnica', icon: 'bi bi-graph-up', to: '/tasas-inpc' },
+    { label: 'Monedas y tasas', description: 'Gestión de divisas', icon: 'bi bi-currency-exchange', to: '/tasas-monedas' },
+    { label: 'INPC y variables', description: 'Ajustes FCCPV', icon: 'bi bi-graph-up', to: '/inpc' },
     { label: 'Estado de resultados', description: 'Visor principal', icon: 'bi bi-clipboard-data', to: '/estado-resultados' },
     { label: 'Flujo de caja', description: 'Ingresos y egresos', icon: 'bi bi-cash-coin', to: '/flujo-caja' },
     { label: 'Simulador de proyecciones', description: 'Escenarios editables', icon: 'bi bi-sliders', to: '/proyecciones' },

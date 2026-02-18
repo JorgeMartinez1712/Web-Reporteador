@@ -26,7 +26,8 @@ import {
   ReportsPage,
   CurrenciesPage,
   AccountMappingPage,
-  IndicesConfigPage,
+  CurrencyPage,
+  InpcVariablesPage,
   IncomeStatementPage,
   CashflowPage,
   ProjectionsSimulatorPage,
@@ -264,10 +265,18 @@ const AllRoutes = () => {
         }
       />
       <Route
-        path="/tasas-inpc"
+        path="/tasas-monedas"
         element={
           <PrivateRoute allowedRoles={['ANALISTA']}>
-            <IndicesConfigPage />
+            <CurrencyPage />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/inpc"
+        element={
+          <PrivateRoute allowedRoles={['ANALISTA']}>
+            <InpcVariablesPage />
           </PrivateRoute>
         }
       />

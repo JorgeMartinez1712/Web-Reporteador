@@ -141,7 +141,7 @@ const AdminRequestsPage = () => {
               <p className="text-xs uppercase tracking-[0.25em] text-text-muted">Documentos</p>
               <div className="space-y-2 text-sm">
                 {selectedRequest?.documents.map((doc) => (
-                  <div key={doc.name} className="flex items-center justify-between rounded-xl border border-glass-border bg-glass-card px-3 py-2">
+                  <div key={doc.name} className="flex items-center justify-between rounded-xl border border-glass-border bg-glass-card px-3 py-2 text-left">
                     <div>
                       <p className="font-semibold text-text-base">{doc.name}</p>
                       <p className="text-xs text-text-muted">{doc.type} • {doc.size}</p>

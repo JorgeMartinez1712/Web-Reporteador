@@ -1,11 +1,18 @@
 import { useMemo, useState } from 'react';
 import CustomModal from '../../components/common/CustomModal';
+import GlassSelect from '../../components/common/GlassSelect';
 
 const mockSlots = { used: 2, limit: 5 };
 const mockCompanies = [
   { id: 'empresa-1', name: 'Inversiones Andina' },
   { id: 'empresa-2', name: 'Servicios Delta' },
   { id: 'empresa-3', name: 'Operadora Galac' },
+];
+
+const mockRoles = [
+  { value: 'r-1', label: 'Analista Senior' },
+  { value: 'r-2', label: 'Visualizador' },
+  { value: 'r-3', label: 'Administrador' },
 ];
 
 const mockUsers = [
@@ -15,6 +22,7 @@ const mockUsers = [
     email: 'ana.contreras@conta.com',
     joined: '10 Feb 2026',
     companies: ['Inversiones Andina', 'Servicios Delta'],
+    role: 'Analista Senior',
     status: 'Activo',
   },
   {
@@ -23,6 +31,7 @@ const mockUsers = [
     email: 'luis.perez@conta.com',
     joined: '08 Feb 2026',
     companies: ['Operadora Galac'],
+    role: 'Visualizador',
     status: 'Pendiente',
   },
 ];
@@ -38,6 +47,7 @@ const OwnerUsersPage = () => {
   const [inviteOpen, setInviteOpen] = useState(false);
   const [inviteEmail, setInviteEmail] = useState('');
   const [inviteCompanies, setInviteCompanies] = useState([]);
+  const [inviteRole, setInviteRole] = useState('r-1');
 
   const glassCard = 'glass-elevation rounded-3xl border border-glass-border bg-glass-card backdrop-blur-xl';
 
@@ -51,26 +61,28 @@ const OwnerUsersPage = () => {
   const handleInvite = () => {
     if (!inviteEmail.trim()) return;
     const companiesSelected = inviteCompanies.map((id) => mockCompanies.find((c) => c.id === id)?.name).filter(Boolean);
+    const roleLabel = mockRoles.find(r => r.value === inviteRole)?.label || 'Sin rol';
     const newUser = {
       id: `u-${users.length + 1}`,
       name: inviteEmail.split('@')[0].replace('.', ' '),
       email: inviteEmail,
       joined: 'Hoy',
       companies: companiesSelected,
+      role: roleLabel,
       status: 'Pendiente',
     };
     setUsers((prev) => [...prev, newUser]);
     setInviteEmail('');
     setInviteCompanies([]);
+    setInviteRole('r-1');
     setInviteOpen(false);
   };
 
   return (
     <div className="min-h-screen bg-app-bg text-text-base p-6 space-y-8">
       <header className="space-y-3">
-        <p className="text-xs uppercase tracking-[0.25em] text-text-muted">Suscripcion</p>
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <div className="space-y-2 text-left">
+          <div className="space-y-2 text-left mb-4">
             <h1 className="text-3xl font-semibold text-text-base">Usuarios de la suscripcion</h1>
             <p className="text-sm text-text-muted">Asigna analistas, controla accesos y envía invitaciones.</p>
           </div>
@@ -100,7 +112,6 @@ const OwnerUsersPage = () => {
       <section className={`${glassCard} p-6 space-y-4`}>
         <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
           <div>
-            <p className="text-xs uppercase tracking-[0.25em] text-text-muted">Usuarios activos</p>
             <p className="text-lg font-semibold text-text-base">Controla quién accede a cada empresa</p>
           </div>
           <div className="flex items-center gap-3 text-sm text-text-muted">
@@ -112,7 +123,7 @@ const OwnerUsersPage = () => {
         <div className="overflow-hidden rounded-2xl border border-glass-border bg-glass-card-strong">
           <div className="grid grid-cols-12 gap-3 border-b border-glass-border bg-glass-card px-4 py-3 text-xs uppercase tracking-[0.15em] text-text-muted">
             <span className="col-span-3">Nombre / Email</span>
-            <span className="col-span-2">Registro</span>
+            <span className="col-span-2">Rol</span>
             <span className="col-span-4">Empresas asignadas</span>
             <span className="col-span-1">Estado</span>
             <span className="col-span-2 text-right">Acciones</span>
@@ -124,7 +135,7 @@ const OwnerUsersPage = () => {
                   <p className="font-semibold text-text-base">{user.name}</p>
                   <p className="text-xs text-text-muted">{user.email}</p>
                 </div>
-                <span className="col-span-2 text-text-muted">{user.joined}</span>
+                <span className="col-span-2 text-text-muted font-medium">{user.role}</span>
                 <span className="col-span-4 text-text-muted">
                   {user.companies.length ? user.companies.join(', ') : 'Sin empresas'}
                 </span>
@@ -133,7 +144,7 @@ const OwnerUsersPage = () => {
                 </span>
                 <div className="col-span-2 flex items-center justify-end gap-2">
                   <button className="rounded-xl border border-glass-border px-3 py-1 text-xs font-semibold text-status-warning transition hover:border-status-warning">
-                    Suspender
+                    Editar
                   </button>
                 </div>
               </div>
@@ -152,6 +163,18 @@ const OwnerUsersPage = () => {
               onChange={(e) => setInviteEmail(e.target.value)}
               className="w-full rounded-2xl border border-glass-border bg-glass-card-strong px-4 py-3 text-sm text-text-base focus:outline-none focus:ring-2 focus:ring-brand-secondary"
               placeholder="analista@empresa.com"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-sm text-text-muted" htmlFor="invite-role">Rol asignado</label>
+            <GlassSelect
+              id="invite-role"
+              value={inviteRole}
+              options={mockRoles}
+              onChange={setInviteRole}
+              placeholder="Selecciona un rol"
+              icon="bi bi-shield-lock"
             />
           </div>
 

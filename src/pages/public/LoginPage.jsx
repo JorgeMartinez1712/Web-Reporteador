@@ -97,31 +97,26 @@ const LoginPage = () => {
   );
 
   const chartData = useMemo(
-    () => ({
-      labels: [
-        'Presupuesto',
-        'Flujo de Caja',
-        'Dif. Presupuesto/Flujo',
-        'Mayor Analítico',
-        'Estado de Resultados',
-        'Mov. Bancarios',
-        'Variables INPC',
-        'Usuarios/Roles',
-      ],
-      datasets: [
-        {
-          data: [82, 74, 70, 65, 77, 80, 68, 72],
-          borderColor: chartColors.line,
-          backgroundColor: chartColors.fill,
-          tension: 0.45,
-          borderWidth: 2,
-          pointRadius: 0,
-          fill: true,
-        },
-      ],
-    }),
-    [chartColors],
-  );
+  () => ({
+    // Representamos los últimos 8 meses para mostrar crecimiento/estabilidad
+    labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago'], 
+    datasets: [
+      {
+        label: 'Salud Financiera',
+        // Simulamos una curva ascendente de eficiencia o ingresos
+        data: [65, 59, 80, 81, 76, 85, 92, 98], 
+        borderColor: chartColors.line,
+        backgroundColor: chartColors.fill,
+        tension: 0.45,
+        borderWidth: 3, // Un poco más grueso para que destaque
+        pointRadius: 4, // Puntos pequeños para dar sensación de nodos de datos
+        pointBackgroundColor: chartColors.line,
+        fill: true,
+      },
+    ],
+  }),
+  [chartColors]
+);
 
   const chartOptions = useMemo(
     () => ({
@@ -218,7 +213,7 @@ const LoginPage = () => {
         <div className="relative z-10 flex flex-col lg:flex-row min-h-screen">
         <div className="w-full lg:w-1/2 px-6 lg:px-16 py-10 space-y-10">
           <div className="flex items-center justify-between flex-wrap gap-4">
-            <p className="uppercase tracking-[0.35em] text-xs text-text-muted">Plataforma automatizada</p>
+            <p className="uppercase tracking-[0.35em] text-xs text-text-muted">Inicio de sesión</p>
             <button
               type="button"
               onClick={toggleTheme}
@@ -229,39 +224,30 @@ const LoginPage = () => {
             </button>
           </div>
           <ReportCard
-            title="Pulso de sincronización"
-            description="Indicadores en vivo del motor de reportes"
+            title="Rendimiento Operativo"
+            description="Promedio de optimización financiera de nuestros clientes."
             className="shadow-2xl overflow-hidden"
             bodyClassName="relative"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/10 via-transparent to-brand-secondary/20" />
             <div className="relative z-10 space-y-6">
-              <div className="flex flex-wrap items-start justify-between gap-6">
+              <div className="flex flex-wrap items-start justify-between gap-6 text-left">
                 <div>
                   <p className="text-text-muted text-sm">Reportes sincronizados</p>
-                  <p className="text-3xl font-semibold text-text-base">+240 diarios</p>
+                  <p className="text-3xl font-semibold text-text-base">+95% de precisión</p>
                 </div>
-                <div>
-                  <p className="text-text-muted text-sm">Tiempo de consolidación</p>
-                  <p className="text-3xl font-semibold text-brand-accent">3 min</p>
-                </div>
+              
               </div>
               <div className="h-48">
                 <Line data={chartData} options={chartOptions} />
               </div>
-              <div className="flex flex-wrap gap-8 text-sm text-text-muted">
+              <div className="flex flex-wrap gap-8 text-sm text-text-muted text-left">
                 <div>
                   <p className="uppercase tracking-[0.3em] text-xs">Cobertura multimoneda</p>
                   <p className="text-xl font-semibold text-text-base">12 tipos de cambio</p>
                 </div>
-                <div>
-                  <p className="uppercase tracking-[0.3em] text-xs">Fuentes conectadas</p>
-                  <p className="text-xl font-semibold text-status-success">8 sistemas</p>
-                </div>
-                <div>
-                  <p className="uppercase tracking-[0.3em] text-xs">Alertas pendientes</p>
-                  <p className="text-xl font-semibold text-status-warning">1 ajuste</p>
-                </div>
+               
+               
               </div>
             </div>
           </ReportCard>
@@ -285,7 +271,7 @@ const LoginPage = () => {
                   name="email"
                   id="email"
                   className="border border-glass-border bg-glass-card-strong text-text-base placeholder:text-text-muted rounded-2xl block w-full p-3 focus:outline-none focus:ring-2 focus:ring-brand-secondary"
-                  placeholder="analyst@bank.com"
+                  placeholder="correo@ejemplo.com"
                   required
                   value={credentials.email}
                   onChange={(e) => setCredentials({ ...credentials, email: e.target.value })}

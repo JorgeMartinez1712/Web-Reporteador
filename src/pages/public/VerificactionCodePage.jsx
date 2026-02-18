@@ -277,19 +277,16 @@ const VerificactionCodePage = () => {
             <div className="absolute inset-0 bg-gradient-to-br from-brand-secondary/10 via-transparent to-brand-primary/20" />
             <div className="relative z-10 space-y-6">
               <div className="flex flex-wrap items-start justify-between gap-6">
-                <div>
+                <div className='text-left'>
                   <p className="text-text-muted text-sm">Operaciones liberadas</p>
                   <p className="text-3xl font-semibold text-text-base">+96%</p>
                 </div>
-                <div>
-                  <p className="text-text-muted text-sm">Alertas bloqueadas</p>
-                  <p className="text-3xl font-semibold text-status-warning">12</p>
-                </div>
+               
               </div>
               <div className="h-48">
                 <Line data={chartData} options={chartOptions} />
               </div>
-              <div className="flex flex-wrap gap-8 text-sm text-text-muted">
+              <div className="flex flex-wrap gap-8 text-sm text-text-muted text-left">
                 <div>
                   <p className="uppercase tracking-[0.3em] text-xs">Latencia multifactor</p>
                   <p className="text-xl font-semibold text-status-success">1.2 s</p>
@@ -312,8 +309,7 @@ const VerificactionCodePage = () => {
               <img className="w-28 h-auto" src={logo} alt="logo" />
               <div>
                 <p className="text-sm uppercase tracking-[0.4em] text-text-muted">Segundo factor</p>
-                <h2 className="text-2xl font-semibold mt-2">Introduce tu código dinámico</h2>
-                <p className="text-text-muted text-sm mt-1">Enviado a {credentials?.email || 'tu correo corporativo'}</p>
+                <h2 className="text-2xl font-semibold mt-2">Introduce tu código del autenticador</h2>
               </div>
             </div>
             <form className="space-y-4" onSubmit={handleSubmit}>
