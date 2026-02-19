@@ -28,9 +28,8 @@ const ComparativeReportPage = () => {
 
   return (
     <div className="min-h-screen bg-app-bg text-text-base p-6 space-y-8">
-      <header className="flex flex-col gap-6 mb-4">
-        <p className="text-xs uppercase tracking-[0.25em] text-text-muted">Analisis de variaciones</p>
-        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+      <header className="flex flex-col gap-6 ">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between mb-4 ">
           <div className="space-y-2 text-left">
             <h1 className="text-3xl font-semibold text-text-base">Comparativa Presupuestaria</h1>
             <p className="text-sm text-text-muted">Cruza presupuesto aprobado vs realidad GALAC con semaforos de desviacion.</p>
@@ -55,12 +54,12 @@ const ComparativeReportPage = () => {
               <span className="font-semibold text-text-base">{row.label}</span>
               <span className="text-text-muted">{format(row.budget)}</span>
               <span className="text-text-base">{format(row.actual)}</span>
-              <span className="flex items-center gap-2">
-                <span className={`rounded-full px-3 py-1 text-xs font-semibold ${getBadge(row.pct)}`}>
-                  {row.pct.toFixed(1)}%
+                <span className="flex items-center justify-center gap-2">
+                  <span className={`rounded-full px-3 py-1 text-xs font-semibold ${getBadge(row.pct)}`}>
+                    {row.pct.toFixed(1)}%
+                  </span>
+                  <span className="text-xs text-text-muted">{format(row.variance)}</span>
                 </span>
-                <span className="text-xs text-text-muted">{format(row.variance)}</span>
-              </span>
             </div>
           ))}
         </div>
