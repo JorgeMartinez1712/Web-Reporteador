@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { FaSpinner } from 'react-icons/fa';
 import useLogin from '../../hooks/useLogin';
 import ErrorNotification from '../../components/common/ErrorNotification';
-import ReportCard from '../../components/common/ReportCard';
 import { getInstitutionalLogoByTheme } from '../../utils/themeAssets';
 
 const getInitialTheme = () => {
@@ -11,27 +10,6 @@ const getInitialTheme = () => {
     return 'dark';
   }
   return localStorage.getItem('preferred-theme') || 'dark';
-};
-
-const hexToRgba = (hex, alpha = 1) => {
-  const sanitized = hex.replace('#', '');
-  const chunk = sanitized.length === 3 ? sanitized.split('').map((c) => c + c).join('') : sanitized;
-  const int = parseInt(chunk, 16);
-  const r = (int >> 16) & 255;
-  const g = (int >> 8) & 255;
-  const b = int & 255;
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-};
-
-const withAlpha = (color, alpha) => {
-  if (!color) return `rgba(0,0,0,${alpha})`;
-  const trimmed = color.trim();
-  if (trimmed.startsWith('rgba(') || trimmed.startsWith('rgb(')) {
-    const values = trimmed.replace(/rgba?\(|\)/g, '').split(',').map((v) => v.trim());
-    const [r, g, b] = values;
-    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-  }
-  return hexToRgba(trimmed, alpha);
 };
 
 const LoginPage = () => {
@@ -84,98 +62,6 @@ const LoginPage = () => {
   const toggleTheme = () => setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
 
   const logoSrc = useMemo(() => getInstitutionalLogoByTheme(theme), [theme]);
-
-  const cssVars = useMemo(() => {
-    if (typeof window === 'undefined') {
-      return {
-        brandPrimary: '#a30081',
-        brandSecondary: '#f20587',
-        brandAccent: '#f2522e',
-        textMuted: 'rgba(239,239,239,0.78)',
-        textBase: '#ffffff',
-        borderSoft: 'rgba(255,255,255,0.12)',
-        surfaceStrong: 'rgba(255,255,255,0.09)',
-      };
-    }
-    const style = getComputedStyle(document.documentElement);
-    const read = (name, fallback) => style.getPropertyValue(name).trim() || fallback;
-    return {
-      brandPrimary: read('--color-brand-primary', '#a30081'),
-      brandSecondary: read('--color-brand-secondary', '#f20587'),
-      brandAccent: read('--color-brand-accent', '#f2522e'),
-      textMuted: read('--color-text-muted', 'rgba(239,239,239,0.78)'),
-      textBase: read('--color-text-base', '#ffffff'),
-      borderSoft: read('--color-border-soft', 'rgba(255,255,255,0.12)'),
-      surfaceStrong: read('--color-surface-strong', 'rgba(255,255,255,0.09)'),
-    };
-  }, [theme]);
-
-  const chartColors = useMemo(
-    () =>
-      theme === 'dark'
-        ? {
-            line: cssVars.brandPrimary,
-            fill: withAlpha(cssVars.brandPrimary, 0.2),
-            axis: cssVars.textMuted,
-            grid: withAlpha(cssVars.borderSoft, 0.55),
-            tooltipBg: cssVars.surfaceStrong,
-            tooltipText: cssVars.textBase,
-          }
-        : {
-            line: cssVars.brandSecondary,
-            fill: withAlpha(cssVars.brandSecondary, 0.18),
-            axis: cssVars.textMuted,
-            grid: withAlpha(cssVars.borderSoft, 0.4),
-            tooltipBg: '#ffffff',
-            tooltipText: '#0e0e0e',
-          },
-    [theme, cssVars],
-  );
-
-  const chartData = useMemo(
-    () => ({
-      labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago'],
-      datasets: [
-        {
-          label: 'Salud Financiera',
-          data: [65, 59, 80, 81, 76, 85, 92, 98],
-          borderColor: chartColors.line,
-          backgroundColor: chartColors.fill,
-          tension: 0.45,
-          borderWidth: 3,
-          pointRadius: 4,
-          pointBackgroundColor: chartColors.line,
-          fill: true,
-        },
-      ],
-      options: {
-        interaction: { intersect: false, mode: 'index' },
-        scales: {
-          x: {
-            grid: { display: false },
-            ticks: { color: chartColors.axis, font: { weight: 500 } },
-          },
-          y: {
-            grid: { color: chartColors.grid, drawTicks: false },
-            ticks: { color: chartColors.axis, callback: (value) => `${value}%` },
-            border: { display: false },
-          },
-        },
-        plugins: {
-          legend: { display: false },
-          tooltip: {
-            displayColors: false,
-            backgroundColor: chartColors.tooltipBg,
-            titleColor: chartColors.tooltipText,
-            bodyColor: chartColors.tooltipText,
-            padding: 12,
-            cornerRadius: 12,
-          },
-        },
-      },
-    }),
-    [chartColors],
-  );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -251,31 +137,34 @@ const LoginPage = () => {
               {theme === 'dark' ? 'Modo claro' : 'Modo oscuro'}
             </button>
           </div>
-          <ReportCard
-            title="Rendimiento Operativo"
-            description="Promedio de optimización financiera de nuestros clientes."
-            className="shadow-2xl overflow-hidden"
-            bodyClassName="relative"
-            chartConfig={chartData}
-            chartInitialType="line"
-            chartHeight={220}
-          >
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-brand-primary/10 via-transparent to-brand-secondary/20 -z-10" />
-            <div className="relative z-10 space-y-6">
-              <div className="flex flex-wrap items-start justify-between gap-6 text-left">
-                <div>
-                  <p className="text-text-muted text-sm">Reportes sincronizados</p>
-                  <p className="text-3xl font-semibold text-text-base">+95% de precisión</p>
-                </div>
+          <div className="relative w-full flex-grow flex flex-col justify-center">
+            <div className="relative w-full aspect-[4/3] lg:h-[500px] rounded-3xl overflow-hidden border border-glass-border/30 bg-glass-card/5 backdrop-blur-sm flex items-center justify-center p-8 group">
+              {/* Background Glows */}
+              <div className="absolute top-0 right-0 w-96 h-96 bg-brand-primary/20 rounded-full blur-[100px] -translate-y-1/3 translate-x-1/3 transition-all duration-1000 group-hover:bg-brand-primary/30"></div>
+              <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-secondary/20 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/3 transition-all duration-1000 group-hover:bg-brand-secondary/30"></div>
+              
+              {/* Central Abstract Element */}
+              <div className="relative z-10 text-center space-y-8">
+                 <div className="relative inline-block">
+                    <div className="absolute inset-0 bg-gradient-to-tr from-brand-primary to-brand-accent blur-xl opacity-40 animate-pulse"></div>
+                    <img src={logoSrc} alt="Brand Logo" className="relative w-32 h-auto opacity-90 drop-shadow-2xl grayscale-[0.2] group-hover:grayscale-0 transition-all duration-500" />
+                 </div>
+                 
+                 <div className="space-y-2">
+                    <h2 className="text-4xl lg:text-5xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-text-base via-text-base to-text-muted">
+                      Visión Total
+                    </h2>
+                    <p className="text-lg text-text-muted tracking-wide font-light">
+                      El arte de simplificar tus finanzas.
+                    </p>
+                 </div>
               </div>
-              <div className="flex flex-wrap gap-8 text-sm text-text-muted text-left">
-                <div>
-                  <p className="uppercase tracking-[0.3em] text-xs">Cobertura multimoneda</p>
-                  <p className="text-xl font-semibold text-text-base">12 tipos de cambio</p>
-                </div>
-              </div>
+
+              {/* Decorative Geometric Lines */}
+              <div className="absolute inset-0 border border-white/5 rounded-3xl m-4 pointer-events-none"></div>
+              <div className="absolute inset-0 border border-white/5 rounded-3xl m-8 pointer-events-none opacity-50"></div>
             </div>
-          </ReportCard>
+          </div>
         </div>
         <div className="w-full lg:w-1/2 px-6 lg:px-12 py-12 flex items-center justify-center">
           <div className="w-full max-w-md rounded-3xl border border-glass-border bg-glass-card backdrop-blur-2xl shadow-2xl p-8 space-y-8">
