@@ -1,28 +1,37 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaSpinner } from 'react-icons/fa';
-import { Line } from 'react-chartjs-2';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Tooltip,
-  Filler,
-} from 'chart.js';
 import useLogin from '../../hooks/useLogin';
 import ErrorNotification from '../../components/common/ErrorNotification';
 import ReportCard from '../../components/common/ReportCard';
-import logo from '/assets/logo.png';
-
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Filler);
+import { getInstitutionalLogoByTheme } from '../../utils/themeAssets';
 
 const getInitialTheme = () => {
   if (typeof window === 'undefined') {
     return 'dark';
   }
   return localStorage.getItem('preferred-theme') || 'dark';
+};
+
+const hexToRgba = (hex, alpha = 1) => {
+  const sanitized = hex.replace('#', '');
+  const chunk = sanitized.length === 3 ? sanitized.split('').map((c) => c + c).join('') : sanitized;
+  const int = parseInt(chunk, 16);
+  const r = (int >> 16) & 255;
+  const g = (int >> 8) & 255;
+  const b = int & 255;
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+};
+
+const withAlpha = (color, alpha) => {
+  if (!color) return `rgba(0,0,0,${alpha})`;
+  const trimmed = color.trim();
+  if (trimmed.startsWith('rgba(') || trimmed.startsWith('rgb(')) {
+    const values = trimmed.replace(/rgba?\(|\)/g, '').split(',').map((v) => v.trim());
+    const [r, g, b] = values;
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  }
+  return hexToRgba(trimmed, alpha);
 };
 
 const LoginPage = () => {
@@ -74,75 +83,94 @@ const LoginPage = () => {
   const togglePasswordVisibility = () => setShowPassword((prev) => !prev);
   const toggleTheme = () => setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
 
+  const logoSrc = useMemo(() => getInstitutionalLogoByTheme(theme), [theme]);
+
+  const cssVars = useMemo(() => {
+    if (typeof window === 'undefined') {
+      return {
+        brandPrimary: '#a30081',
+        brandSecondary: '#f20587',
+        brandAccent: '#f2522e',
+        textMuted: 'rgba(239,239,239,0.78)',
+        textBase: '#ffffff',
+        borderSoft: 'rgba(255,255,255,0.12)',
+        surfaceStrong: 'rgba(255,255,255,0.09)',
+      };
+    }
+    const style = getComputedStyle(document.documentElement);
+    const read = (name, fallback) => style.getPropertyValue(name).trim() || fallback;
+    return {
+      brandPrimary: read('--color-brand-primary', '#a30081'),
+      brandSecondary: read('--color-brand-secondary', '#f20587'),
+      brandAccent: read('--color-brand-accent', '#f2522e'),
+      textMuted: read('--color-text-muted', 'rgba(239,239,239,0.78)'),
+      textBase: read('--color-text-base', '#ffffff'),
+      borderSoft: read('--color-border-soft', 'rgba(255,255,255,0.12)'),
+      surfaceStrong: read('--color-surface-strong', 'rgba(255,255,255,0.09)'),
+    };
+  }, [theme]);
+
   const chartColors = useMemo(
     () =>
       theme === 'dark'
         ? {
-            line: 'rgba(99,102,241,1)',
-            fill: 'rgba(99,102,241,0.18)',
-            axis: 'rgba(248,250,252,0.45)',
-            grid: 'rgba(148,163,184,0.2)',
-            tooltipBg: 'rgba(2,6,23,0.95)',
-            tooltipText: '#f8fafc',
+            line: cssVars.brandPrimary,
+            fill: withAlpha(cssVars.brandPrimary, 0.2),
+            axis: cssVars.textMuted,
+            grid: withAlpha(cssVars.borderSoft, 0.55),
+            tooltipBg: cssVars.surfaceStrong,
+            tooltipText: cssVars.textBase,
           }
         : {
-            line: 'rgba(14,165,233,1)',
-            fill: 'rgba(14,165,233,0.2)',
-            axis: 'rgba(15,23,42,0.6)',
-            grid: 'rgba(15,23,42,0.08)',
+            line: cssVars.brandSecondary,
+            fill: withAlpha(cssVars.brandSecondary, 0.18),
+            axis: cssVars.textMuted,
+            grid: withAlpha(cssVars.borderSoft, 0.4),
             tooltipBg: '#ffffff',
-            tooltipText: '#0f172a',
+            tooltipText: '#0e0e0e',
           },
-    [theme],
+    [theme, cssVars],
   );
 
   const chartData = useMemo(
-  () => ({
-    // Representamos los últimos 8 meses para mostrar crecimiento/estabilidad
-    labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago'], 
-    datasets: [
-      {
-        label: 'Salud Financiera',
-        // Simulamos una curva ascendente de eficiencia o ingresos
-        data: [65, 59, 80, 81, 76, 85, 92, 98], 
-        borderColor: chartColors.line,
-        backgroundColor: chartColors.fill,
-        tension: 0.45,
-        borderWidth: 3, // Un poco más grueso para que destaque
-        pointRadius: 4, // Puntos pequeños para dar sensación de nodos de datos
-        pointBackgroundColor: chartColors.line,
-        fill: true,
-      },
-    ],
-  }),
-  [chartColors]
-);
-
-  const chartOptions = useMemo(
     () => ({
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          displayColors: false,
-          backgroundColor: chartColors.tooltipBg,
-          titleColor: chartColors.tooltipText,
-          bodyColor: chartColors.tooltipText,
-          padding: 12,
-          cornerRadius: 12,
+      labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago'],
+      datasets: [
+        {
+          label: 'Salud Financiera',
+          data: [65, 59, 80, 81, 76, 85, 92, 98],
+          borderColor: chartColors.line,
+          backgroundColor: chartColors.fill,
+          tension: 0.45,
+          borderWidth: 3,
+          pointRadius: 4,
+          pointBackgroundColor: chartColors.line,
+          fill: true,
         },
-      },
-      interaction: { intersect: false, mode: 'index' },
-      scales: {
-        x: {
-          grid: { display: false },
-          ticks: { color: chartColors.axis, font: { weight: 500 } },
+      ],
+      options: {
+        interaction: { intersect: false, mode: 'index' },
+        scales: {
+          x: {
+            grid: { display: false },
+            ticks: { color: chartColors.axis, font: { weight: 500 } },
+          },
+          y: {
+            grid: { color: chartColors.grid, drawTicks: false },
+            ticks: { color: chartColors.axis, callback: (value) => `${value}%` },
+            border: { display: false },
+          },
         },
-        y: {
-          grid: { color: chartColors.grid, drawTicks: false },
-          ticks: { color: chartColors.axis, callback: (value) => `${value}%` },
-          border: { display: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            displayColors: false,
+            backgroundColor: chartColors.tooltipBg,
+            titleColor: chartColors.tooltipText,
+            bodyColor: chartColors.tooltipText,
+            padding: 12,
+            cornerRadius: 12,
+          },
         },
       },
     }),
@@ -228,26 +256,23 @@ const LoginPage = () => {
             description="Promedio de optimización financiera de nuestros clientes."
             className="shadow-2xl overflow-hidden"
             bodyClassName="relative"
+            chartConfig={chartData}
+            chartInitialType="line"
+            chartHeight={220}
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/10 via-transparent to-brand-secondary/20" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-brand-primary/10 via-transparent to-brand-secondary/20 -z-10" />
             <div className="relative z-10 space-y-6">
               <div className="flex flex-wrap items-start justify-between gap-6 text-left">
                 <div>
                   <p className="text-text-muted text-sm">Reportes sincronizados</p>
                   <p className="text-3xl font-semibold text-text-base">+95% de precisión</p>
                 </div>
-              
-              </div>
-              <div className="h-48">
-                <Line data={chartData} options={chartOptions} />
               </div>
               <div className="flex flex-wrap gap-8 text-sm text-text-muted text-left">
                 <div>
                   <p className="uppercase tracking-[0.3em] text-xs">Cobertura multimoneda</p>
                   <p className="text-xl font-semibold text-text-base">12 tipos de cambio</p>
                 </div>
-               
-               
               </div>
             </div>
           </ReportCard>
@@ -255,9 +280,8 @@ const LoginPage = () => {
         <div className="w-full lg:w-1/2 px-6 lg:px-12 py-12 flex items-center justify-center">
           <div className="w-full max-w-md rounded-3xl border border-glass-border bg-glass-card backdrop-blur-2xl shadow-2xl p-8 space-y-8">
             <div className="flex flex-col items-center gap-3 text-center">
-              <img className="w-32 h-auto" src={logo} alt="logo" />
+              <img className="w-32 h-auto" src={logoSrc} alt="logo" />
               <div>
-                <p className="text-sm uppercase tracking-[0.4em] text-text-muted">Sistema automatizado</p>
                 <h2 className="text-2xl font-semibold mt-2">Accede al motor de reportes</h2>
               </div>
             </div>

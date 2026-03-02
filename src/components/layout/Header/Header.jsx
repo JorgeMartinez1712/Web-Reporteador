@@ -26,9 +26,7 @@ const Header = () => {
   const toggleTheme = () => setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
 
   const logoutButtonClasses =
-    theme === 'dark'
-      ? 'flex items-center gap-2 rounded-2xl border border-red-400/30 bg-red-500/10 px-4 py-2 text-xs font-semibold text-red-100 transition hover:bg-red-500/20'
-      : 'flex items-center gap-2 rounded-2xl border border-red-500/20 bg-red-500/5 px-4 py-2 text-xs font-semibold text-red-600 transition hover:bg-red-500/15';
+    'flex items-center gap-2 rounded-2xl border border-brand-accent/50 bg-brand-accent/10 px-4 py-2 text-xs font-semibold text-brand-accent transition hover:bg-brand-accent/20 hover:border-brand-accent';
 
   return (
     <header className="sticky top-0 z-40 border-b border-glass-border bg-app-bg">
@@ -77,7 +75,7 @@ const Header = () => {
         <div className="flex justify-end space-x-2">
           <button
             onClick={() => setIsModalOpen(false)}
-            className="rounded border border-glass-border bg-transparent px-4 py-2 text-text-base transition hover:bg-glass-card"
+            className="rounded-2xl border border-glass-border bg-transparent px-4 py-2 text-text-base transition hover:bg-glass-card"
           >
             Cancelar
           </button>
@@ -86,7 +84,7 @@ const Header = () => {
               setIsModalOpen(false);
               logout();
             }}
-            className="rounded bg-red-600 px-4 py-2 text-white transition hover:bg-red-500"
+            className="rounded-2xl bg-brand-accent px-4 py-2 text-white transition hover:bg-brand-accent/90"
           >
             Confirmar
           </button>

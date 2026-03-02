@@ -1,30 +1,39 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FaSpinner } from 'react-icons/fa';
-import { Line } from 'react-chartjs-2';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Tooltip,
-  Filler,
-} from 'chart.js';
 import useLogin from '../../hooks/useLogin';
 import { useAuth } from '../../context/AuthContext';
 import ErrorNotification from '../../components/common/ErrorNotification';
 import SuccessNotification from '../../components/common/SuccessNotification';
 import ReportCard from '../../components/common/ReportCard';
-import logo from '/assets/logo.png';
-
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Filler);
+import { getInstitutionalLogoByTheme } from '../../utils/themeAssets';
 
 const getInitialTheme = () => {
   if (typeof window === 'undefined') {
     return 'dark';
   }
   return localStorage.getItem('preferred-theme') || 'dark';
+};
+
+const hexToRgba = (hex, alpha = 1) => {
+  const sanitized = hex.replace('#', '');
+  const chunk = sanitized.length === 3 ? sanitized.split('').map((c) => c + c).join('') : sanitized;
+  const int = parseInt(chunk, 16);
+  const r = (int >> 16) & 255;
+  const g = (int >> 8) & 255;
+  const b = int & 255;
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+};
+
+const withAlpha = (color, alpha) => {
+  if (!color) return `rgba(0,0,0,${alpha})`;
+  const trimmed = color.trim();
+  if (trimmed.startsWith('rgba(') || trimmed.startsWith('rgb(')) {
+    const values = trimmed.replace(/rgba?\(|\)/g, '').split(',').map((v) => v.trim());
+    const [r, g, b] = values;
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  }
+  return hexToRgba(trimmed, alpha);
 };
 
 const VerificactionCodePage = () => {
@@ -42,6 +51,31 @@ const VerificactionCodePage = () => {
   const isMockLogin = Boolean(credentials?.isMock && mockUser);
   const mockVerificationCode = '123456';
 
+  const cssVars = useMemo(() => {
+    if (typeof window === 'undefined') {
+      return {
+        brandPrimary: '#a30081',
+        brandSecondary: '#f20587',
+        brandAccent: '#f2522e',
+        textMuted: 'rgba(239,239,239,0.78)',
+        textBase: '#ffffff',
+        borderSoft: 'rgba(255,255,255,0.12)',
+        surfaceStrong: 'rgba(255,255,255,0.09)',
+      };
+    }
+    const style = getComputedStyle(document.documentElement);
+    const read = (name, fallback) => style.getPropertyValue(name).trim() || fallback;
+    return {
+      brandPrimary: read('--color-brand-primary', '#a30081'),
+      brandSecondary: read('--color-brand-secondary', '#f20587'),
+      brandAccent: read('--color-brand-accent', '#f2522e'),
+      textMuted: read('--color-text-muted', 'rgba(239,239,239,0.78)'),
+      textBase: read('--color-text-base', '#ffffff'),
+      borderSoft: read('--color-border-soft', 'rgba(255,255,255,0.12)'),
+      surfaceStrong: read('--color-surface-strong', 'rgba(255,255,255,0.09)'),
+    };
+  }, [theme]);
+
   const triggerNotification = useCallback((message, type = 'error') => {
     setNotification({ type, message, isOpen: true });
   }, []);
@@ -52,6 +86,8 @@ const VerificactionCodePage = () => {
     document.documentElement.dataset.theme = theme;
     localStorage.setItem('preferred-theme', theme);
   }, [theme]);
+
+  const logoSrc = useMemo(() => getInstitutionalLogoByTheme(theme), [theme]);
 
   useEffect(() => {
     if (!credentials || !credentials.email) {
@@ -98,25 +134,25 @@ const VerificactionCodePage = () => {
     () =>
       theme === 'dark'
         ? {
-            line: 'rgba(14,165,233,1)',
-            fill: 'rgba(14,165,233,0.2)',
-            axis: 'rgba(248,250,252,0.45)',
-            grid: 'rgba(148,163,184,0.25)',
-            tooltipBg: 'rgba(2,6,23,0.95)',
-            tooltipText: '#f8fafc',
+            line: cssVars.brandPrimary,
+            fill: withAlpha(cssVars.brandPrimary, 0.22),
+            axis: cssVars.textMuted,
+            grid: withAlpha(cssVars.borderSoft, 0.55),
+            tooltipBg: cssVars.surfaceStrong,
+            tooltipText: cssVars.textBase,
           }
         : {
-            line: 'rgba(99,102,241,1)',
-            fill: 'rgba(99,102,241,0.18)',
-            axis: 'rgba(15,23,42,0.65)',
-            grid: 'rgba(15,23,42,0.12)',
+            line: cssVars.brandSecondary,
+            fill: withAlpha(cssVars.brandSecondary, 0.2),
+            axis: cssVars.textMuted,
+            grid: withAlpha(cssVars.borderSoft, 0.4),
             tooltipBg: '#ffffff',
-            tooltipText: '#0f172a',
+            tooltipText: '#0e0e0e',
           },
-    [theme],
+    [theme, cssVars],
   );
 
-  const chartData = useMemo(
+  const chartConfig = useMemo(
     () => ({
       labels: ['Seg -30', 'Seg -20', 'Seg -10', 'Seg -5', 'Seg -2', 'Seg 0'],
       datasets: [
@@ -130,35 +166,29 @@ const VerificactionCodePage = () => {
           fill: true,
         },
       ],
-    }),
-    [chartColors],
-  );
-
-  const chartOptions = useMemo(
-    () => ({
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          displayColors: false,
-          backgroundColor: chartColors.tooltipBg,
-          titleColor: chartColors.tooltipText,
-          bodyColor: chartColors.tooltipText,
-          padding: 12,
-          cornerRadius: 12,
+      options: {
+        interaction: { intersect: false, mode: 'index' },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            displayColors: false,
+            backgroundColor: chartColors.tooltipBg,
+            titleColor: chartColors.tooltipText,
+            bodyColor: chartColors.tooltipText,
+            padding: 12,
+            cornerRadius: 12,
+          },
         },
-      },
-      interaction: { intersect: false, mode: 'index' },
-      scales: {
-        x: {
-          grid: { display: false },
-          ticks: { color: chartColors.axis },
-        },
-        y: {
-          grid: { color: chartColors.grid, drawTicks: false },
-          ticks: { color: chartColors.axis, callback: (value) => `${value}%` },
-          border: { display: false },
+        scales: {
+          x: {
+            grid: { display: false },
+            ticks: { color: chartColors.axis },
+          },
+          y: {
+            grid: { color: chartColors.grid, drawTicks: false },
+            ticks: { color: chartColors.axis, callback: (value) => `${value}%` },
+            border: { display: false },
+          },
         },
       },
     }),
@@ -273,8 +303,11 @@ const VerificactionCodePage = () => {
             description="Estado de las validaciones dinámicas"
             className="shadow-2xl overflow-hidden"
             bodyClassName="relative"
+            chartConfig={chartConfig}
+            chartInitialType="line"
+            chartHeight={220}
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-brand-secondary/10 via-transparent to-brand-primary/20" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-brand-secondary/10 via-transparent to-brand-primary/20 -z-10" />
             <div className="relative z-10 space-y-6">
               <div className="flex flex-wrap items-start justify-between gap-6">
                 <div className='text-left'>
@@ -282,9 +315,6 @@ const VerificactionCodePage = () => {
                   <p className="text-3xl font-semibold text-text-base">+96%</p>
                 </div>
                
-              </div>
-              <div className="h-48">
-                <Line data={chartData} options={chartOptions} />
               </div>
               <div className="flex flex-wrap gap-8 text-sm text-text-muted text-left">
                 <div>
@@ -306,7 +336,7 @@ const VerificactionCodePage = () => {
         <div className="w-full lg:w-1/2 px-6 lg:px-12 py-12 flex items-center justify-center">
           <div className="w-full max-w-md rounded-3xl border border-glass-border bg-glass-card backdrop-blur-2xl shadow-2xl p-8 space-y-6">
             <div className="flex flex-col items-center gap-3 text-center">
-              <img className="w-28 h-auto" src={logo} alt="logo" />
+              <img className="w-28 h-auto" src={logoSrc} alt="logo" />
               <div>
                 <p className="text-sm uppercase tracking-[0.4em] text-text-muted">Segundo factor</p>
                 <h2 className="text-2xl font-semibold mt-2">Introduce tu código del autenticador</h2>

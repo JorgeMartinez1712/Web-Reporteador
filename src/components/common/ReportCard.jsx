@@ -10,23 +10,37 @@ import {
   LineElement,
   LinearScale,
   PointElement,
+  RadialLinearScale,
   Tooltip,
 } from 'chart.js';
-import { Bar, Line, Pie } from 'react-chartjs-2';
-import defaultLogo from '/assets/logo.png';
+import { Bar, Line, Pie, Radar } from 'react-chartjs-2';
+import { getLogoByTheme } from '../../utils/themeAssets';
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, ArcElement, Tooltip, Legend, Filler);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  BarElement,
+  ArcElement,
+  RadialLinearScale,
+  Tooltip,
+  Legend,
+  Filler,
+);
 
-const CHART_TYPES = ['line', 'bar', 'pie'];
+const CHART_TYPES = ['line', 'bar', 'pie', 'radar'];
 const chartTypeIconMap = {
   line: 'bi-graph-up',
   bar: 'bi-bar-chart',
   pie: 'bi-pie-chart',
+  radar: 'bi-bullseye',
 };
 const chartTypeLabelMap = {
   line: 'Ver como línea',
   bar: 'Ver como barras',
   pie: 'Ver como pie',
+  radar: 'Ver como radar',
 };
 
 const getCurrentTheme = () => {
@@ -80,8 +94,7 @@ const ReportCard = ({
   footer,
   className = '',
   bodyClassName = '',
-  watermarkLogo = defaultLogo,
-  watermarkLabel = 'Manapro',
+  watermarkLogo,
   chartConfig,
   chartInitialType = 'line',
   chartTypeOptions = CHART_TYPES,
@@ -166,11 +179,13 @@ const ReportCard = ({
         };
       }
 
-      const backgroundColor = dataset.backgroundColor || (chartType === 'line' ? hexToRgba(color, 0.25) : color);
+      const baseBg = chartType === 'line' || chartType === 'radar' ? hexToRgba(color, 0.25) : color;
+      const backgroundColor = dataset.backgroundColor || baseBg;
+      const tensionDefault = chartType === 'line' ? 0.35 : chartType === 'radar' ? 0.25 : 0;
       return {
         borderWidth: dataset.borderWidth ?? 2,
-        tension: dataset.tension ?? (chartType === 'line' ? 0.35 : 0),
-        fill: dataset.fill ?? (chartType === 'line'),
+        tension: dataset.tension ?? tensionDefault,
+        fill: dataset.fill ?? (chartType === 'line' || chartType === 'radar'),
         borderRadius: dataset.borderRadius ?? (chartType === 'bar' ? 18 : 0),
         ...dataset,
         borderColor: dataset.borderColor || color,
@@ -204,7 +219,16 @@ const ReportCard = ({
       },
     };
 
-    if (chartType !== 'pie') {
+    if (chartType === 'radar') {
+      options.scales = {
+        r: {
+          angleLines: { color: gridColor },
+          grid: { color: gridColor },
+          pointLabels: { color: axisColor },
+          ticks: { display: false },
+        },
+      };
+    } else if (chartType !== 'pie') {
       options.scales = {
         x: {
           grid: { color: gridColor },
@@ -223,8 +247,9 @@ const ReportCard = ({
 
   const chartOptions = useMemo(() => deepMerge(baseOptions, chartConfig?.options), [baseOptions, chartConfig?.options]);
 
-  const chartComponents = { line: Line, bar: Bar, pie: Pie };
+  const chartComponents = { line: Line, bar: Bar, pie: Pie, radar: Radar };
   const ChartComponent = chartComponents[chartType];
+  const watermarkSrc = useMemo(() => watermarkLogo || getLogoByTheme(themeMode), [watermarkLogo, themeMode]);
   const chartSection = chartEnabled && ChartComponent ? (
     <div className="w-full" style={{ minHeight: chartHeight }}>
       <ChartComponent key={chartType} data={chartData} options={chartOptions} />
@@ -278,8 +303,7 @@ const ReportCard = ({
       </div>
       {footer ? <div className="border-t border-glass-border pt-4 text-sm text-text-muted">{footer}</div> : null}
       <div className="absolute bottom-4 right-4 inline-flex items-center gap-2 rounded-full border border-glass-border/70 bg-glass-card/80 px-3 py-1 text-[11px] font-semibold text-text-muted shadow-sm">
-        <img src={watermarkLogo} alt="Logo" className="h-4 w-auto" />
-        <span className="uppercase tracking-[0.3em]">{watermarkLabel}</span>
+        <img src={watermarkSrc} alt="Logo" className="h-4 w-auto" />
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
+import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
-import fullLogo from '/assets/logo.png';
+import { getLogoByTheme, getThemeFromDom, subscribeToThemeChanges } from '../../../utils/themeAssets';
 import './Navigation.css';
 
 
@@ -48,11 +49,20 @@ const navLinksByRole = {
 };
 
 const Navigation = ({ isOpen }) => {
+  const [theme, setTheme] = useState(getThemeFromDom());
   const location = useLocation();
   const { user } = useAuth();
   const role = user?.role || 'INTERESADO';
   const roleHome = roleHomeMap[role] || '/dashboard';
   const navLinks = navLinksByRole[role] || navLinksByRole.INTERESADO;
+
+  useEffect(() => {
+    setTheme(getThemeFromDom());
+    const unsubscribe = subscribeToThemeChanges(setTheme);
+    return unsubscribe;
+  }, []);
+
+  const logoSrc = getLogoByTheme(theme);
 
   const isActiveRoute = (to, { exactMatch } = {}) =>
     exactMatch ? location.pathname === to : location.pathname === to || location.pathname.startsWith(`${to}/`);
@@ -65,7 +75,7 @@ const Navigation = ({ isOpen }) => {
     >
       <div className="px-6 pt-8 pb-4">
         <Link to={roleHome} className="flex justify-center">
-          <img src={fullLogo} alt="logo" className="h-12 w-auto object-contain" />
+          <img src={logoSrc} alt="logo" className="h-12 w-auto object-contain" />
         </Link>
       </div>
 
